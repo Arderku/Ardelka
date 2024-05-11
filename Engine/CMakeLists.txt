@@ -1,27 +1,20 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.27)  # Updated version
 
-# Engine module
 project(Engine)
 
 # Gather all source and header files
-file(GLOB_RECURSE ENGINE_SOURCES
-        "src/*.cpp"
-        "src/*.h"
-)
+file(GLOB_RECURSE ENGINE_SOURCES "src/*.cpp" "src/*.h")
 
 # Define the library
 add_library(Engine STATIC ${ENGINE_SOURCES}
-        src/Graphics/Renderer.cpp
-        src/Graphics/Renderer.h
-        src/Graphics/Renderer.h
-        src/Graphics/VulkanContext.cpp
-        src/Graphics/VulkanContext.h
-        src/Graphics/VulkanContext.h)
+        src/Config/Config.h
+        src/Config/ConfigurationManager.h)
 
 # Specify include directories
 target_include_directories(Engine PUBLIC
         include
-        src  # If you use any local headers directly in src
+        src
+        ${PROJECT_SOURCE_DIR}/ThirdParty/GLFW/include
 )
 
 # Setup precompiled headers
@@ -29,4 +22,4 @@ target_precompile_headers(Engine PUBLIC src/Ardelkapch.h)
 
 # Find Vulkan and link it
 find_package(Vulkan REQUIRED)
-target_link_libraries(Engine PUBLIC Vulkan::Vulkan)
+target_link_libraries(Engine PUBLIC Vulkan::Vulkan glfw)

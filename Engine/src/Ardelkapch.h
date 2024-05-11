@@ -11,10 +11,12 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <functional>
 #include <map>
 #include <memory>
 
 // Add other common headers from third-party libraries
 //#include "ImGui/imgui.h"
+//#include "/GLFW/glfw3.h"
 
 #endif //ARDELKA_ARDELKAPCH_H
