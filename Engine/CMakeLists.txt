@@ -10,7 +10,13 @@ file(GLOB_RECURSE ENGINE_SOURCES
 )
 
 # Define the library
-add_library(Engine STATIC ${ENGINE_SOURCES})
+add_library(Engine STATIC ${ENGINE_SOURCES}
+        src/Graphics/Renderer.cpp
+        src/Graphics/Renderer.h
+        src/Graphics/Renderer.h
+        src/Graphics/VulkanContext.cpp
+        src/Graphics/VulkanContext.h
+        src/Graphics/VulkanContext.h)
 
 # Specify include directories
 target_include_directories(Engine PUBLIC
