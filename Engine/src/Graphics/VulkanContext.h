@@ -1,5 +1,5 @@
 #pragma once
-#include "vulkan//vulkan.h"
+#include "vulkan/vulkan.hpp"
 
 class VulkanContext {
 public:
@@ -7,10 +7,11 @@ public:
     ~VulkanContext();
 
     void Initialize();
-    VkDevice GetDevice();
+    vk::Device GetDevice();
 private:
-    VkInstance m_Instance;
-    VkDevice m_Device;
+    vk::Instance m_Instance;
+    vk::PhysicalDevice m_PhysicalDevice;
+    vk::Device m_Device;
     //ToDo: Add vulkan specific members
 
     void CreateInstance();
