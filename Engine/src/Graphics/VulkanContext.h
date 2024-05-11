@@ -17,4 +17,5 @@ private:
     void CreateInstance();
     void PickPhysicalDevice();
     void CreateLogicalDevice();
+    bool IsSupported(const std::vector<const char*>& extensions, std::vector<const char*>& layers);
 };

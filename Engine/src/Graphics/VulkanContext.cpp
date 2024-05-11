@@ -35,8 +35,8 @@ void VulkanContext::CreateInstance() {
     auto createInfo = vk::InstanceCreateInfo(
         vk::InstanceCreateFlags(),
         &appInfo,
-        0, nullptr,
-        0, nullptr); // these prob should have glfw layers later
+        0, nullptr, // these prob should have glfw layers later
+        0, nullptr); // exntensions setup
 
     try {
         m_Instance = vk::createInstance(createInfo);
@@ -64,4 +64,8 @@ void VulkanContext::CreateLogicalDevice() {
     vk::DeviceCreateInfo createInfo({}, 1, &queueCreateInfo);
 
     m_Device = m_PhysicalDevice.createDevice(createInfo);
+}
+
+bool VulkanContext::IsSupported(const std::vector<const char *> &extensions, std::vector<const char *> &layers) {
+    return true;
 }
