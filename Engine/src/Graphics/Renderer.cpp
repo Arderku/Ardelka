@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-Renderer::Renderer() {
+Renderer::Renderer(Window& window) : m_Window(window), m_VulkanContext(window) {
 }
 
 Renderer::~Renderer() {

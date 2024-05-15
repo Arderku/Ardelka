@@ -17,7 +17,7 @@ int main() {
 
     });
 
-    Renderer renderer;
+    Renderer renderer(window);
     renderer.Initialize();
 
     while (!window.ShouldClose()) {

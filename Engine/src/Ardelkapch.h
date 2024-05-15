@@ -17,8 +17,9 @@
 
 // Add other common headers from third-party libraries
 #include "glm/glm.hpp"
+#define GLFW_INCLUDE_VULKAN
 #include "glfw/glfw3.h"
+#include <glfw/glfw3native.h> // Necessary for native access if needed
+#endif
 //#include "ImGui/imgui.h"
 
-
-#endif //ARDELKA_ARDELKAPCH_H

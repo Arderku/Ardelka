@@ -1,7 +1,9 @@
 #include "VulkanContext.h"
+#define GLFW_INCLUDE_VULKAN
+#include "glfw/glfw3.h"
+#include "glfw/glfw3native.h"
 
-VulkanContext::VulkanContext() {
-}
+VulkanContext::VulkanContext(Window& window) : m_Window(window) {}
 
 VulkanContext::~VulkanContext() {
     //maybe destory it in engine?? will return to this
@@ -12,6 +14,7 @@ void VulkanContext::Initialize() {
     CreateInstance();
     PickPhysicalDevice();
     CreateLogicalDevice();
+    CreateSurface();
 }
 
 vk::Device VulkanContext::GetDevice() {
@@ -142,5 +145,17 @@ VulkanContext::QueueFamilyIndices VulkanContext::FindQueueFamilies(vk::PhysicalD
 
     return indices;
 }
+
+void VulkanContext::CreateSurface() {
+
+    VkSurfaceKHR surface;
+    if (glfwCreateWindowSurface(m_Instance, m_Window.GetNativeWindow(), nullptr, &surface) != VK_SUCCESS) {
+        throw std::runtime_error("Failed to create window surface");
+    }
+
+    m_Surface = surface;
+}
+
+
 
 

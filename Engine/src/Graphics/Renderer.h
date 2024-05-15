@@ -6,12 +6,14 @@
 
 class Renderer final{
 public:
-    Renderer();
+    Renderer(Window& window);
     ~Renderer();
 
     void Initialize();
     void Render();
     void Shutdown();
 private:
+    Window& m_Window;
     VulkanContext m_VulkanContext;
 };
+
