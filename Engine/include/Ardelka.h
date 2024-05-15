@@ -8,4 +8,5 @@
 
 // Include all the public headers of the engine modules here
 #include "Core/Engine.h"
+#include "Core/Window.h"
 #endif //ARDELKA_ARDELKA_H

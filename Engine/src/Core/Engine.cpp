@@ -15,10 +15,10 @@ void Engine::Initialize() {
 
 void Engine::Run() {
     int testNumber = 0;
-    while (isRunning) {
+   /* while (isRunning) {
         std::cout << "\rEngine Run: " << testNumber++ << std::flush;
         std::this_thread::sleep_for(std::chrono::seconds(1));  // Slow down the increment for visibility
-    }
+    }*/
 }
 
 void Engine::Shutdown() {

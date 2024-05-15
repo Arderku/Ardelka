@@ -7,13 +7,15 @@ project(Editor)
 file(GLOB EDITOR_SOURCES "src/*.cpp")
 
 # Define the executable
-add_executable(Editor ${EDITOR_SOURCES})
+add_executable(Editor ${EDITOR_SOURCES} )
 
-# Include directories from Engine
+# Include directories from Engine and ImGui
 target_include_directories(Editor PRIVATE
         ../Engine/include
-        ../Engine/src  # Only if needed for internal headers
+        ../Engine/src  # Include this if there are internal headers necessary
+        ${PROJECT_SOURCE_DIR}/../ThirdParty/ImGui
+        ${PROJECT_SOURCE_DIR}/../ThirdParty/ImGui/backends
 )
 
-# Link with the Engine library
-target_link_libraries(Editor Engine)
+# Link with the Engine library and ImGui
+target_link_libraries(Editor Engine ImGui)

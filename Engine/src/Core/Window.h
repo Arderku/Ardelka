@@ -11,12 +11,12 @@ public:
     Window(std::string  title, int width, int height);
     ~Window();
 
-    void onUpdate();
+    void OnUpdate();
 
-    bool shouldClose() const;
-    void setEventCallback(const EventCallbackFn& callback);
+    bool ShouldClose() const;
+    void SetEventCallback(const EventCallbackFn& callback);
 
-    GLFWwindow* getNativeWindow() const { return m_Window; }
+    GLFWwindow* GetNativeWindow();
 
 private:
     GLFWwindow* m_Window;  // Adjust naming to follow your convention
