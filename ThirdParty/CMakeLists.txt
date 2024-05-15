@@ -14,6 +14,7 @@ add_library(ImGui STATIC ${IMGUI_SOURCES})
 target_include_directories(ImGui PUBLIC
         "${PROJECT_SOURCE_DIR}/ThirdParty/ImGui"
         "${PROJECT_SOURCE_DIR}/ThirdParty/ImGui/backends"
+        "${PROJECT_SOURCE_DIR}/ThirdParty/glm"
 )
 
 # Find Vulkan package

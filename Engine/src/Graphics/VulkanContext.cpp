@@ -25,18 +25,20 @@ void VulkanContext::CreateInstance() {
     version = VK_MAKE_API_VERSION(0, 1, 0, 0);
 
     auto appInfo = vk::ApplicationInfo(
-        "Vulkan Engine",
+        "Ardelka Engine",
         version,
         "Graphics Engine Dev",
         version,
         version
         );
 
+    std::vector<const char*> extensions = GetRequiredExtensions();
+
     auto createInfo = vk::InstanceCreateInfo(
         vk::InstanceCreateFlags(),
         &appInfo,
         0, nullptr, // these prob should have glfw layers later
-        0, nullptr); // exntensions setup
+        extensions.size(), extensions.data());
 
     try {
         m_Instance = vk::createInstance(createInfo);
@@ -46,6 +48,18 @@ void VulkanContext::CreateInstance() {
     }
 }
 
+std::vector<const char*> VulkanContext::GetRequiredExtensions() {
+    uint32_t glfwExtensionCount = 0;
+    const char** glfwExtensions;
+
+    glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+
+    std::vector<const char*> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
+
+    std::cout << "GLFW required extensions: " + std::to_string(glfwExtensionCount) << std::endl;
+    return extensions;
+}
+
 void VulkanContext::PickPhysicalDevice() {
     std::vector<vk::PhysicalDevice> devices = m_Instance.enumeratePhysicalDevices();
 
@@ -53,19 +67,80 @@ void VulkanContext::PickPhysicalDevice() {
         std::cout << "Failed to find GPU device with Vulkan Support" << std::endl;
     }
 
-    // temp select the first device 1st
+    for (const auto& device : devices) {
+        vk::PhysicalDeviceProperties properties = device.getProperties();
+        std::cout << "Physical Device: " << properties.deviceName << std::endl;
+    }
+
     m_PhysicalDevice = devices[0];
 }
 
 void VulkanContext::CreateLogicalDevice() {
-    //temp to be extended
+    QueueFamilyIndices indices = FindQueueFamilies(m_PhysicalDevice);
+
+    if (!indices.isComplete()) {
+        throw std::runtime_error("Failed to find a complete set of queue families");
+    }
+
     float queuePriority = 1.0f;
-    vk::DeviceQueueCreateInfo queueCreateInfo({}, 0, 1, &queuePriority);
+    vk::DeviceQueueCreateInfo queueCreateInfo({ }, indices.graphicsFamily.value(), 1, &queuePriority);
     vk::DeviceCreateInfo createInfo({}, 1, &queueCreateInfo);
 
     m_Device = m_PhysicalDevice.createDevice(createInfo);
+
+    //print out device properties
+    vk::PhysicalDeviceProperties properties = m_PhysicalDevice.getProperties();
+    std::cout << "Logical Device: " << properties.deviceName << std::endl;
 }
 
-bool VulkanContext::IsSupported(const std::vector<const char *> &extensions, std::vector<const char *> &layers) {
+bool VulkanContext::IsDeviceSuitable(const std::vector<const char*>& extensions, std::vector<const char*>& layers) {
+    // Get the supported extensions
+    std::vector<vk::ExtensionProperties> availableExtensions = m_PhysicalDevice.enumerateDeviceExtensionProperties();
+
+    // Check if all required extensions are supported
+    for (const char* extension : extensions) {
+        bool extensionFound = false;
+
+        for (const auto& availableExtension : availableExtensions) {
+            if (strcmp(extension, availableExtension.extensionName) == 0) {
+                extensionFound = true;
+                break;
+            }
+        }
+
+        if (!extensionFound) {
+            return false;
+        }
+    }
+
+    // Check if all required features are supported
+    vk::PhysicalDeviceFeatures supportedFeatures = m_PhysicalDevice.getFeatures();
+    // Add checks for required features here. For example:
+     if (!supportedFeatures.geometryShader) {
+         return false;
+     }
+
     return true;
 }
+
+VulkanContext::QueueFamilyIndices VulkanContext::FindQueueFamilies(vk::PhysicalDevice device) {
+    VulkanContext::QueueFamilyIndices indices;
+    std::vector<vk::QueueFamilyProperties> queueFamilies = device.getQueueFamilyProperties();
+
+    int i = 0;
+    for (const auto& queueFamily : queueFamilies) {
+        if (queueFamily.queueFlags & vk::QueueFlagBits::eGraphics) {
+            indices.graphicsFamily = i;
+        }
+
+        if (indices.isComplete()) {
+            break;
+        }
+
+        i++;
+    }
+
+    return indices;
+}
+
+

@@ -4,7 +4,7 @@
 #include "VulkanContext.h"
 
 
-class Renderer {
+class Renderer final{
 public:
     Renderer();
     ~Renderer();
@@ -14,5 +14,4 @@ public:
     void Shutdown();
 private:
     VulkanContext m_VulkanContext;
-    gsl::not_null<Window> m_Window;
 };

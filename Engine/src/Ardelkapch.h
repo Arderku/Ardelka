@@ -16,7 +16,9 @@
 #include <memory>
 
 // Add other common headers from third-party libraries
+#include "glm/glm.hpp"
+#include "glfw/glfw3.h"
 //#include "ImGui/imgui.h"
-//#include "/GLFW/glfw3.h"
+
 
 #endif //ARDELKA_ARDELKAPCH_H
