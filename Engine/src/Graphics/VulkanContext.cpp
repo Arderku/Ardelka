@@ -12,9 +12,10 @@ VulkanContext::~VulkanContext() {
 
 void VulkanContext::Initialize() {
     CreateInstance();
+    CreateSurface();
     PickPhysicalDevice();
     CreateLogicalDevice();
-    CreateSurface();
+
 }
 
 vk::Device VulkanContext::GetDevice() {
@@ -90,7 +91,13 @@ void VulkanContext::CreateLogicalDevice() {
     vk::DeviceCreateInfo createInfo({}, 1, &queueCreateInfo);
 
     m_Device = m_PhysicalDevice.createDevice(createInfo);
+    m_GraphicsQueue = m_Device.getQueue(indices.graphicsFamily.value(), 0);
+    m_PresentQueue = m_Device.getQueue(indices.presentFamily.value(), 0);
 
+    //print out graphics queue and present queue
+    std::cout << "Graphics Queue: " << m_GraphicsQueue << std::endl;
+    std::cout << "Present Queue: " << m_PresentQueue << std::endl;
+    
     //print out device properties
     vk::PhysicalDeviceProperties properties = m_PhysicalDevice.getProperties();
     std::cout << "Logical Device: " << properties.deviceName << std::endl;
@@ -134,6 +141,16 @@ VulkanContext::QueueFamilyIndices VulkanContext::FindQueueFamilies(vk::PhysicalD
     for (const auto& queueFamily : queueFamilies) {
         if (queueFamily.queueFlags & vk::QueueFlagBits::eGraphics) {
             indices.graphicsFamily = i;
+        }
+
+        VkBool32 presentSupport = false;
+        vk::Result result = device.getSurfaceSupportKHR(i, m_Surface, &presentSupport);
+        if (result != vk::Result::eSuccess) {
+            throw std::runtime_error("Failed to get surface support!");
+        }
+
+        if (presentSupport) {
+            indices.presentFamily = i;
         }
 
         if (indices.isComplete()) {
