@@ -1,7 +1,8 @@
 #include "VulkanContext.h"
 #define GLFW_INCLUDE_VULKAN
 #include "glfw/glfw3.h"
-#include "glfw/glfw3native.h"
+
+#include <set>
 
 VKAPI_ATTR VkBool32 VKAPI_CALL DebugCallback(
         VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
@@ -25,12 +26,16 @@ VulkanContext::~VulkanContext() {
         if (m_Surface) {
             m_Instance.destroySurfaceKHR(m_Surface);
         }
+        /*if (m_EnableValidationLayers) { // Ensure this condition is checked
+            m_Instance.destroyDebugUtilsMessengerEXT(m_DebugMessenger);
+        }*/
         m_Instance.destroy();
     }
 }
 
 void VulkanContext::Initialize() {
     CreateInstance();
+    SetupDebugMessenger();
     CreateSurface();
     PickPhysicalDevice();
     CreateLogicalDevice();
@@ -40,6 +45,22 @@ void VulkanContext::Initialize() {
 vk::Device VulkanContext::GetDevice() {
     return m_Device;
 }
+
+void VulkanContext::SetupDebugMessenger() {
+    if (!m_EnableValidationLayers) return;
+
+    vk::DebugUtilsMessengerCreateInfoEXT createInfo{};
+    createInfo.messageSeverity = vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose |
+                                 vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning |
+                                 vk::DebugUtilsMessageSeverityFlagBitsEXT::eError;
+    createInfo.messageType = vk::DebugUtilsMessageTypeFlagBitsEXT::eGeneral |
+                             vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation |
+                             vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance;
+    createInfo.pfnUserCallback = DebugCallback;
+
+   // m_DebugMessenger =  m_Instance.createDebugUtilsMessengerEXT(createInfo);
+}
+
 
 void VulkanContext::CreateInstance() {
     uint32_t version = 0;
@@ -115,15 +136,20 @@ void VulkanContext::PickPhysicalDevice() {
     std::vector<vk::PhysicalDevice> devices = m_Instance.enumeratePhysicalDevices();
     if (devices.empty()) {
         AR_CORE_ERROR("Failed to find GPU device with Vulkan Support");
+        throw std::runtime_error("Failed to find GPU device with Vulkan Support");
     }
 
     for (const auto& device : devices) {
-        vk::PhysicalDeviceProperties properties = device.getProperties();
-        std::string deviceName(properties.deviceName);
-        AR_CORE_INFO("Device: {}", deviceName);
+        if (IsDeviceSuitable(device)) {
+            m_PhysicalDevice = device;
+            break;
+        }
     }
 
-    m_PhysicalDevice = devices[2];
+    if (!m_PhysicalDevice) {
+        AR_CORE_ERROR("Failed to find a suitable GPU");
+        throw std::runtime_error("Failed to find a suitable GPU");
+    }
 }
 
 void VulkanContext::CreateLogicalDevice() {
@@ -150,28 +176,29 @@ void VulkanContext::CreateLogicalDevice() {
     AR_CORE_INFO("Logical Device: {}", deviceName);
 }
 
-bool VulkanContext::IsDeviceSuitable(const std::vector<const char*>& extensions, std::vector<const char*>& layers) {
-    std::vector<vk::ExtensionProperties> availableExtensions = m_PhysicalDevice.enumerateDeviceExtensionProperties();
+bool VulkanContext::IsDeviceSuitable(vk::PhysicalDevice device) {
+    QueueFamilyIndices indices = FindQueueFamilies(device);
+    bool extensionsSupported = CheckDeviceExtensionSupport(device);
+    bool swapChainAdequate = false;
+    if (extensionsSupported) {
+        SwapChainSupportDetails swapChainSupport = QuerySwapChainSupport(device);
+        swapChainAdequate = !swapChainSupport.formats.empty() && !swapChainSupport.presentModes.empty();
+    }
+    vk::PhysicalDeviceFeatures supportedFeatures = device.getFeatures();
+    return indices.isComplete() && extensionsSupported && swapChainAdequate && supportedFeatures.geometryShader;
+}
 
-    for (const char* extension : extensions) {
-        bool extensionFound = false;
-        for (const auto& availableExtension : availableExtensions) {
-            if (strcmp(extension, availableExtension.extensionName) == 0) {
-                extensionFound = true;
-                break;
-            }
-        }
-        if (!extensionFound) {
-            return false;
-        }
+bool VulkanContext::CheckDeviceExtensionSupport(vk::PhysicalDevice device) {
+    std::vector<vk::ExtensionProperties> availableExtensions = device.enumerateDeviceExtensionProperties();
+    std::set<std::string> requiredExtensions = {
+            VK_KHR_SWAPCHAIN_EXTENSION_NAME
+    };
+
+    for (const auto& extension : availableExtensions) {
+        requiredExtensions.erase(extension.extensionName);
     }
 
-    vk::PhysicalDeviceFeatures supportedFeatures = m_PhysicalDevice.getFeatures();
-    if (!supportedFeatures.geometryShader) {
-        return false;
-    }
-
-    return true;
+    return requiredExtensions.empty();
 }
 
 VulkanContext::QueueFamilyIndices VulkanContext::FindQueueFamilies(vk::PhysicalDevice device) {
@@ -320,6 +347,9 @@ vk::Extent2D VulkanContext::ChooseSwapExtent(const vk::SurfaceCapabilitiesKHR& c
         return actualExtent;
     }
 }
+
+
+
 
 
 

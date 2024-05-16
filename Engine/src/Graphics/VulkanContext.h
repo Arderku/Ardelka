@@ -32,6 +32,7 @@ private:
     };
 
     Window& m_Window;
+    bool m_EnableValidationLayers;
     vk::Instance m_Instance = VK_NULL_HANDLE;
     vk::PhysicalDevice m_PhysicalDevice = VK_NULL_HANDLE;
     vk::Device m_Device = VK_NULL_HANDLE;
@@ -43,9 +44,11 @@ private:
     vk::Format m_SwapChainImageFormat;
     vk::Extent2D m_SwapChainExtent;
 
-    vk::DebugUtilsMessengerEXT m_DebugMessenger;
+    //vk::DebugUtilsMessengerEXT m_DebugMessenger;
+
 
     void CreateInstance();
+    void SetupDebugMessenger();
     static std::vector<const char*> GetRequiredExtensions();
     static std::vector<VkLayerProperties> GetSupportedValidationLayers();
     void PickPhysicalDevice();
@@ -54,11 +57,15 @@ private:
     void CreateSwapChain();
 
     QueueFamilyIndices FindQueueFamilies(vk::PhysicalDevice device);
-    bool IsDeviceSuitable(const std::vector<const char*>& extensions, std::vector<const char*>& layers);
+
+    bool IsDeviceSuitable(vk::PhysicalDevice device);
 
     SwapChainSupportDetails QuerySwapChainSupport(vk::PhysicalDevice device);
     vk::SurfaceFormatKHR ChooseSwapSurfaceFormat(const std::vector<vk::SurfaceFormatKHR> &availableFormats);
     vk::PresentModeKHR ChooseSwapPresentMode(const std::vector<vk::PresentModeKHR> &availablePresentModes);
     vk::Extent2D ChooseSwapExtent(const vk::SurfaceCapabilitiesKHR &capabilities);
+
+    bool CheckDeviceExtensionSupport(vk::PhysicalDevice device);
+
 
 };
