@@ -17,7 +17,7 @@ int main() {
     renderer.Initialize();
 
     while (!window.ShouldClose()) {
-      //  window.OnUpdate();
+        window.OnUpdate();
     }
 
     return 0;

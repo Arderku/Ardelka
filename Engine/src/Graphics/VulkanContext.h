@@ -32,7 +32,7 @@ private:
     };
 
     Window& m_Window;
-    bool m_EnableValidationLayers;
+    bool m_EnableValidationLayers = true;
     vk::Instance m_Instance = VK_NULL_HANDLE;
     vk::PhysicalDevice m_PhysicalDevice = VK_NULL_HANDLE;
     vk::Device m_Device = VK_NULL_HANDLE;
@@ -41,20 +41,31 @@ private:
     vk::SurfaceKHR m_Surface = VK_NULL_HANDLE;
     vk::SwapchainKHR m_SwapChain = VK_NULL_HANDLE;
     std::vector<vk::Image> m_SwapChainImages;
+    std::vector<vk::ImageView> m_SwapChainImageViews;
     vk::Format m_SwapChainImageFormat;
     vk::Extent2D m_SwapChainExtent;
 
-    //vk::DebugUtilsMessengerEXT m_DebugMessenger;
+    std::vector<const char*> m_ValidationLayers = {
+        "VK_LAYER_KHRONOS_validation"
+    };
+
+    std::vector<const char*> m_DeviceExtensions = {
+        VK_KHR_SWAPCHAIN_EXTENSION_NAME
+    };
+
+    vk::DebugUtilsMessengerEXT m_DebugMessenger;
 
 
     void CreateInstance();
     void SetupDebugMessenger();
-    static std::vector<const char*> GetRequiredExtensions();
-    static std::vector<VkLayerProperties> GetSupportedValidationLayers();
+      std::vector<const char*> GetRequiredExtensions();
+      std::vector<VkLayerProperties> GetSupportedValidationLayers();
     void PickPhysicalDevice();
     void CreateLogicalDevice();
     void CreateSurface();
     void CreateSwapChain();
+    void CreateImageViews();
+    void CreateSyncObjects();
 
     QueueFamilyIndices FindQueueFamilies(vk::PhysicalDevice device);
 

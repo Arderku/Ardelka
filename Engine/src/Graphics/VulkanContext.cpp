@@ -10,8 +10,7 @@ VKAPI_ATTR VkBool32 VKAPI_CALL DebugCallback(
         const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData,
         void* pUserData) {
 
-    AR_CORE_ERROR("Validation Layer: {}", pCallbackData->pMessage);
-
+    std::cerr << "Validation Layer: " << pCallbackData->pMessage << std::endl;
     return VK_FALSE;
 }
 
@@ -19,16 +18,29 @@ VulkanContext::VulkanContext(Window& window) : m_Window(window) {}
 
 VulkanContext::~VulkanContext() {
     if (m_Device) {
-        m_Device.destroySwapchainKHR(m_SwapChain);
+        for (auto imageView : m_SwapChainImageViews) {
+            m_Device.destroyImageView(imageView);
+        }
+        m_SwapChainImageViews.clear();
+
+        if (m_SwapChain) {
+            m_Device.destroySwapchainKHR(m_SwapChain);
+        }
         m_Device.destroy();
     }
+
     if (m_Instance) {
         if (m_Surface) {
             m_Instance.destroySurfaceKHR(m_Surface);
         }
-        /*if (m_EnableValidationLayers) { // Ensure this condition is checked
-            m_Instance.destroyDebugUtilsMessengerEXT(m_DebugMessenger);
-        }*/
+
+        if (m_EnableValidationLayers && m_DebugMessenger) {
+            auto func = (PFN_vkDestroyDebugUtilsMessengerEXT) m_Instance.getProcAddr("vkDestroyDebugUtilsMessengerEXT");
+            if (func != nullptr) {
+                func(m_Instance, m_DebugMessenger, nullptr);
+            }
+        }
+
         m_Instance.destroy();
     }
 }
@@ -40,6 +52,7 @@ void VulkanContext::Initialize() {
     PickPhysicalDevice();
     CreateLogicalDevice();
     CreateSwapChain();
+    CreateImageViews();
 }
 
 vk::Device VulkanContext::GetDevice() {
@@ -48,6 +61,7 @@ vk::Device VulkanContext::GetDevice() {
 
 void VulkanContext::SetupDebugMessenger() {
     if (!m_EnableValidationLayers) return;
+
 
     vk::DebugUtilsMessengerCreateInfoEXT createInfo{};
     createInfo.messageSeverity = vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose |
@@ -58,21 +72,26 @@ void VulkanContext::SetupDebugMessenger() {
                              vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance;
     createInfo.pfnUserCallback = DebugCallback;
 
-   // m_DebugMessenger =  m_Instance.createDebugUtilsMessengerEXT(createInfo);
+    auto func = (PFN_vkCreateDebugUtilsMessengerEXT) m_Instance.getProcAddr("vkCreateDebugUtilsMessengerEXT");
+    if (func != nullptr) {
+        VkResult result = func(static_cast<VkInstance>(m_Instance), reinterpret_cast<VkDebugUtilsMessengerCreateInfoEXT*>(&createInfo), nullptr, reinterpret_cast<VkDebugUtilsMessengerEXT*>(&m_DebugMessenger));
+        if (result != VK_SUCCESS) {
+            throw std::runtime_error("failed to set up debug messenger!");
+        }
+        AR_CORE_INFO("Debug Messenger created successfully.");
+    } else {
+        throw std::runtime_error("Could not load vkCreateDebugUtilsMessengerEXT");
+    }
 }
 
 
 void VulkanContext::CreateInstance() {
     uint32_t version = 0;
 
-    // Validation layers
-    std::vector<const char*> validationLayers = {
-            "VK_LAYER_KHRONOS_validation"
-    };
 
     // Check if validation layers are available
     std::vector<VkLayerProperties> availableLayers = GetSupportedValidationLayers();
-    for (const char* layerName : validationLayers) {
+    for (const char* layerName : m_ValidationLayers) {
         bool layerFound = false;
 
         for (const auto& layerProperties : availableLayers) {
@@ -105,7 +124,7 @@ void VulkanContext::CreateInstance() {
     auto createInfo = vk::InstanceCreateInfo(
             vk::InstanceCreateFlags(),
             &appInfo,
-            validationLayers.size(), validationLayers.data(),
+            m_ValidationLayers.size(), m_ValidationLayers.data(),
             extensions.size(), extensions.data()
     );
 
@@ -121,6 +140,9 @@ std::vector<const char*> VulkanContext::GetRequiredExtensions() {
     uint32_t glfwExtensionCount = 0;
     const char** glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
     std::vector<const char*> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
+    if (m_EnableValidationLayers) {
+        extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+    }
     return extensions;
 }
 
@@ -161,7 +183,19 @@ void VulkanContext::CreateLogicalDevice() {
 
     float queuePriority = 1.0f;
     vk::DeviceQueueCreateInfo queueCreateInfo({}, indices.graphicsFamily.value(), 1, &queuePriority);
-    vk::DeviceCreateInfo createInfo({}, 1, &queueCreateInfo);
+
+    vk::PhysicalDeviceFeatures deviceFeatures{};
+    vk::DeviceCreateInfo createInfo{};
+    createInfo.queueCreateInfoCount = 1;
+    createInfo.pQueueCreateInfos = &queueCreateInfo;
+    createInfo.pEnabledFeatures = &deviceFeatures;
+
+    // Add required device extensions
+    createInfo.enabledExtensionCount = static_cast<uint32_t>(m_DeviceExtensions.size());
+    createInfo.ppEnabledExtensionNames = m_DeviceExtensions.data();
+
+    // Do not enable layers at the device level
+    createInfo.enabledLayerCount = 0;
 
     m_Device = m_PhysicalDevice.createDevice(createInfo);
     m_GraphicsQueue = m_Device.getQueue(indices.graphicsFamily.value(), 0);
@@ -241,34 +275,24 @@ void VulkanContext::CreateSurface() {
 
 void VulkanContext::CreateSwapChain() {
     SwapChainSupportDetails swapChainSupport = QuerySwapChainSupport(m_PhysicalDevice);
-    if (swapChainSupport.formats.empty() || swapChainSupport.presentModes.empty()) {
-        AR_CORE_ERROR("Swap chain support is inadequate!");
-        throw std::runtime_error("Swap chain support is inadequate!");
-    }
 
     vk::SurfaceFormatKHR surfaceFormat = ChooseSwapSurfaceFormat(swapChainSupport.formats);
-    AR_CORE_INFO("Swap surface format chosen: Format {}, Color Space {}", vk::to_string(surfaceFormat.format), vk::to_string(surfaceFormat.colorSpace));
     vk::PresentModeKHR presentMode = ChooseSwapPresentMode(swapChainSupport.presentModes);
-    AR_CORE_INFO("Swap present mode chosen: {}", vk::to_string(presentMode));
     vk::Extent2D extent = ChooseSwapExtent(swapChainSupport.capabilities);
-    AR_CORE_INFO("Swap extent chosen: Width {}, Height {}", extent.width, extent.height);
 
     uint32_t imageCount = swapChainSupport.capabilities.minImageCount + 1;
     if (swapChainSupport.capabilities.maxImageCount > 0 && imageCount > swapChainSupport.capabilities.maxImageCount) {
         imageCount = swapChainSupport.capabilities.maxImageCount;
     }
-    AR_CORE_INFO("Image count set: {}", imageCount);
 
-    vk::SwapchainCreateInfoKHR createInfo(
-            vk::SwapchainCreateFlagsKHR(),
-            m_Surface,
-            imageCount,
-            surfaceFormat.format,
-            surfaceFormat.colorSpace,
-            extent,
-            1,
-            vk::ImageUsageFlagBits::eColorAttachment
-    );
+    vk::SwapchainCreateInfoKHR createInfo{};
+    createInfo.surface = m_Surface;
+    createInfo.minImageCount = imageCount;
+    createInfo.imageFormat = surfaceFormat.format;
+    createInfo.imageColorSpace = surfaceFormat.colorSpace;
+    createInfo.imageExtent = extent;
+    createInfo.imageArrayLayers = 1;
+    createInfo.imageUsage = vk::ImageUsageFlagBits::eColorAttachment;
 
     QueueFamilyIndices indices = FindQueueFamilies(m_PhysicalDevice);
     uint32_t queueFamilyIndices[] = {indices.graphicsFamily.value(), indices.presentFamily.value()};
@@ -285,9 +309,8 @@ void VulkanContext::CreateSwapChain() {
     createInfo.compositeAlpha = vk::CompositeAlphaFlagBitsKHR::eOpaque;
     createInfo.presentMode = presentMode;
     createInfo.clipped = VK_TRUE;
-    createInfo.oldSwapchain = nullptr;
+    createInfo.oldSwapchain = VK_NULL_HANDLE;
 
-    AR_CORE_INFO("Creating swap chain...");
     try {
         m_SwapChain = m_Device.createSwapchainKHR(createInfo);
         AR_CORE_INFO("Swap chain created successfully.");
@@ -296,18 +319,11 @@ void VulkanContext::CreateSwapChain() {
         throw std::runtime_error("Failed to create swap chain!");
     }
 
-    // Retrieve the swap chain images
-    std::vector<vk::Image> swapChainImages = m_Device.getSwapchainImagesKHR(m_SwapChain);
-    m_SwapChainImages.resize(swapChainImages.size());
-    for (size_t i = 0; i < swapChainImages.size(); i++) {
-        m_SwapChainImages[i] = swapChainImages[i];
-    }
-    AR_CORE_INFO("Retrieved {} swap chain images.", swapChainImages.size());
-
-    // Store the format and extent for later use
+    m_SwapChainImages = m_Device.getSwapchainImagesKHR(m_SwapChain);
     m_SwapChainImageFormat = surfaceFormat.format;
     m_SwapChainExtent = extent;
 }
+
 
 VulkanContext::SwapChainSupportDetails VulkanContext::QuerySwapChainSupport(vk::PhysicalDevice device) {
     SwapChainSupportDetails details;
@@ -346,6 +362,38 @@ vk::Extent2D VulkanContext::ChooseSwapExtent(const vk::SurfaceCapabilitiesKHR& c
         actualExtent.height = std::max(capabilities.minImageExtent.height, std::min(capabilities.maxImageExtent.height, actualExtent.height));
         return actualExtent;
     }
+}
+
+void VulkanContext::CreateImageViews() {
+    m_SwapChainImageViews.resize(m_SwapChainImages.size());
+
+    for (size_t i = 0; i < m_SwapChainImages.size(); i++) {
+        vk::ImageViewCreateInfo createInfo{};
+        createInfo.image = m_SwapChainImages[i];
+        createInfo.viewType = vk::ImageViewType::e2D;
+        createInfo.format = m_SwapChainImageFormat;
+        createInfo.components.r = vk::ComponentSwizzle::eIdentity;
+        createInfo.components.g = vk::ComponentSwizzle::eIdentity;
+        createInfo.components.b = vk::ComponentSwizzle::eIdentity;
+        createInfo.components.a = vk::ComponentSwizzle::eIdentity;
+        createInfo.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eColor;
+        createInfo.subresourceRange.baseMipLevel = 0;
+        createInfo.subresourceRange.levelCount = 1;
+        createInfo.subresourceRange.baseArrayLayer = 0;
+        createInfo.subresourceRange.layerCount = 1;
+
+        try {
+            m_SwapChainImageViews[i] = m_Device.createImageView(createInfo);
+        } catch (vk::SystemError& err) {
+            AR_CORE_ERROR("Failed to create image view: {}", err.what());
+            throw std::runtime_error("Failed to create image view!");
+        }
+    }
+}
+
+
+void VulkanContext::CreateSyncObjects() {
+
 }
 
 
