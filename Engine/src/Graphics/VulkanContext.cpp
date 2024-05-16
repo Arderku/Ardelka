@@ -18,6 +18,20 @@ VulkanContext::VulkanContext(Window& window) : m_Window(window) {}
 
 VulkanContext::~VulkanContext() {
     if (m_Device) {
+
+        // Destroy sync objects
+        for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
+            if (m_ImageAvailableSemaphores[i]) {
+                m_Device.destroySemaphore(m_ImageAvailableSemaphores[i]);
+            }
+            if (m_RenderFinishedSemaphores[i]) {
+                m_Device.destroySemaphore(m_RenderFinishedSemaphores[i]);
+            }
+            if (m_InFlightFences[i]) {
+                m_Device.destroyFence(m_InFlightFences[i]);
+            }
+        }
+
         for (auto imageView : m_SwapChainImageViews) {
             m_Device.destroyImageView(imageView);
         }
@@ -53,6 +67,7 @@ void VulkanContext::Initialize() {
     CreateLogicalDevice();
     CreateSwapChain();
     CreateImageViews();
+    CreateSyncObjects();
 }
 
 vk::Device VulkanContext::GetDevice() {
@@ -384,6 +399,7 @@ void VulkanContext::CreateImageViews() {
 
         try {
             m_SwapChainImageViews[i] = m_Device.createImageView(createInfo);
+            AR_CORE_INFO("Image view created successfully.");
         } catch (vk::SystemError& err) {
             AR_CORE_ERROR("Failed to create image view: {}", err.what());
             throw std::runtime_error("Failed to create image view!");
@@ -393,11 +409,37 @@ void VulkanContext::CreateImageViews() {
 
 
 void VulkanContext::CreateSyncObjects() {
+    m_ImageAvailableSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
+    m_RenderFinishedSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
+    m_InFlightFences.resize(MAX_FRAMES_IN_FLIGHT);
 
+    vk::SemaphoreCreateInfo semaphoreInfo{};
+    vk::FenceCreateInfo fenceInfo{};
+    fenceInfo.flags = vk::FenceCreateFlagBits::eSignaled;
+
+    for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
+        try {
+            m_ImageAvailableSemaphores[i] = m_Device.createSemaphore(semaphoreInfo);
+            AR_CORE_INFO("Created Image Available Semaphore {}", i);
+        } catch (vk::SystemError& err) {
+            AR_CORE_ERROR("Failed to create image available semaphore: {}", err.what());
+            throw std::runtime_error("Failed to create image available semaphore!");
+        }
+
+        try {
+            m_RenderFinishedSemaphores[i] = m_Device.createSemaphore(semaphoreInfo);
+            AR_CORE_INFO("Created Render Finished Semaphore {}", i);
+        } catch (vk::SystemError& err) {
+            AR_CORE_ERROR("Failed to create render finished semaphore: {}", err.what());
+            throw std::runtime_error("Failed to create render finished semaphore!");
+        }
+
+        try {
+            m_InFlightFences[i] = m_Device.createFence(fenceInfo);
+            AR_CORE_INFO("Created In-Flight Fence {}", i);
+        } catch (vk::SystemError& err) {
+            AR_CORE_ERROR("Failed to create in-flight fence: {}", err.what());
+            throw std::runtime_error("Failed to create in-flight fence!");
+        }
+    }
 }
-
-
-
-
-
-

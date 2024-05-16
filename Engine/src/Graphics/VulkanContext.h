@@ -45,6 +45,13 @@ private:
     vk::Format m_SwapChainImageFormat;
     vk::Extent2D m_SwapChainExtent;
 
+    // Sync objects
+    std::vector<vk::Semaphore> m_ImageAvailableSemaphores;
+    std::vector<vk::Semaphore> m_RenderFinishedSemaphores;
+    std::vector<vk::Fence> m_InFlightFences;
+    size_t m_CurrentFrame = 0;
+    const int MAX_FRAMES_IN_FLIGHT = 2;
+
     std::vector<const char*> m_ValidationLayers = {
         "VK_LAYER_KHRONOS_validation"
     };
