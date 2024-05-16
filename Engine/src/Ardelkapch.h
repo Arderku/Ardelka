@@ -15,6 +15,8 @@
 #include <map>
 #include <memory>
 
+#include "Core/Logger.h"
+
 // Add other common headers from third-party libraries
 #include "glm/glm.hpp"
 #define GLFW_INCLUDE_VULKAN

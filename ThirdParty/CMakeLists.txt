@@ -5,6 +5,8 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_VULKAN_STATIC ON CACHE BOOL "" FORCE)
 add_subdirectory(GLFW)
 
+add_subdirectory(spdlog)
+
 # Add ImGui library
 file(GLOB IMGUI_SOURCES
         "${PROJECT_SOURCE_DIR}/ThirdParty/ImGui/*.cpp"
@@ -20,4 +22,4 @@ target_include_directories(ImGui PUBLIC
 
 # Find Vulkan package
 find_package(Vulkan REQUIRED)
-target_link_libraries(ImGui PUBLIC Vulkan::Vulkan glfw)
+target_link_libraries(ImGui PUBLIC Vulkan::Vulkan glfw spdlog::spdlog)

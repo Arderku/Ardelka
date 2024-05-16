@@ -22,4 +22,4 @@ target_precompile_headers(Engine PUBLIC src/Ardelkapch.h)
 
 # Find Vulkan and link it
 find_package(Vulkan REQUIRED)
-target_link_libraries(Engine PUBLIC Vulkan::Vulkan glfw)
+target_link_libraries(Engine PUBLIC Vulkan::Vulkan glfw spdlog::spdlog)

@@ -2,6 +2,8 @@
 #include "Ardelkapch.h"
 #include "Core/Window.h"
 #include "vulkan/vulkan.hpp"
+#include <vector>
+#include <optional>
 
 class VulkanContext {
 public:
@@ -10,6 +12,7 @@ public:
 
     void Initialize();
     vk::Device GetDevice();
+
 private:
     struct QueueFamilyIndices {
         std::optional<uint32_t> graphicsFamily = std::nullopt;
@@ -20,34 +23,42 @@ private:
         }
     };
 
-    struct SwapChainProperties {
-        VkSurfaceCapabilitiesKHR capabilities;
-        std::vector<VkSurfaceFormatKHR> formats;
-        std::vector<VkPresentModeKHR> present_modes;
+    struct SwapChainSupportDetails {
+        vk::SurfaceCapabilitiesKHR capabilities;
+        std::vector<vk::SurfaceFormatKHR> formats;
+        std::vector<vk::PresentModeKHR> presentModes;
 
-        bool IsValid() const { return !formats.empty() && !present_modes.empty(); }
+        bool IsValid() const { return !formats.empty() && !presentModes.empty(); }
     };
 
     Window& m_Window;
     vk::Instance m_Instance = VK_NULL_HANDLE;
     vk::PhysicalDevice m_PhysicalDevice = VK_NULL_HANDLE;
     vk::Device m_Device = VK_NULL_HANDLE;
-    VkQueue m_GraphicsQueue = VK_NULL_HANDLE;
-    VkQueue m_PresentQueue = VK_NULL_HANDLE;
-
+    vk::Queue m_GraphicsQueue = VK_NULL_HANDLE;
+    vk::Queue m_PresentQueue = VK_NULL_HANDLE;
     vk::SurfaceKHR m_Surface = VK_NULL_HANDLE;
-    VkSurfaceFormatKHR m_SurfaceFormat;
+    vk::SwapchainKHR m_SwapChain = VK_NULL_HANDLE;
+    std::vector<vk::Image> m_SwapChainImages;
+    vk::Format m_SwapChainImageFormat;
+    vk::Extent2D m_SwapChainExtent;
 
-    VkSwapchainKHR m_SwapChain_ = VK_NULL_HANDLE;
-    VkPresentModeKHR m_PresentMode;
-    //ToDo: Add vulkan specific members
+    vk::DebugUtilsMessengerEXT m_DebugMessenger;
 
     void CreateInstance();
     static std::vector<const char*> GetRequiredExtensions();
+    static std::vector<VkLayerProperties> GetSupportedValidationLayers();
     void PickPhysicalDevice();
     void CreateLogicalDevice();
     void CreateSurface();
+    void CreateSwapChain();
 
     QueueFamilyIndices FindQueueFamilies(vk::PhysicalDevice device);
     bool IsDeviceSuitable(const std::vector<const char*>& extensions, std::vector<const char*>& layers);
+
+    SwapChainSupportDetails QuerySwapChainSupport(vk::PhysicalDevice device);
+    vk::SurfaceFormatKHR ChooseSwapSurfaceFormat(const std::vector<vk::SurfaceFormatKHR> &availableFormats);
+    vk::PresentModeKHR ChooseSwapPresentMode(const std::vector<vk::PresentModeKHR> &availablePresentModes);
+    vk::Extent2D ChooseSwapExtent(const vk::SurfaceCapabilitiesKHR &capabilities);
+
 };
