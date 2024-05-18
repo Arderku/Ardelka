@@ -19,3 +19,4 @@ target_include_directories(Editor PRIVATE
 
 # Link with the Engine library and ImGui
 target_link_libraries(Editor Engine ImGui)
+

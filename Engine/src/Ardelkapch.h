@@ -14,6 +14,7 @@
 #include <functional>
 #include <map>
 #include <memory>
+#include <fstream>
 
 #include "Core/Logger.h"
 

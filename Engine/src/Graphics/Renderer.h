@@ -5,6 +5,7 @@
 #include "SwapChain.h"
 #include "RenderPass.h"
 #include "FrameBuffer.h"
+#include "RenderPipeline.h"
 
 
 class Renderer {
@@ -22,4 +23,5 @@ private:
     SwapChain m_SwapChain;
     RenderPass m_RenderPass;
     FrameBuffer m_FrameBuffer;
+    RenderPipeline m_RenderPipeline;
 };
