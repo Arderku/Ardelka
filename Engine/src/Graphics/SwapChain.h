@@ -11,6 +11,7 @@ public:
     void Initialize();
     void Cleanup();
     vk::SwapchainKHR GetSwapChain() const;
+    vk::Format GetSwapChainImageFormat() const;
 
     struct SwapChainSupportDetails {
         vk::SurfaceCapabilitiesKHR capabilities;

@@ -36,6 +36,10 @@ vk::SwapchainKHR SwapChain::GetSwapChain() const {
     return m_SwapChain;
 }
 
+vk::Format SwapChain::GetSwapChainImageFormat() const {
+    return m_SwapChainImageFormat;
+}
+
 void SwapChain::CreateSwapChain() {
     AR_CORE_INFO("Creating SwapChain...");
     SwapChainSupportDetails swapChainSupport = QuerySwapChainSupport(m_Context.GetPhysicalDevice(), m_Context.GetSurface());
@@ -158,3 +162,5 @@ SwapChain::SwapChainSupportDetails SwapChain::QuerySwapChainSupport(vk::Physical
     details.presentModes = device.getSurfacePresentModesKHR(surface);
     return details;
 }
+
+

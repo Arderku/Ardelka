@@ -3,7 +3,8 @@
 #include "Core/Window.h"
 #include "VulkanContext.h"
 #include "SwapChain.h"
-//#include "FrameManager.h"
+#include "RenderPass.h"
+
 
 class Renderer {
 public:
@@ -18,5 +19,6 @@ private:
     Window& m_Window;
     VulkanContext m_VulkanContext;
     SwapChain m_SwapChain;
-    //FrameManager m_FrameManager;
+    RenderPass m_RenderPass;
+
 };
