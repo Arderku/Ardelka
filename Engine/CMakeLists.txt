@@ -10,7 +10,8 @@ add_library(Engine STATIC ${ENGINE_SOURCES}
         src/Config/Config.h
         src/Config/ConfigurationManager.h
         src/Graphics/SwapChain.cpp
-        src/Graphics/RenderPass.h)
+        src/Graphics/RenderPass.h
+        src/Graphics/FrameBuffer.h)
 
 # Specify include directories
 target_include_directories(Engine PUBLIC

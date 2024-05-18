@@ -36,8 +36,16 @@ vk::SwapchainKHR SwapChain::GetSwapChain() const {
     return m_SwapChain;
 }
 
-vk::Format SwapChain::GetSwapChainImageFormat() const {
+vk::Format SwapChain::GetImageFormat() const {
     return m_SwapChainImageFormat;
+}
+
+const std::vector<vk::ImageView> &SwapChain::GetImageViews() const {
+    return m_SwapChainImageViews;
+}
+
+vk::Extent2D SwapChain::GetExtent() const {
+    return m_SwapChainExtent;
 }
 
 void SwapChain::CreateSwapChain() {
@@ -162,5 +170,7 @@ SwapChain::SwapChainSupportDetails SwapChain::QuerySwapChainSupport(vk::Physical
     details.presentModes = device.getSurfacePresentModesKHR(surface);
     return details;
 }
+
+
 
 

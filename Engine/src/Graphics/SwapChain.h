@@ -11,7 +11,10 @@ public:
     void Initialize();
     void Cleanup();
     vk::SwapchainKHR GetSwapChain() const;
-    vk::Format GetSwapChainImageFormat() const;
+    vk::Format GetImageFormat() const;
+    const std::vector<vk::ImageView>& GetImageViews() const;
+    vk::Extent2D GetExtent() const;
+
 
     struct SwapChainSupportDetails {
         vk::SurfaceCapabilitiesKHR capabilities;

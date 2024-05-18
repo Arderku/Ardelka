@@ -4,6 +4,7 @@
 #include "VulkanContext.h"
 #include "SwapChain.h"
 #include "RenderPass.h"
+#include "FrameBuffer.h"
 
 
 class Renderer {
@@ -20,5 +21,5 @@ private:
     VulkanContext m_VulkanContext;
     SwapChain m_SwapChain;
     RenderPass m_RenderPass;
-
+    FrameBuffer m_FrameBuffer;
 };
