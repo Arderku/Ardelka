@@ -8,7 +8,8 @@ file(GLOB_RECURSE ENGINE_SOURCES "src/*.cpp" "src/*.h")
 # Define the library
 add_library(Engine STATIC ${ENGINE_SOURCES}
         src/Config/Config.h
-        src/Config/ConfigurationManager.h)
+        src/Config/ConfigurationManager.h
+        src/Graphics/SwapChain.cpp)
 
 # Specify include directories
 target_include_directories(Engine PUBLIC

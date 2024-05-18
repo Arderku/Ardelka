@@ -4,7 +4,7 @@
 int main() {
 
     Ardelka::Logger::Init();
-    AR_CORE_INFO("Logger initialized");
+    AR_INFO("Logger initialized");
     std::cout << "Sandbox starting...\n";
 
 
@@ -17,6 +17,7 @@ int main() {
     renderer.Initialize();
 
     while (!window.ShouldClose()) {
+        //std::cout << "Window running...\n";
         window.OnUpdate();
     }
 
