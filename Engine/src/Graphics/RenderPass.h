@@ -16,5 +16,6 @@ private:
     VulkanContext& m_Context;
     vk::RenderPass m_RenderPass = VK_NULL_HANDLE;
 
+
     void CreateRenderPass(vk::Format swapChainImageFormat);
 };

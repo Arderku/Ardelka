@@ -17,6 +17,11 @@ public:
     vk::PhysicalDevice GetPhysicalDevice() const;
     vk::Instance GetInstance() const;
     vk::SurfaceKHR GetSurface() const;
+    uint32_t GetGraphicsQueueFamilyIndex() const;
+    vk::Queue GetGraphicsQueue() const;
+    vk::Queue GetPresentQueue() const;
+
+
 
     struct QueueFamilyIndices {
         std::optional<uint32_t> graphicsFamily = std::nullopt;
@@ -28,6 +33,8 @@ public:
     };
 
     QueueFamilyIndices FindQueueFamilies(vk::PhysicalDevice device) const;
+
+
 
 private:
     Window& m_Window;
@@ -50,4 +57,5 @@ private:
     void CreateSurface();
     bool IsDeviceSuitable(vk::PhysicalDevice device) const;
     bool CheckDeviceExtensionSupport(vk::PhysicalDevice device) const;
+
 };

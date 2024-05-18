@@ -36,7 +36,8 @@ add_custom_target(Shaders ALL DEPENDS ${SHADER_OUTPUTS})
 file(GLOB_RECURSE ENGINE_SOURCES "src/*.cpp" "src/*.h")
 
 # Define the library
-add_library(Engine STATIC ${ENGINE_SOURCES})
+add_library(Engine STATIC ${ENGINE_SOURCES}
+        src/Graphics/CommandBufferManager.cpp)
 
 # Specify include directories
 target_include_directories(Engine PUBLIC

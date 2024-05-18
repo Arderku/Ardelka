@@ -6,6 +6,7 @@
 #include "RenderPass.h"
 #include "FrameBuffer.h"
 #include "RenderPipeline.h"
+#include "CommandBufferManager.h"
 
 
 class Renderer {
@@ -24,4 +25,5 @@ private:
     RenderPass m_RenderPass;
     FrameBuffer m_FrameBuffer;
     RenderPipeline m_RenderPipeline;
+    CommandBufferManager m_CommandBufferManager;
 };

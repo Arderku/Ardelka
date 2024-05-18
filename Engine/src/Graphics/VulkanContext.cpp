@@ -79,6 +79,18 @@ vk::SurfaceKHR VulkanContext::GetSurface() const {
     return m_Surface;
 }
 
+uint32_t VulkanContext::GetGraphicsQueueFamilyIndex() const {
+    return FindQueueFamilies(m_PhysicalDevice).graphicsFamily.value();
+}
+
+vk::Queue VulkanContext::GetGraphicsQueue() const {
+    return m_Device.getQueue(FindQueueFamilies(m_PhysicalDevice).graphicsFamily.value(), 0);
+}
+
+vk::Queue VulkanContext::GetPresentQueue() const {
+    return m_Device.getQueue(FindQueueFamilies(m_PhysicalDevice).presentFamily.value(), 0);
+}
+
 void VulkanContext::SetupDebugMessenger() {
     if (!m_EnableValidationLayers) return;
 
@@ -269,3 +281,7 @@ void VulkanContext::CreateSurface() {
     m_Surface = surface;
     AR_CORE_INFO("Surface created.");
 }
+
+
+
+

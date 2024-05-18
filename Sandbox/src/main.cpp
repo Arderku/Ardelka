@@ -19,6 +19,7 @@ int main() {
     while (!window.ShouldClose()) {
         //std::cout << "Window running...\n";
         window.OnUpdate();
+        renderer.Render();
     }
 
     return 0;
