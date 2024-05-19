@@ -1,7 +1,9 @@
 #pragma once
 
 //class Entity;
+class Mesh;
 class CommandBuffer;
+class Material;
 
 class Renderer {
 public:

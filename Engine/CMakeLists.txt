@@ -44,11 +44,14 @@ add_library(Engine STATIC ${ENGINE_SOURCES}
         src/Graphics/Pipeline.h
         src/Graphics/RenderPass.h
         src/Graphics/Renderer.h
-        src/Graphics/RendererFactory.h
         src/Graphics/RendererType.h
         src/Graphics/Shader.h
         src/Graphics/Texture.h
-        src/Graphics/GraphicsFactory.cpp)
+        src/Graphics/GraphicsFactory.cpp
+        src/Graphics/Vertex.h
+        src/Graphics/Mesh.h
+        src/Graphics/FrameBuffer.h
+        src/Graphics/Sampler.h)
 
 # Specify include directories
 target_include_directories(Engine PUBLIC

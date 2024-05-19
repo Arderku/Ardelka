@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+#pragma once
+
 class Buffer;
 class Shader;
 class Material;
@@ -17,3 +19,4 @@ public:
     virtual void BindMaterial(Material* material) = 0;
     virtual void DrawIndexed(uint32_t indexCount) = 0;
 };
+

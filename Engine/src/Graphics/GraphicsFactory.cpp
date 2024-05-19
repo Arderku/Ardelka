@@ -82,4 +82,16 @@ RenderPass* GraphicsFactory::CreateRenderPass(RendererType type) {
     }
 }
 
+FrameBuffer *GraphicsFactory::CreateFrameBuffer(RendererType type) {
+    return nullptr;
+}
+
+Sampler *GraphicsFactory::CreateSampler(RendererType type) {
+    return nullptr;
+}
+
+Mesh *GraphicsFactory::CreateMesh(RendererType type) {
+    return nullptr;
+}
+
 #include "GraphicsFactory.h"

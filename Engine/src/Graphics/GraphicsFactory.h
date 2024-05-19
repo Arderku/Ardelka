@@ -9,6 +9,9 @@
 #include "Material.h"
 #include "Pipeline.h"
 #include "RenderPass.h"
+#include "FrameBuffer.h"
+#include "Sampler.h"
+#include "Mesh.h"
 
 class GraphicsFactory {
 public:
@@ -20,4 +23,7 @@ public:
     static Material* CreateMaterial(RendererType type);
     static Pipeline* CreatePipeline(RendererType type);
     static RenderPass* CreateRenderPass(RendererType type);
+    static FrameBuffer* CreateFrameBuffer(RendererType type);
+    static Sampler* CreateSampler(RendererType type);
+    static Mesh* CreateMesh(RendererType type);
 };
