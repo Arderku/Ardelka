@@ -14,7 +14,7 @@ int main() {
         // Handle window resize if needed
     });
 
-    Renderer renderer(window);
+    VulkanRenderer renderer(window);
     renderer.Initialize();
 
     // Initialize ImGui
@@ -23,7 +23,7 @@ int main() {
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     ImGui::StyleColorsDark();
 
-    // Setup Platform/Renderer bindings
+    // Setup Platform/VulkanRenderer bindings
     ImGui_ImplGlfw_InitForVulkan(window.GetNativeWindow(), true);
     ImGui_ImplVulkan_InitInfo init_info = {};
 

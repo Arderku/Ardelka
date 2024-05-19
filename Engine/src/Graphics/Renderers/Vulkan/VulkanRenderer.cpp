@@ -1,7 +1,7 @@
 #include <future>
-#include "Renderer.h"
+#include "VulkanRenderer.h"
 
-Renderer::Renderer(Window &window)
+VulkanRenderer::VulkanRenderer(Window &window)
         : m_Window(window),
           m_VulkanContext(window),
           m_SwapChain(m_VulkanContext),
@@ -12,11 +12,11 @@ Renderer::Renderer(Window &window)
           {}
 
 
-Renderer::~Renderer() {
+VulkanRenderer::~VulkanRenderer() {
     Shutdown();
 }
 
-void Renderer::Initialize() {
+void VulkanRenderer::Initialize() {
     m_VulkanContext.Initialize();
     m_SwapChain.Initialize();
     m_RenderPass.Initialize(m_SwapChain.GetImageFormat());
@@ -25,12 +25,12 @@ void Renderer::Initialize() {
     m_CommandBufferManager.Initialize();
 }
 
-void Renderer::Render() {
+void VulkanRenderer::Render() {
     m_CommandBufferManager.DrawFrame();
 }
 
-void Renderer::Shutdown() {
-    AR_CORE_INFO("Shutting down Renderer...");
+void VulkanRenderer::Shutdown() {
+    AR_CORE_INFO("Shutting down VulkanRenderer...");
     m_CommandBufferManager.Cleanup();
     m_RenderPipeline.Cleanup();
     m_FrameBuffer.Cleanup();

@@ -13,7 +13,7 @@ int main() {
 
     });
 
-    Renderer renderer(window);
+    VulkanRenderer renderer(window);
     renderer.Initialize();
 
     while (!window.ShouldClose()) {

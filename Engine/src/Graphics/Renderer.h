@@ -1,29 +1,13 @@
 #pragma once
-#include "Ardelkapch.h"
-#include "Core/Window.h"
-#include "VulkanContext.h"
-#include "SwapChain.h"
-#include "RenderPass.h"
-#include "FrameBuffer.h"
-#include "RenderPipeline.h"
-#include "CommandBufferManager.h"
 
+//class Entity;
+class CommandBuffer;
 
 class Renderer {
 public:
-    Renderer(Window& window);
-    ~Renderer();
-
-    void Initialize();
-    void Render();
-    void Shutdown();
-
-private:
-    Window& m_Window;
-    VulkanContext m_VulkanContext;
-    SwapChain m_SwapChain;
-    RenderPass m_RenderPass;
-    FrameBuffer m_FrameBuffer;
-    RenderPipeline m_RenderPipeline;
-    CommandBufferManager m_CommandBufferManager;
+    virtual ~Renderer() = default;
+    virtual void Init() = 0;
+    virtual void Render() =0; //ToDo this may change (Entity* rootEntity) = 0;
+    virtual void Shutdown() = 0;
+    virtual CommandBuffer* CreateCommandBuffer() = 0;
 };

@@ -9,5 +9,5 @@
 // Include all the public headers of the engine modules here
 #include "Core/Engine.h"
 #include "Core/Window.h"
-#include "Graphics/Renderer.h"
+#include "Graphics/Renderers/Vulkan/VulkanRenderer.h"
 #endif //ARDELKA_ARDELKA_H

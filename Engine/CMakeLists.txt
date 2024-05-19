@@ -37,7 +37,18 @@ file(GLOB_RECURSE ENGINE_SOURCES "src/*.cpp" "src/*.h")
 
 # Define the library
 add_library(Engine STATIC ${ENGINE_SOURCES}
-        src/Graphics/CommandBufferManager.cpp)
+        src/Graphics/Renderers/Vulkan/CommandBufferManager.cpp
+        src/Graphics/Buffer.h
+        src/Graphics/CommandBuffer.h
+        src/Graphics/Material.h
+        src/Graphics/Pipeline.h
+        src/Graphics/RenderPass.h
+        src/Graphics/Renderer.h
+        src/Graphics/RendererFactory.h
+        src/Graphics/RendererType.h
+        src/Graphics/Shader.h
+        src/Graphics/Texture.h
+        src/Graphics/GraphicsFactory.cpp)
 
 # Specify include directories
 target_include_directories(Engine PUBLIC
