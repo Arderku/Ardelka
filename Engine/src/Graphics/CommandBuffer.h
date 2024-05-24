@@ -1,22 +1,14 @@
 #pragma once
 
-#include <cstdint>
-
-#pragma once
-
-class Buffer;
-class Shader;
-class Material;
+#include <memory>
 
 class CommandBuffer {
 public:
     virtual ~CommandBuffer() = default;
+
     virtual void Begin() = 0;
     virtual void End() = 0;
-    virtual void BindVertexBuffer(Buffer* buffer) = 0;
-    virtual void BindIndexBuffer(Buffer* buffer) = 0;
-    virtual void BindShader(Shader* shader) = 0;
-    virtual void BindMaterial(Material* material) = 0;
-    virtual void DrawIndexed(uint32_t indexCount) = 0;
-};
+    virtual void Submit() = 0;
 
+    static std::shared_ptr<CommandBuffer> Create();
+};
