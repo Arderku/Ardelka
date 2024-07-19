@@ -39,7 +39,7 @@ include CMakeFiles\rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\
+cmake_ninja_workdir = C$:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\
 # =============================================================================
 # Object build statements for EXECUTABLE target GameEngine
 
@@ -49,97 +49,97 @@ cmake_ninja_workdir = C$:\Users\arder\Desktop\GameEngine\cmake-build-debug-visua
 
 build cmake_object_order_depends_target_GameEngine: phony || cmake_object_order_depends_target_glfw cmake_object_order_depends_target_glm cmake_object_order_depends_target_imgui
 
-build CMakeFiles\GameEngine.dir\src\main.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\src\main.cpp || cmake_object_order_depends_target_GameEngine
+build CMakeFiles\GameEngine.dir\src\main.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\src\main.cpp || cmake_object_order_depends_target_GameEngine
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glew\include -IC:\Users\arder\Desktop\GameEngine\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glew\include -IC:\Users\arder\Documents\Projects\Ardelka\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
   OBJECT_DIR = CMakeFiles\GameEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\GameEngine.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
   TARGET_PDB = GameEngine.pdb
 
-build CMakeFiles\GameEngine.dir\src\Engine.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\src\Engine.cpp || cmake_object_order_depends_target_GameEngine
+build CMakeFiles\GameEngine.dir\src\Engine.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\src\Engine.cpp || cmake_object_order_depends_target_GameEngine
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glew\include -IC:\Users\arder\Desktop\GameEngine\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glew\include -IC:\Users\arder\Documents\Projects\Ardelka\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
   OBJECT_DIR = CMakeFiles\GameEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\GameEngine.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
   TARGET_PDB = GameEngine.pdb
 
-build CMakeFiles\GameEngine.dir\src\Window.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\src\Window.cpp || cmake_object_order_depends_target_GameEngine
+build CMakeFiles\GameEngine.dir\src\Window.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\src\Window.cpp || cmake_object_order_depends_target_GameEngine
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glew\include -IC:\Users\arder\Desktop\GameEngine\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glew\include -IC:\Users\arder\Documents\Projects\Ardelka\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
   OBJECT_DIR = CMakeFiles\GameEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\GameEngine.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
   TARGET_PDB = GameEngine.pdb
 
-build CMakeFiles\GameEngine.dir\src\Renderer.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\src\Renderer.cpp || cmake_object_order_depends_target_GameEngine
+build CMakeFiles\GameEngine.dir\src\Renderer.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\src\Renderer.cpp || cmake_object_order_depends_target_GameEngine
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glew\include -IC:\Users\arder\Desktop\GameEngine\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glew\include -IC:\Users\arder\Documents\Projects\Ardelka\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
   OBJECT_DIR = CMakeFiles\GameEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\GameEngine.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
   TARGET_PDB = GameEngine.pdb
 
-build CMakeFiles\GameEngine.dir\src\Scene.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\src\Scene.cpp || cmake_object_order_depends_target_GameEngine
+build CMakeFiles\GameEngine.dir\src\Scene.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\src\Scene.cpp || cmake_object_order_depends_target_GameEngine
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glew\include -IC:\Users\arder\Desktop\GameEngine\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glew\include -IC:\Users\arder\Documents\Projects\Ardelka\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
   OBJECT_DIR = CMakeFiles\GameEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\GameEngine.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
   TARGET_PDB = GameEngine.pdb
 
-build CMakeFiles\GameEngine.dir\src\Scripting.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\src\Scripting.cpp || cmake_object_order_depends_target_GameEngine
+build CMakeFiles\GameEngine.dir\src\Scripting.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\src\Scripting.cpp || cmake_object_order_depends_target_GameEngine
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glew\include -IC:\Users\arder\Desktop\GameEngine\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glew\include -IC:\Users\arder\Documents\Projects\Ardelka\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
   OBJECT_DIR = CMakeFiles\GameEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\GameEngine.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
   TARGET_PDB = GameEngine.pdb
 
-build CMakeFiles\GameEngine.dir\src\Editor.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\src\Editor.cpp || cmake_object_order_depends_target_GameEngine
+build CMakeFiles\GameEngine.dir\src\Editor.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\src\Editor.cpp || cmake_object_order_depends_target_GameEngine
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glew\include -IC:\Users\arder\Desktop\GameEngine\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glew\include -IC:\Users\arder\Documents\Projects\Ardelka\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
   OBJECT_DIR = CMakeFiles\GameEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\GameEngine.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
   TARGET_PDB = GameEngine.pdb
 
-build CMakeFiles\GameEngine.dir\src\Shader.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\src\Shader.cpp || cmake_object_order_depends_target_GameEngine
+build CMakeFiles\GameEngine.dir\src\Shader.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\src\Shader.cpp || cmake_object_order_depends_target_GameEngine
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glew\include -IC:\Users\arder\Desktop\GameEngine\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glew\include -IC:\Users\arder\Documents\Projects\Ardelka\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
   OBJECT_DIR = CMakeFiles\GameEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\GameEngine.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
   TARGET_PDB = GameEngine.pdb
 
-build CMakeFiles\GameEngine.dir\src\Material.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\src\Material.cpp || cmake_object_order_depends_target_GameEngine
+build CMakeFiles\GameEngine.dir\src\Material.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\src\Material.cpp || cmake_object_order_depends_target_GameEngine
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glew\include -IC:\Users\arder\Desktop\GameEngine\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glew\include -IC:\Users\arder\Documents\Projects\Ardelka\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
   OBJECT_DIR = CMakeFiles\GameEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\GameEngine.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
   TARGET_PDB = GameEngine.pdb
 
-build CMakeFiles\GameEngine.dir\src\Application.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\src\Application.cpp || cmake_object_order_depends_target_GameEngine
+build CMakeFiles\GameEngine.dir\src\Application.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\src\Application.cpp || cmake_object_order_depends_target_GameEngine
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glew\include -IC:\Users\arder\Desktop\GameEngine\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glew\include -IC:\Users\arder\Documents\Projects\Ardelka\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
   OBJECT_DIR = CMakeFiles\GameEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\GameEngine.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
   TARGET_PDB = GameEngine.pdb
 
-build CMakeFiles\GameEngine.dir\src\Mesh.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\src\Mesh.cpp || cmake_object_order_depends_target_GameEngine
+build CMakeFiles\GameEngine.dir\src\Mesh.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\src\Mesh.cpp || cmake_object_order_depends_target_GameEngine
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glew\include -IC:\Users\arder\Desktop\GameEngine\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glew\include -IC:\Users\arder\Documents\Projects\Ardelka\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
   OBJECT_DIR = CMakeFiles\GameEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\GameEngine.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
   TARGET_PDB = GameEngine.pdb
 
-build CMakeFiles\GameEngine.dir\src\GameObject.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\src\GameObject.cpp || cmake_object_order_depends_target_GameEngine
+build CMakeFiles\GameEngine.dir\src\GameObject.cpp.obj: CXX_COMPILER__GameEngine_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\src\GameObject.cpp || cmake_object_order_depends_target_GameEngine
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glew\include -IC:\Users\arder\Desktop\GameEngine\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glew\include -IC:\Users\arder\Documents\Projects\Ardelka\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm -I"C:\Program Files\Mono\include\mono-2.0"
   OBJECT_DIR = CMakeFiles\GameEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\GameEngine.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
@@ -153,13 +153,13 @@ build CMakeFiles\GameEngine.dir\src\GameObject.cpp.obj: CXX_COMPILER__GameEngine
 #############################################
 # Link the executable GameEngine.exe
 
-build GameEngine.exe: CXX_EXECUTABLE_LINKER__GameEngine_Debug CMakeFiles\GameEngine.dir\src\main.cpp.obj CMakeFiles\GameEngine.dir\src\Engine.cpp.obj CMakeFiles\GameEngine.dir\src\Window.cpp.obj CMakeFiles\GameEngine.dir\src\Renderer.cpp.obj CMakeFiles\GameEngine.dir\src\Scene.cpp.obj CMakeFiles\GameEngine.dir\src\Scripting.cpp.obj CMakeFiles\GameEngine.dir\src\Editor.cpp.obj CMakeFiles\GameEngine.dir\src\Shader.cpp.obj CMakeFiles\GameEngine.dir\src\Material.cpp.obj CMakeFiles\GameEngine.dir\src\Application.cpp.obj CMakeFiles\GameEngine.dir\src\Mesh.cpp.obj CMakeFiles\GameEngine.dir\src\GameObject.cpp.obj | vendor\glfw\src\glfw3.lib C$:\Users\arder\Desktop\GameEngine\vendor\glew\lib\Release\x64\glew32s.lib vendor\glm\glm\glm.lib vendor\imgui\imgui.lib || vendor\glfw\src\glfw3.lib vendor\glm\glm\glm.lib vendor\imgui\imgui.lib
+build GameEngine.exe: CXX_EXECUTABLE_LINKER__GameEngine_Debug CMakeFiles\GameEngine.dir\src\main.cpp.obj CMakeFiles\GameEngine.dir\src\Engine.cpp.obj CMakeFiles\GameEngine.dir\src\Window.cpp.obj CMakeFiles\GameEngine.dir\src\Renderer.cpp.obj CMakeFiles\GameEngine.dir\src\Scene.cpp.obj CMakeFiles\GameEngine.dir\src\Scripting.cpp.obj CMakeFiles\GameEngine.dir\src\Editor.cpp.obj CMakeFiles\GameEngine.dir\src\Shader.cpp.obj CMakeFiles\GameEngine.dir\src\Material.cpp.obj CMakeFiles\GameEngine.dir\src\Application.cpp.obj CMakeFiles\GameEngine.dir\src\Mesh.cpp.obj CMakeFiles\GameEngine.dir\src\GameObject.cpp.obj | vendor\glfw\src\glfw3.lib C$:\Users\arder\Documents\Projects\Ardelka\vendor\glew\lib\Release\x64\glew32s.lib vendor\glm\glm\glm.lib vendor\imgui\imgui.lib || vendor\glfw\src\glfw3.lib vendor\glm\glm\glm.lib vendor\imgui\imgui.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = vendor\glfw\src\glfw3.lib  C:\Users\arder\Desktop\GameEngine\vendor\glew\lib\Release\x64\glew32s.lib  vendor\glm\glm\glm.lib  vendor\imgui\imgui.lib  opengl32.lib  mono-2.0-sgen.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = vendor\glfw\src\glfw3.lib  C:\Users\arder\Documents\Projects\Ardelka\vendor\glew\lib\Release\x64\glew32s.lib  vendor\glm\glm\glm.lib  vendor\imgui\imgui.lib  opengl32.lib  mono-2.0-sgen.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   LINK_PATH = -LIBPATH:C:\PROGRA~1\Mono\lib
   OBJECT_DIR = CMakeFiles\GameEngine.dir
-  POST_BUILD = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E copy_directory C:/Users/arder/Desktop/GameEngine/resources/shaders C:/Users/arder/Desktop/GameEngine/cmake-build-debug-visual-studio/resources/shaders && cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/Users/arder/Desktop/GameEngine/vendor/glew/bin/Release/x64/glew32.dll C:/Users/arder/Desktop/GameEngine/cmake-build-debug-visual-studio"
+  POST_BUILD = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E copy_directory C:/Users/arder/Documents/Projects/Ardelka/resources/shaders C:/Users/arder/Documents/Projects/Ardelka/cmake-build-debug-visual-studio/resources/shaders && cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/Users/arder/Documents/Projects/Ardelka/vendor/glew/bin/Release/x64/glew32.dll C:/Users/arder/Documents/Projects/Ardelka/cmake-build-debug-visual-studio"
   PRE_LINK = cd .
   TARGET_COMPILE_PDB = CMakeFiles\GameEngine.dir\
   TARGET_FILE = GameEngine.exe
@@ -171,7 +171,7 @@ build GameEngine.exe: CXX_EXECUTABLE_LINKER__GameEngine_Debug CMakeFiles\GameEng
 # Utility command for edit_cache
 
 build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -182,7 +182,7 @@ build edit_cache: phony CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Desktop\GameEngine -BC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Documents\Projects\Ardelka -BC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -200,7 +200,7 @@ build list_install_components: phony
 # Utility command for install
 
 build CMakeFiles\install.util: CUSTOM_COMMAND all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -212,7 +212,7 @@ build install: phony CMakeFiles\install.util
 # Utility command for install/local
 
 build CMakeFiles\install\local.util: CUSTOM_COMMAND all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -221,7 +221,7 @@ build install\local: phony CMakeFiles\install\local.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/arder/Desktop/GameEngine/CMakeLists.txt
+# C:/Users/arder/Documents/Projects/Ardelka/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -233,57 +233,57 @@ build install\local: phony CMakeFiles\install\local.util
 
 build cmake_object_order_depends_target_imgui: phony || vendor\imgui\CMakeFiles\imgui.dir
 
-build vendor\imgui\CMakeFiles\imgui.dir\backends\imgui_impl_glfw.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\imgui\backends\imgui_impl_glfw.cpp || cmake_object_order_depends_target_imgui
+build vendor\imgui\CMakeFiles\imgui.dir\backends\imgui_impl_glfw.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends\imgui_impl_glfw.cpp || cmake_object_order_depends_target_imgui
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include
   OBJECT_DIR = vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = vendor\imgui\CMakeFiles\imgui.dir\backends
   TARGET_COMPILE_PDB = vendor\imgui\CMakeFiles\imgui.dir\imgui.pdb
   TARGET_PDB = vendor\imgui\imgui.pdb
 
-build vendor\imgui\CMakeFiles\imgui.dir\backends\imgui_impl_opengl3.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\imgui\backends\imgui_impl_opengl3.cpp || cmake_object_order_depends_target_imgui
+build vendor\imgui\CMakeFiles\imgui.dir\backends\imgui_impl_opengl3.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends\imgui_impl_opengl3.cpp || cmake_object_order_depends_target_imgui
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include
   OBJECT_DIR = vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = vendor\imgui\CMakeFiles\imgui.dir\backends
   TARGET_COMPILE_PDB = vendor\imgui\CMakeFiles\imgui.dir\imgui.pdb
   TARGET_PDB = vendor\imgui\imgui.pdb
 
-build vendor\imgui\CMakeFiles\imgui.dir\imgui.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\imgui\imgui.cpp || cmake_object_order_depends_target_imgui
+build vendor\imgui\CMakeFiles\imgui.dir\imgui.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\imgui.cpp || cmake_object_order_depends_target_imgui
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include
   OBJECT_DIR = vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = vendor\imgui\CMakeFiles\imgui.dir
   TARGET_COMPILE_PDB = vendor\imgui\CMakeFiles\imgui.dir\imgui.pdb
   TARGET_PDB = vendor\imgui\imgui.pdb
 
-build vendor\imgui\CMakeFiles\imgui.dir\imgui_demo.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\imgui\imgui_demo.cpp || cmake_object_order_depends_target_imgui
+build vendor\imgui\CMakeFiles\imgui.dir\imgui_demo.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\imgui_demo.cpp || cmake_object_order_depends_target_imgui
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include
   OBJECT_DIR = vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = vendor\imgui\CMakeFiles\imgui.dir
   TARGET_COMPILE_PDB = vendor\imgui\CMakeFiles\imgui.dir\imgui.pdb
   TARGET_PDB = vendor\imgui\imgui.pdb
 
-build vendor\imgui\CMakeFiles\imgui.dir\imgui_draw.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\imgui\imgui_draw.cpp || cmake_object_order_depends_target_imgui
+build vendor\imgui\CMakeFiles\imgui.dir\imgui_draw.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\imgui_draw.cpp || cmake_object_order_depends_target_imgui
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include
   OBJECT_DIR = vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = vendor\imgui\CMakeFiles\imgui.dir
   TARGET_COMPILE_PDB = vendor\imgui\CMakeFiles\imgui.dir\imgui.pdb
   TARGET_PDB = vendor\imgui\imgui.pdb
 
-build vendor\imgui\CMakeFiles\imgui.dir\imgui_tables.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\imgui\imgui_tables.cpp || cmake_object_order_depends_target_imgui
+build vendor\imgui\CMakeFiles\imgui.dir\imgui_tables.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\imgui_tables.cpp || cmake_object_order_depends_target_imgui
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include
   OBJECT_DIR = vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = vendor\imgui\CMakeFiles\imgui.dir
   TARGET_COMPILE_PDB = vendor\imgui\CMakeFiles\imgui.dir\imgui.pdb
   TARGET_PDB = vendor\imgui\imgui.pdb
 
-build vendor\imgui\CMakeFiles\imgui.dir\imgui_widgets.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\imgui\imgui_widgets.cpp || cmake_object_order_depends_target_imgui
+build vendor\imgui\CMakeFiles\imgui.dir\imgui_widgets.cpp.obj: CXX_COMPILER__imgui_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\imgui_widgets.cpp || cmake_object_order_depends_target_imgui
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\imgui -IC:\Users\arder\Desktop\GameEngine\vendor\imgui\backends -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui -IC:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\backends -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include
   OBJECT_DIR = vendor\imgui\CMakeFiles\imgui.dir
   OBJECT_FILE_DIR = vendor\imgui\CMakeFiles\imgui.dir
   TARGET_COMPILE_PDB = vendor\imgui\CMakeFiles\imgui.dir\imgui.pdb
@@ -312,7 +312,7 @@ build vendor\imgui\imgui.lib: CXX_STATIC_LIBRARY_LINKER__imgui_Debug vendor\imgu
 # Utility command for edit_cache
 
 build vendor\imgui\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\imgui && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\imgui && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -323,7 +323,7 @@ build vendor\imgui\edit_cache: phony vendor\imgui\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build vendor\imgui\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\imgui && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Desktop\GameEngine -BC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\imgui && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Documents\Projects\Ardelka -BC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -341,7 +341,7 @@ build vendor\imgui\list_install_components: phony
 # Utility command for install
 
 build vendor\imgui\CMakeFiles\install.util: CUSTOM_COMMAND vendor\imgui\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\imgui && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\imgui && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -353,7 +353,7 @@ build vendor\imgui\install: phony vendor\imgui\CMakeFiles\install.util
 # Utility command for install/local
 
 build vendor\imgui\CMakeFiles\install\local.util: CUSTOM_COMMAND vendor\imgui\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\imgui && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\imgui && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -362,7 +362,7 @@ build vendor\imgui\install\local: phony vendor\imgui\CMakeFiles\install\local.ut
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/arder/Desktop/GameEngine/CMakeLists.txt
+# C:/Users/arder/Documents/Projects/Ardelka/CMakeLists.txt
 # =============================================================================
 
 
@@ -376,7 +376,7 @@ build vendor\glfw\uninstall: phony vendor\glfw\CMakeFiles\uninstall
 # Utility command for edit_cache
 
 build vendor\glfw\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -387,7 +387,7 @@ build vendor\glfw\edit_cache: phony vendor\glfw\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build vendor\glfw\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Desktop\GameEngine -BC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Documents\Projects\Ardelka -BC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -405,7 +405,7 @@ build vendor\glfw\list_install_components: phony
 # Utility command for install
 
 build vendor\glfw\CMakeFiles\install.util: CUSTOM_COMMAND vendor\glfw\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -417,7 +417,7 @@ build vendor\glfw\install: phony vendor\glfw\CMakeFiles\install.util
 # Utility command for install/local
 
 build vendor\glfw\CMakeFiles\install\local.util: CUSTOM_COMMAND vendor\glfw\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -429,11 +429,11 @@ build vendor\glfw\install\local: phony vendor\glfw\CMakeFiles\install\local.util
 # Custom command for vendor\glfw\CMakeFiles\uninstall
 
 build vendor\glfw\CMakeFiles\uninstall | ${cmake_ninja_workdir}vendor\glfw\CMakeFiles\uninstall: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P C:/Users/arder/Desktop/GameEngine/cmake-build-debug-visual-studio/vendor/glfw/cmake_uninstall.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P C:/Users/arder/Documents/Projects/Ardelka/cmake-build-debug-visual-studio/vendor/glfw/cmake_uninstall.cmake"
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/arder/Desktop/GameEngine/vendor/glfw/CMakeLists.txt
+# C:/Users/arder/Documents/Projects/Ardelka/vendor/glfw/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -445,190 +445,190 @@ build vendor\glfw\CMakeFiles\uninstall | ${cmake_ninja_workdir}vendor\glfw\CMake
 
 build cmake_object_order_depends_target_glfw: phony || vendor\glfw\src\CMakeFiles\glfw.dir
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\context.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\context.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\context.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\init.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\init.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\init.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\input.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\input.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\input.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\input.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\monitor.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\monitor.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\monitor.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\platform.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\platform.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\platform.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\platform.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\vulkan.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\vulkan.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\vulkan.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\vulkan.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\window.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\window.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\window.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\egl_context.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\egl_context.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\egl_context.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\egl_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\osmesa_context.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\osmesa_context.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\osmesa_context.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\osmesa_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\null_init.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\null_init.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\null_init.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\null_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\null_monitor.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\null_monitor.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\null_monitor.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\null_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\null_window.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\null_window.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\null_window.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\null_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\null_joystick.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\null_joystick.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\null_joystick.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\null_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\win32_module.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\win32_module.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\win32_module.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\win32_module.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\win32_time.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\win32_time.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\win32_time.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\win32_time.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\win32_thread.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\win32_thread.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\win32_thread.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\win32_thread.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\win32_init.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\win32_init.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\win32_init.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\win32_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\win32_joystick.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\win32_joystick.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\win32_joystick.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\win32_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\win32_monitor.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\win32_monitor.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\win32_monitor.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\win32_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\win32_window.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\win32_window.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\win32_window.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\win32_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = vendor\glfw\src\glfw3.pdb
 
-build vendor\glfw\src\CMakeFiles\glfw.dir\wgl_context.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\wgl_context.c || cmake_object_order_depends_target_glfw
+build vendor\glfw\src\CMakeFiles\glfw.dir\wgl_context.c.obj: C_COMPILER__glfw_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\wgl_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /W3
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\include -IC:\Users\arder\Desktop\GameEngine\vendor\glfw\src -IC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\include -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src -IC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src
   OBJECT_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = vendor\glfw\src\CMakeFiles\glfw.dir
   TARGET_COMPILE_PDB = vendor\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
@@ -663,7 +663,7 @@ build vendor\glfw\src\update_mappings: phony vendor\glfw\src\CMakeFiles\update_m
 # Utility command for edit_cache
 
 build vendor\glfw\src\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -674,7 +674,7 @@ build vendor\glfw\src\edit_cache: phony vendor\glfw\src\CMakeFiles\edit_cache.ut
 # Utility command for rebuild_cache
 
 build vendor\glfw\src\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Desktop\GameEngine -BC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Documents\Projects\Ardelka -BC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -692,7 +692,7 @@ build vendor\glfw\src\list_install_components: phony
 # Utility command for install
 
 build vendor\glfw\src\CMakeFiles\install.util: CUSTOM_COMMAND vendor\glfw\src\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -704,7 +704,7 @@ build vendor\glfw\src\install: phony vendor\glfw\src\CMakeFiles\install.util
 # Utility command for install/local
 
 build vendor\glfw\src\CMakeFiles\install\local.util: CUSTOM_COMMAND vendor\glfw\src\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\src && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\src && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -716,12 +716,12 @@ build vendor\glfw\src\install\local: phony vendor\glfw\src\CMakeFiles\install\lo
 # Custom command for vendor\glfw\src\CMakeFiles\update_mappings
 
 build vendor\glfw\src\CMakeFiles\update_mappings | ${cmake_ninja_workdir}vendor\glfw\src\CMakeFiles\update_mappings: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\vendor\glfw\src && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P C:/Users/arder/Desktop/GameEngine/vendor/glfw/CMake/GenerateMappings.cmake mappings.h.in mappings.h"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P C:/Users/arder/Documents/Projects/Ardelka/vendor/glfw/CMake/GenerateMappings.cmake mappings.h.in mappings.h"
   DESC = Updating gamepad mappings from upstream repository
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/arder/Desktop/GameEngine/vendor/glfw/CMakeLists.txt
+# C:/Users/arder/Documents/Projects/Ardelka/vendor/glfw/CMakeLists.txt
 # =============================================================================
 
 
@@ -729,7 +729,7 @@ build vendor\glfw\src\CMakeFiles\update_mappings | ${cmake_ninja_workdir}vendor\
 # Utility command for edit_cache
 
 build vendor\glfw\docs\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\docs && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\docs && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -740,7 +740,7 @@ build vendor\glfw\docs\edit_cache: phony vendor\glfw\docs\CMakeFiles\edit_cache.
 # Utility command for rebuild_cache
 
 build vendor\glfw\docs\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\docs && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Desktop\GameEngine -BC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\docs && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Documents\Projects\Ardelka -BC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -758,7 +758,7 @@ build vendor\glfw\docs\list_install_components: phony
 # Utility command for install
 
 build vendor\glfw\docs\CMakeFiles\install.util: CUSTOM_COMMAND vendor\glfw\docs\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\docs && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\docs && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -770,7 +770,7 @@ build vendor\glfw\docs\install: phony vendor\glfw\docs\CMakeFiles\install.util
 # Utility command for install/local
 
 build vendor\glfw\docs\CMakeFiles\install\local.util: CUSTOM_COMMAND vendor\glfw\docs\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glfw\docs && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glfw\docs && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -779,7 +779,7 @@ build vendor\glfw\docs\install\local: phony vendor\glfw\docs\CMakeFiles\install\
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/arder/Desktop/GameEngine/CMakeLists.txt
+# C:/Users/arder/Documents/Projects/Ardelka/CMakeLists.txt
 # =============================================================================
 
 
@@ -787,7 +787,7 @@ build vendor\glfw\docs\install\local: phony vendor\glfw\docs\CMakeFiles\install\
 # Utility command for edit_cache
 
 build vendor\glm\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -798,7 +798,7 @@ build vendor\glm\edit_cache: phony vendor\glm\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build vendor\glm\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Desktop\GameEngine -BC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Documents\Projects\Ardelka -BC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -816,7 +816,7 @@ build vendor\glm\list_install_components: phony
 # Utility command for install
 
 build vendor\glm\CMakeFiles\install.util: CUSTOM_COMMAND vendor\glm\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -828,7 +828,7 @@ build vendor\glm\install: phony vendor\glm\CMakeFiles\install.util
 # Utility command for install/local
 
 build vendor\glm\CMakeFiles\install\local.util: CUSTOM_COMMAND vendor\glm\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -837,7 +837,7 @@ build vendor\glm\install\local: phony vendor\glm\CMakeFiles\install\local.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/arder/Desktop/GameEngine/vendor/glm/CMakeLists.txt
+# C:/Users/arder/Documents/Projects/Ardelka/vendor/glm/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -849,9 +849,9 @@ build vendor\glm\install\local: phony vendor\glm\CMakeFiles\install\local.util
 
 build cmake_object_order_depends_target_glm: phony || vendor\glm\glm\CMakeFiles\glm.dir
 
-build vendor\glm\glm\CMakeFiles\glm.dir\detail\glm.cpp.obj: CXX_COMPILER__glm_unscanned_Debug C$:\Users\arder\Desktop\GameEngine\vendor\glm\glm\detail\glm.cpp || cmake_object_order_depends_target_glm
+build vendor\glm\glm\CMakeFiles\glm.dir\detail\glm.cpp.obj: CXX_COMPILER__glm_unscanned_Debug C$:\Users\arder\Documents\Projects\Ardelka\vendor\glm\glm\detail\glm.cpp || cmake_object_order_depends_target_glm
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 /Za /fp:precise
-  INCLUDES = -IC:\Users\arder\Desktop\GameEngine\vendor\glm
+  INCLUDES = -IC:\Users\arder\Documents\Projects\Ardelka\vendor\glm
   OBJECT_DIR = vendor\glm\glm\CMakeFiles\glm.dir
   OBJECT_FILE_DIR = vendor\glm\glm\CMakeFiles\glm.dir\detail
   TARGET_COMPILE_PDB = vendor\glm\glm\CMakeFiles\glm.dir\glm.pdb
@@ -880,7 +880,7 @@ build vendor\glm\glm\glm.lib: CXX_STATIC_LIBRARY_LINKER__glm_Debug vendor\glm\gl
 # Utility command for edit_cache
 
 build vendor\glm\glm\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glm\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glm\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -891,7 +891,7 @@ build vendor\glm\glm\edit_cache: phony vendor\glm\glm\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build vendor\glm\glm\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glm\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Desktop\GameEngine -BC:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glm\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\arder\Documents\Projects\Ardelka -BC:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -909,7 +909,7 @@ build vendor\glm\glm\list_install_components: phony
 # Utility command for install
 
 build vendor\glm\glm\CMakeFiles\install.util: CUSTOM_COMMAND vendor\glm\glm\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glm\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glm\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -921,7 +921,7 @@ build vendor\glm\glm\install: phony vendor\glm\glm\CMakeFiles\install.util
 # Utility command for install/local
 
 build vendor\glm\glm\CMakeFiles\install\local.util: CUSTOM_COMMAND vendor\glm\glm\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Desktop\GameEngine\cmake-build-debug-visual-studio\vendor\glm\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Users\arder\Documents\Projects\Ardelka\cmake-build-debug-visual-studio\vendor\glm\glm && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -955,49 +955,49 @@ build update_mappings: phony vendor\glfw\src\update_mappings
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/arder/Desktop/GameEngine/cmake-build-debug-visual-studio
+# Folder: C:/Users/arder/Documents/Projects/Ardelka/cmake-build-debug-visual-studio
 
 build all: phony GameEngine.exe vendor\imgui\all vendor\glfw\all vendor\glm\all
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/arder/Desktop/GameEngine/cmake-build-debug-visual-studio/vendor/glfw
+# Folder: C:/Users/arder/Documents/Projects/Ardelka/cmake-build-debug-visual-studio/vendor/glfw
 
 build vendor\glfw\all: phony vendor\glfw\src\all vendor\glfw\docs\all
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/arder/Desktop/GameEngine/cmake-build-debug-visual-studio/vendor/glfw/docs
+# Folder: C:/Users/arder/Documents/Projects/Ardelka/cmake-build-debug-visual-studio/vendor/glfw/docs
 
 build vendor\glfw\docs\all: phony
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/arder/Desktop/GameEngine/cmake-build-debug-visual-studio/vendor/glfw/src
+# Folder: C:/Users/arder/Documents/Projects/Ardelka/cmake-build-debug-visual-studio/vendor/glfw/src
 
 build vendor\glfw\src\all: phony vendor\glfw\src\glfw3.lib
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/arder/Desktop/GameEngine/cmake-build-debug-visual-studio/vendor/glm
+# Folder: C:/Users/arder/Documents/Projects/Ardelka/cmake-build-debug-visual-studio/vendor/glm
 
 build vendor\glm\all: phony vendor\glm\glm\all
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/arder/Desktop/GameEngine/cmake-build-debug-visual-studio/vendor/glm/glm
+# Folder: C:/Users/arder/Documents/Projects/Ardelka/cmake-build-debug-visual-studio/vendor/glm/glm
 
 build vendor\glm\glm\all: phony vendor\glm\glm\glm.lib
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/arder/Desktop/GameEngine/cmake-build-debug-visual-studio/vendor/imgui
+# Folder: C:/Users/arder/Documents/Projects/Ardelka/cmake-build-debug-visual-studio/vendor/imgui
 
 build vendor\imgui\all: phony vendor\imgui\imgui.lib
 
@@ -1008,14 +1008,14 @@ build vendor\imgui\all: phony vendor\imgui\imgui.lib
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\BasicConfigVersion-SameMajorVersion.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDependentOption.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakePackageConfigHelpers.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeRCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CheckIncludeFile.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CheckLibraryExists.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindDoxygen.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindPackageMessage.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindThreads.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\GNUInstallDirs.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Internal\CheckSourceCompiles.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\WriteBasicConfigVersionFile.cmake C$:\Users\arder\Desktop\GameEngine\CMakeLists.txt C$:\Users\arder\Desktop\GameEngine\vendor\glfw\CMakeLists.txt C$:\Users\arder\Desktop\GameEngine\vendor\glfw\CMake\cmake_uninstall.cmake.in C$:\Users\arder\Desktop\GameEngine\vendor\glfw\CMake\glfw3.pc.in C$:\Users\arder\Desktop\GameEngine\vendor\glfw\CMake\glfw3Config.cmake.in C$:\Users\arder\Desktop\GameEngine\vendor\glfw\docs\CMakeLists.txt C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\CMakeLists.txt C$:\Users\arder\Desktop\GameEngine\vendor\glm\CMakeLists.txt C$:\Users\arder\Desktop\GameEngine\vendor\glm\glm\CMakeLists.txt C$:\Users\arder\Desktop\GameEngine\vendor\imgui\CMakeLists.txt CMakeCache.txt CMakeFiles\3.27.8\CMakeCCompiler.cmake CMakeFiles\3.27.8\CMakeCXXCompiler.cmake CMakeFiles\3.27.8\CMakeRCCompiler.cmake CMakeFiles\3.27.8\CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\BasicConfigVersion-SameMajorVersion.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCCompiler.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCCompilerABI.c C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCXXCompiler.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCXXCompilerABI.cpp C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCompilerIdDetection.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDependentOption.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineCCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineCXXCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineCompileFeatures.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineCompilerABI.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineCompilerId.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineRCCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineSystem.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeFindBinUtils.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakePackageConfigHelpers.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeParseImplicitIncludeInfo.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeParseImplicitLinkInfo.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeParseLibraryArchitecture.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeRCCompiler.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeRCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeSystem.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeTestCCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeTestCXXCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeTestCompilerCommon.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeTestRCCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CheckIncludeFile.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CheckLibraryExists.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\ADSP-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\ARMCC-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\ARMClang-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\AppleClang-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Borland-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Bruce-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Clang-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Clang-DetermineCompilerInternal.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Compaq-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Cray-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Embarcadero-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Fujitsu-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\GHS-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\GNU-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\HP-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\HP-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\IAR-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Intel-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\LCC-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\NVHPC-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\NVIDIA-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\PGI-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\PathScale-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\SCO-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\SDCC-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\SunPro-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\TI-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Tasking-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Watcom-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\XL-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\XL-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\XLClang-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\zOS-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindDoxygen.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindPackageMessage.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindThreads.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\GNUInstallDirs.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Internal\CheckSourceCompiles.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Internal\FeatureTesting.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-Determine-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\WriteBasicConfigVersionFile.cmake C$:\Users\arder\Documents\Projects\Ardelka\CMakeLists.txt C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\CMakeLists.txt C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\CMake\cmake_uninstall.cmake.in C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\CMake\glfw3.pc.in C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\CMake\glfw3Config.cmake.in C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\docs\CMakeLists.txt C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\CMakeLists.txt C$:\Users\arder\Documents\Projects\Ardelka\vendor\glm\CMakeLists.txt C$:\Users\arder\Documents\Projects\Ardelka\vendor\glm\glm\CMakeLists.txt C$:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\CMakeLists.txt CMakeCache.txt CMakeFiles\3.27.8\CMakeCCompiler.cmake CMakeFiles\3.27.8\CMakeCXXCompiler.cmake CMakeFiles\3.27.8\CMakeRCCompiler.cmake CMakeFiles\3.27.8\CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\BasicConfigVersion-SameMajorVersion.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDependentOption.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakePackageConfigHelpers.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeRCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CheckIncludeFile.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CheckLibraryExists.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindDoxygen.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindPackageMessage.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindThreads.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\GNUInstallDirs.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Internal\CheckSourceCompiles.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\WriteBasicConfigVersionFile.cmake C$:\Users\arder\Desktop\GameEngine\CMakeLists.txt C$:\Users\arder\Desktop\GameEngine\vendor\glfw\CMakeLists.txt C$:\Users\arder\Desktop\GameEngine\vendor\glfw\CMake\cmake_uninstall.cmake.in C$:\Users\arder\Desktop\GameEngine\vendor\glfw\CMake\glfw3.pc.in C$:\Users\arder\Desktop\GameEngine\vendor\glfw\CMake\glfw3Config.cmake.in C$:\Users\arder\Desktop\GameEngine\vendor\glfw\docs\CMakeLists.txt C$:\Users\arder\Desktop\GameEngine\vendor\glfw\src\CMakeLists.txt C$:\Users\arder\Desktop\GameEngine\vendor\glm\CMakeLists.txt C$:\Users\arder\Desktop\GameEngine\vendor\glm\glm\CMakeLists.txt C$:\Users\arder\Desktop\GameEngine\vendor\imgui\CMakeLists.txt CMakeCache.txt CMakeFiles\3.27.8\CMakeCCompiler.cmake CMakeFiles\3.27.8\CMakeCXXCompiler.cmake CMakeFiles\3.27.8\CMakeRCCompiler.cmake CMakeFiles\3.27.8\CMakeSystem.cmake: phony
+build C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\BasicConfigVersion-SameMajorVersion.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCCompiler.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCCompilerABI.c C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCXXCompiler.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCXXCompilerABI.cpp C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeCompilerIdDetection.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDependentOption.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineCCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineCXXCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineCompileFeatures.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineCompilerABI.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineCompilerId.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineRCCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeDetermineSystem.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeFindBinUtils.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakePackageConfigHelpers.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeParseImplicitIncludeInfo.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeParseImplicitLinkInfo.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeParseLibraryArchitecture.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeRCCompiler.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeRCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeSystem.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeTestCCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeTestCXXCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeTestCompilerCommon.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CMakeTestRCCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CheckIncludeFile.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\CheckLibraryExists.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\ADSP-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\ARMCC-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\ARMClang-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\AppleClang-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Borland-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Bruce-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Clang-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Clang-DetermineCompilerInternal.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Compaq-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Cray-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Embarcadero-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Fujitsu-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\GHS-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\GNU-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\HP-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\HP-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\IAR-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Intel-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\LCC-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\NVHPC-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\NVIDIA-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\PGI-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\PathScale-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\SCO-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\SDCC-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\SunPro-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\TI-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Tasking-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\Watcom-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\XL-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\XL-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\XLClang-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\zOS-C-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindDoxygen.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindPackageMessage.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\FindThreads.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\GNUInstallDirs.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Internal\CheckSourceCompiles.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Internal\FeatureTesting.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-Determine-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\Windows.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files\JetBrains\CLion$ 2023.3.4\bin\cmake\win\x64\share\cmake-3.27\Modules\WriteBasicConfigVersionFile.cmake C$:\Users\arder\Documents\Projects\Ardelka\CMakeLists.txt C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\CMakeLists.txt C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\CMake\cmake_uninstall.cmake.in C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\CMake\glfw3.pc.in C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\CMake\glfw3Config.cmake.in C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\docs\CMakeLists.txt C$:\Users\arder\Documents\Projects\Ardelka\vendor\glfw\src\CMakeLists.txt C$:\Users\arder\Documents\Projects\Ardelka\vendor\glm\CMakeLists.txt C$:\Users\arder\Documents\Projects\Ardelka\vendor\glm\glm\CMakeLists.txt C$:\Users\arder\Documents\Projects\Ardelka\vendor\imgui\CMakeLists.txt CMakeCache.txt CMakeFiles\3.27.8\CMakeCCompiler.cmake CMakeFiles\3.27.8\CMakeCXXCompiler.cmake CMakeFiles\3.27.8\CMakeRCCompiler.cmake CMakeFiles\3.27.8\CMakeSystem.cmake: phony
 
 
 #############################################

@@ -74,7 +74,9 @@ int main() {
 
     std::cerr << "Creating parent GameObject" << std::endl;
     auto parentGameObject = std::make_unique<GameObject>();
-    parentGameObject->GetTransform()->position = glm::vec3(0.0f, 1.0f, 0.0f);
+    parentGameObject->GetTransform()->position = glm::vec3(0.0f, 0.0f, 0.0f);
+    //scale the object
+    parentGameObject->GetTransform()->scale = glm::vec3(10.5f, 10.5f, 10.5f);
     parentGameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, material));
 
     std::cerr << "Creating child GameObject" << std::endl;

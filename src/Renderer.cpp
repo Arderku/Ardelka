@@ -14,7 +14,7 @@ void Renderer::Init() {
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-    glDisable(GL_CULL_FACE); // For debugging, disable face culling
+   // glDisable(GL_CULL_FACE); // For debugging, disable face culling
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
