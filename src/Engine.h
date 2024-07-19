@@ -12,6 +12,8 @@ public:
 
     void Init();
 
+    Renderer GetRenderer();
+
 private:
     Window m_Window;
     Renderer m_Renderer;

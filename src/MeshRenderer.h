@@ -25,7 +25,7 @@ public:
             std::cerr << "MeshRenderer: Owner is null!" << std::endl;
             return;
         }
-        glm::mat4 model = m_Owner->GetTransform()->GetModelMatrix();
+        glm::mat4 model =  m_Owner->GetTransform()->GetGlobalModelMatrix();
 
         //check shader is valid
         if (!m_Material->GetShader()->IsValid()) {

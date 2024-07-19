@@ -13,6 +13,8 @@ public:
     void RenderToFramebuffer(Scene& scene, GLuint framebuffer, int width, int height);
     void Shutdown();
 
+    Shader * GetShader();
+
 private:
     Shader* m_Shader = nullptr;
 
@@ -23,7 +25,4 @@ private:
 
     DirectionalLight dirLight;
     PointLight pointLights[4];
-
-    Material* m_PlaneMaterial;
-    Mesh *m_PlaneMesh;
 };

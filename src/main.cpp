@@ -16,14 +16,15 @@ int main() {
     std::cerr << "Starting main" << std::endl;
 
     std::cerr << "Creating Shader" << std::endl;
-    Shader* shader = new Shader("resources/shaders/vertex_shader.glsl", "resources/shaders/fragment_shader.glsl");
-    if (!shader || !shader->IsValid()) {
-        std::cerr << "Shader creation failed" << std::endl;
-        return -1;
-    }
+
+    engine.GetRenderer().GetShader();
 
     std::cerr << "Creating Material" << std::endl;
-    Material* material = new Material(shader);
+    Material* materialRed = new Material(engine.GetRenderer().GetShader());
+    materialRed->setBaseColor(glm::vec3(1.5f, 0.5f, 0.5f));
+
+    Material* materialBlue = new Material(engine.GetRenderer().GetShader());
+    materialBlue->setBaseColor(glm::vec3(.5f, 0.5f, 1.5f));
 
     // Define the cube vertices and indices
     std::vector<float> vertices = {
@@ -68,7 +69,6 @@ int main() {
             20, 21, 22, 22, 23, 20 // Top face
     };
 
-
     std::cerr << "Creating Mesh" << std::endl;
     Mesh* mesh = new Mesh(vertices, indices);
 
@@ -76,14 +76,28 @@ int main() {
     auto parentGameObject = std::make_unique<GameObject>();
     parentGameObject->GetTransform()->position = glm::vec3(0.0f, 0.0f, 0.0f);
     //scale the object
-    parentGameObject->GetTransform()->scale = glm::vec3(10.5f, 10.5f, 10.5f);
-    parentGameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, material));
+    parentGameObject->GetTransform()->scale = glm::vec3(1);
+    parentGameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialRed));
 
     std::cerr << "Creating child GameObject" << std::endl;
     auto childGameObject = std::make_unique<GameObject>();
-    childGameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, material));
-    childGameObject->GetTransform()->position = glm::vec3(0.0f, 2.0f, 0.0f);
+    childGameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialBlue));
+    childGameObject->GetTransform()->position = glm::vec3(2.0f, 1.0f, 0.0f);
+    childGameObject->GetTransform()->scale = glm::vec3(2.f, 1.f, 0.5f);
+
     parentGameObject->AddChild(std::move(childGameObject));
+
+
+    //creat 100 game objects at random positions
+    for (int i = 0; i < 100; i++) {
+        auto gameObject = std::make_unique<GameObject>();
+        gameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialBlue));
+        gameObject->GetTransform()->position = glm::vec3(static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 10 - 5,
+                                                         static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 10 - 5,
+                                                         static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 10 - 5);
+        gameObject->GetTransform()->scale = glm::vec3(0.1f);
+        engine.GetScene().AddGameObject(std::move(gameObject));
+    }
 
     std::cerr << "Adding GameObject to scene" << std::endl;
     engine.GetScene().AddGameObject(std::move(parentGameObject));

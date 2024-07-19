@@ -13,7 +13,7 @@ void Renderer::Init() {
     }
 
     glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
+    //glDepthFunc(GL_LESS);
    // glDisable(GL_CULL_FACE); // For debugging, disable face culling
 
     glEnable(GL_BLEND);
@@ -25,29 +25,6 @@ void Renderer::Init() {
         std::cerr << "Failed to create Shader" << std::endl;
         return;
     }
-
-    m_PlaneMaterial = new Material(m_Shader);
-
-    // Set material properties for polished marble
-    m_PlaneMaterial->setBaseColor(glm::vec3(0.9f, 0.9f, 0.9f)); // Light gray color
-    m_PlaneMaterial->setMetallic(0.0f); // Non-metallic
-    m_PlaneMaterial->setRoughness(0.9f); // Very smooth surface
-    m_PlaneMaterial->bind();
-
-    // Define the plane vertices and indices
-    std::vector<float> planeVertices = {
-            // positions         // normals          // texcoords
-            -5.0f, 0.0f, -5.0f,  0.0f, 1.0f, 0.0f,   0.0f, 0.0f,
-            5.0f, 0.0f, -5.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,
-            5.0f, 0.0f,  5.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,
-            -5.0f, 0.0f,  5.0f,  0.0f, 1.0f, 0.0f,   0.0f, 1.0f,
-    };
-    std::vector<unsigned int> planeIndices = {
-            0, 1, 2,
-            2, 3, 0,
-    };
-
-    m_PlaneMesh = new Mesh(planeVertices, planeIndices);
 
     dirLight.direction = glm::vec3(-0.2f, 1.0f, -0.3f);
     dirLight.color = glm::vec3(1.0f, 0.9f, 0.8f);
@@ -112,14 +89,16 @@ void Renderer::Render(Scene& scene) {
     m_Shader->setVec3("viewPos", viewPos);
 
     // Render the plane
-    glm::mat4 model = glm::mat4(1.0f);
-    m_Shader->setMat4("model", model);
+   // glm::mat4 model = glm::mat4(2.0f);
+    //rotate model over time
+   // model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
 
-    m_PlaneMaterial->bind();
+   // m_Shader->setMat4("model", model);
+   // m_PlaneMaterial->bind();
 
-    m_PlaneMesh->Bind();
-    glDrawElements(GL_TRIANGLES, m_PlaneMesh->GetIndexCount(), GL_UNSIGNED_INT, 0);
-    m_PlaneMesh->Unbind();
+   // m_PlaneMesh->Bind();
+   // glDrawElements(GL_TRIANGLES, m_PlaneMesh->GetIndexCount(), GL_UNSIGNED_INT, 0);
+   // m_PlaneMesh->Unbind();
 
    scene.Render();
 
@@ -142,10 +121,12 @@ void Renderer::RenderToFramebuffer(Scene& scene, GLuint framebuffer, int width, 
 
 void Renderer::Shutdown() {
     delete m_Shader;
-    delete m_PlaneMesh;
-    delete m_PlaneMaterial;
 
     glDeleteVertexArrays(1, &m_VAO);
     glDeleteBuffers(1, &m_VBO);
     glDeleteBuffers(1, &m_EBO);
+}
+
+Shader * Renderer::GetShader() {
+    return m_Shader;
 }

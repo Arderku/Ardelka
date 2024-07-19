@@ -185,7 +185,7 @@ void Editor::Render() {
     ShowConsole();
 
     // Show play, pause, stop buttons
-    ShowPlayPauseStopButtons();
+   // ShowPlayPauseStopButtons();
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -302,10 +302,8 @@ void Editor::ShowSceneViewport() {
 
     // Update the framebuffer size to match the viewport size
     glBindTexture(GL_TEXTURE_2D, m_TextureColorbuffer);
-
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (int)viewportSize.x, (int)viewportSize.y, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
     glBindRenderbuffer(GL_RENDERBUFFER, m_RBO);
-
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, (int)viewportSize.x, (int)viewportSize.y);
     glBindFramebuffer(GL_FRAMEBUFFER, m_Framebuffer);
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
@@ -331,21 +329,50 @@ void Editor::ShowSceneViewport() {
     // Display the framebuffer texture in the ImGui window
     ImGui::Image((void*)(intptr_t)m_TextureColorbuffer, viewportSize, ImVec2(0, 1), ImVec2(1, 0));
 
+    // Calculate FPS
+    static float frameTime = 0.0f;
+    static int frameCount = 0;
+    frameCount++;
+    frameTime += ImGui::GetIO().DeltaTime;
+    if (frameTime >= 1.0f) {
+        frameCount = 0;
+        frameTime = 0.0f;
+    }
+    float fps = 1.0f / ImGui::GetIO().DeltaTime;
+
+    // Set the position for the FPS counter
+    ImVec2 fpsPosition = ImVec2(viewportSize.x - 60.0f, 10.0f); // Adjust the position as needed
+    ImGui::SetCursorPos(fpsPosition);
+
+    // Set the text color to purple
+    ImVec4 purpleColor = ImVec4(0.5f, 0.0f, 0.5f, 1.0f); // RGBA
+    ImGui::PushStyleColor(ImGuiCol_Text, purpleColor);
+    ImGui::Text("FPS: %.0f", fps);
+    ImGui::PopStyleColor();
+
+    // Show Play, Pause, Stop buttons in the center top
+    ShowPlayPauseStopButtons();
+
     ImGui::End();
 }
 
 void Editor::ShowPlayPauseStopButtons() {
-    ImGui::Begin("PlayPauseStop", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
-    if (ImGui::Button("Play")) {
+    // Calculate the position to center the buttons at the top
+    ImVec2 buttonSize(50, 30); // Adjust the size of the buttons
+    float totalWidth = buttonSize.x * 3 + ImGui::GetStyle().ItemSpacing.x * 2; // 3 buttons with spacing
+    ImVec2 buttonPos((800 - totalWidth) / 2, 10.0f); // 10.0f for top margin
+
+    ImGui::SetCursorPos(buttonPos);
+
+    if (ImGui::Button("Play", buttonSize)) {
         // Handle play action
     }
     ImGui::SameLine();
-    if (ImGui::Button("Pause")) {
+    if (ImGui::Button("Pause", buttonSize)) {
         // Handle pause action
     }
     ImGui::SameLine();
-    if (ImGui::Button("Stop")) {
+    if (ImGui::Button("Stop", buttonSize)) {
         // Handle stop action
     }
-    ImGui::End();
 }

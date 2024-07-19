@@ -26,3 +26,7 @@ void Engine::Init() {
     // m_Scripting.Init();
     m_Editor.Init(m_Window.GetWindow(), m_Scene, m_Renderer);
 }
+
+Renderer Engine::GetRenderer() {
+    return m_Renderer;
+}

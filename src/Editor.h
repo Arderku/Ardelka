@@ -23,5 +23,6 @@ private:
     Scene* m_Scene;  // Pointer to the scene
     Renderer* m_Renderer;  // Pointer to the renderer
     GLFWwindow* m_Window;  // Store a pointer to the GLFW window
+
     void ShowPlayPauseStopButtons();
 };
