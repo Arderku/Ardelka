@@ -22,6 +22,7 @@ include_directories(vendor/glfw/include)
 include_directories(vendor/imgui)
 include_directories(vendor/imgui/backends)
 include_directories(vendor/glm)
+include_directories(vendor/stb)  # Add this line to include stb_image.h
 
 # Find Mono installation
 if (WIN32)
@@ -57,6 +58,10 @@ add_executable(GameEngine
         src/Mesh.cpp
         src/GameObject.cpp
         src/Light.h
+        src/Texture.cpp
+        src/Texture.h
+        src/ResourceManager.h
+        src/ResourceManager.cpp
 )
 
 # Link libraries
@@ -74,8 +79,8 @@ target_link_libraries(GameEngine
 add_custom_command(
         TARGET GameEngine POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/resources/shaders
-        ${CMAKE_BINARY_DIR}/resources/shaders
+        ${CMAKE_SOURCE_DIR}/resources/
+        ${CMAKE_BINARY_DIR}/resources/
 )
 
 # Copy GLEW DLL to the build directory

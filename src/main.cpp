@@ -9,6 +9,7 @@
 #include "Mesh.h"
 #include "GameObject.h"
 #include "Scene.h"
+#include "ResourceManager.h"
 
 int main() {
     Engine engine;
@@ -20,11 +21,24 @@ int main() {
     engine.GetRenderer().GetShader();
 
     std::cerr << "Creating Material" << std::endl;
+    Texture* albedo = ResourceManager::loadTexture("albedo", "resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_albedo.png");
+    Texture* metallic = ResourceManager::loadTexture("metallic", "resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_metallic.png");
+    Texture* roughness = ResourceManager::loadTexture("roughness", "resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_roughness.png");
+    Texture* normal = ResourceManager::loadTexture("normal", "resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_normal.png");
+
     Material* materialRed = new Material(engine.GetRenderer().GetShader());
-    materialRed->setBaseColor(glm::vec3(1.5f, 0.5f, 0.5f));
+   // materialRed->setBaseColor(glm::vec4(1.5f, 0.5f, 0.5f, 1.0f));
+   materialRed->setBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
+   materialRed->setMetallic(0.0f);
+    materialRed->setRoughness(0.1f);
+
+    materialRed->setAlbedoMap(albedo);
+    materialRed->setMetallicMap(metallic);
+    materialRed->setRoughnessMap(roughness);
+    materialRed->setNormalMap(normal);
 
     Material* materialBlue = new Material(engine.GetRenderer().GetShader());
-    materialBlue->setBaseColor(glm::vec3(.5f, 0.5f, 1.5f));
+    materialBlue->setBaseColor(glm::vec4(.5f, 0.5f, 1.5f, 1.0f));
 
     // Define the cube vertices and indices
     std::vector<float> vertices = {
@@ -91,11 +105,11 @@ int main() {
     //creat 100 game objects at random positions
     for (int i = 0; i < 100; i++) {
         auto gameObject = std::make_unique<GameObject>();
-        gameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialBlue));
-        gameObject->GetTransform()->position = glm::vec3(static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 10 - 5,
-                                                         static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 10 - 5,
-                                                         static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 10 - 5);
-        gameObject->GetTransform()->scale = glm::vec3(0.1f);
+        gameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialRed));
+        gameObject->GetTransform()->position = glm::vec3(static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 7 - 5,
+                                                         static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 7 - 5,
+                                                         static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 7 - 5);
+        gameObject->GetTransform()->scale = glm::vec3(0.5f);
         engine.GetScene().AddGameObject(std::move(gameObject));
     }
 

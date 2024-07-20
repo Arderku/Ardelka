@@ -348,6 +348,8 @@ void Editor::ShowSceneViewport() {
     ImVec4 purpleColor = ImVec4(0.5f, 0.0f, 0.5f, 1.0f); // RGBA
     ImGui::PushStyleColor(ImGuiCol_Text, purpleColor);
     ImGui::Text("FPS: %.0f", fps);
+    //log fps
+    std::cout << "FPS: " << fps << std::endl;
     ImGui::PopStyleColor();
 
     // Show Play, Pause, Stop buttons in the center top

@@ -13,11 +13,12 @@ void Renderer::Init() {
     }
 
     glEnable(GL_DEPTH_TEST);
-    //glDepthFunc(GL_LESS);
+    glDepthFunc(GL_LESS);
    // glDisable(GL_CULL_FACE); // For debugging, disable face culling
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDisable(GL_BLEND);
     glClearColor(0.68f, 0.85f, 0.9f, 1.0f);
 
     m_Shader = new Shader("resources/shaders/vertex_shader.glsl", "resources/shaders/fragment_shader.glsl");
@@ -26,7 +27,7 @@ void Renderer::Init() {
         return;
     }
 
-    dirLight.direction = glm::vec3(-0.2f, 1.0f, -0.3f);
+    dirLight.direction = glm::vec3(0.f, 1.0f, 0.0f);
     dirLight.color = glm::vec3(1.0f, 0.9f, 0.8f);
 
     pointLights[0].position = glm::vec3(-2.0f, 3.0f, 2.0f);
@@ -62,7 +63,7 @@ void Renderer::Render(Scene& scene) {
     m_Shader->use();
 
     glm::mat4 view = glm::lookAt(
-            glm::vec3(0.0f, 8.0f, -10.0f), // Camera position
+            glm::vec3(0.0f, 2.0f, -5.0f), // Camera position
             glm::vec3(0.0f, 0.0f, 0.0f),   // Look at origin
             glm::vec3(0.0f, 1.0f, 0.0f)    // Up vector
     );
