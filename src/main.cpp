@@ -27,10 +27,10 @@ int main() {
     Texture* normal = ResourceManager::loadTexture("normal", "resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_normal.png");
 
     Material* materialRed = new Material(engine.GetRenderer().GetShader());
-   // materialRed->setBaseColor(glm::vec4(1.5f, 0.5f, 0.5f, 1.0f));
-   materialRed->setBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
-   materialRed->setMetallic(0.0f);
-    materialRed->setRoughness(0.1f);
+    materialRed->setBaseColor(glm::vec4(1.5f, 0.5f, 0.5f, 1.0f));
+    materialRed->setBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
+    materialRed->setMetallic(0.5f);
+    materialRed->setRoughness(0.15f);
 
     materialRed->setAlbedoMap(albedo);
     materialRed->setMetallicMap(metallic);
@@ -39,6 +39,7 @@ int main() {
 
     Material* materialBlue = new Material(engine.GetRenderer().GetShader());
     materialBlue->setBaseColor(glm::vec4(.5f, 0.5f, 1.5f, 1.0f));
+    //materialBlue->setAlbedoMap(albedo);
 
     // Define the cube vertices and indices
     std::vector<float> vertices = {
@@ -101,7 +102,7 @@ int main() {
 
     parentGameObject->AddChild(std::move(childGameObject));
 
-
+    /*
     //creat 100 game objects at random positions
     for (int i = 0; i < 100; i++) {
         auto gameObject = std::make_unique<GameObject>();
@@ -112,6 +113,7 @@ int main() {
         gameObject->GetTransform()->scale = glm::vec3(0.5f);
         engine.GetScene().AddGameObject(std::move(gameObject));
     }
+    */
 
     std::cerr << "Adding GameObject to scene" << std::endl;
     engine.GetScene().AddGameObject(std::move(parentGameObject));

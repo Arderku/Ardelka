@@ -21,6 +21,8 @@ public:
 
     Shader* GetShader() const;
 
+    void Unbind() const;
+
 private:
     Shader* m_Shader;
     glm::vec3 m_BaseColor;

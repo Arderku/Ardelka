@@ -10,7 +10,7 @@ public:
     ~Texture();
 
     void bind(unsigned int slot = 0) const;
-    void unbind() const;
+    void unbind(unsigned int slot = 0) const;
 
     inline unsigned int getID() const { return m_ID; }
 

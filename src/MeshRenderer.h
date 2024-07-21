@@ -39,6 +39,7 @@ public:
 
         glDrawElements(GL_TRIANGLES, m_Mesh->GetIndexCount(), GL_UNSIGNED_INT, 0);
 
+        m_Material->Unbind();
         m_Mesh->Unbind();
         GLenum error = glGetError();
         if (error != GL_NO_ERROR) {

@@ -38,7 +38,6 @@ void Material::bind() const {
     m_Shader->setFloat("metallicValue", m_Metallic);
     m_Shader->setFloat("roughnessValue", m_Roughness);
 
-
     if (m_AlbedoMap) {
         m_AlbedoMap->bind(0);
         m_Shader->setInt("albedoMap", 0);
@@ -62,4 +61,11 @@ void Material::bind() const {
 
 Shader* Material::GetShader() const {
     return m_Shader;
+}
+
+void Material::Unbind() const {
+    m_AlbedoMap->unbind(0);
+    m_MetallicMap->unbind(1);
+    m_RoughnessMap->unbind(2);
+    m_NormalMap->unbind(3);
 }
