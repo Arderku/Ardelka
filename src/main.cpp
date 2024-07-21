@@ -38,7 +38,7 @@ int main() {
     materialRed->setNormalMap(normal);
 
     Material* materialBlue = new Material(engine.GetRenderer().GetShader());
-    materialBlue->setBaseColor(glm::vec4(.5f, 0.5f, 1.5f, 1.0f));
+    materialBlue->setBaseColor(glm::vec4(.0f, 0.0f, 1.0f, 1.0f));
     //materialBlue->setAlbedoMap(albedo);
 
     // Define the cube vertices and indices
@@ -96,15 +96,16 @@ int main() {
 
     std::cerr << "Creating child GameObject" << std::endl;
     auto childGameObject = std::make_unique<GameObject>();
+    childGameObject->SetName("BlueCube");
     childGameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialBlue));
     childGameObject->GetTransform()->position = glm::vec3(2.0f, 1.0f, 0.0f);
     childGameObject->GetTransform()->scale = glm::vec3(2.f, 1.f, 0.5f);
 
     parentGameObject->AddChild(std::move(childGameObject));
 
-    /*
+
     //creat 100 game objects at random positions
-    for (int i = 0; i < 100; i++) {
+  /*  for (int i = 0; i < 5; i++) {
         auto gameObject = std::make_unique<GameObject>();
         gameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialRed));
         gameObject->GetTransform()->position = glm::vec3(static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 7 - 5,
@@ -112,8 +113,8 @@ int main() {
                                                          static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 7 - 5);
         gameObject->GetTransform()->scale = glm::vec3(0.5f);
         engine.GetScene().AddGameObject(std::move(gameObject));
-    }
-    */
+    }*/
+
 
     std::cerr << "Adding GameObject to scene" << std::endl;
     engine.GetScene().AddGameObject(std::move(parentGameObject));

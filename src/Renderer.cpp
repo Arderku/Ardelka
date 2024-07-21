@@ -14,7 +14,6 @@ void Renderer::Init() {
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-   // glDisable(GL_CULL_FACE); // For debugging, disable face culling
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -89,20 +88,7 @@ void Renderer::Render(Scene& scene) {
     glm::vec3 viewPos = glm::vec3(0.0f, 8.0f, -10.0f); // Adjusted to match the camera position in the view matrix
     m_Shader->setVec3("viewPos", viewPos);
 
-    // Render the plane
-   // glm::mat4 model = glm::mat4(2.0f);
-    //rotate model over time
-   // model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
-
-   // m_Shader->setMat4("model", model);
-   // m_PlaneMaterial->bind();
-
-   // m_PlaneMesh->Bind();
-   // glDrawElements(GL_TRIANGLES, m_PlaneMesh->GetIndexCount(), GL_UNSIGNED_INT, 0);
-   // m_PlaneMesh->Unbind();
-
    scene.Render();
-
 
     GLenum error = glGetError();
     if (error != GL_NO_ERROR) {

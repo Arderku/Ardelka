@@ -50,3 +50,10 @@ void GameObject::Render() {
 Transform* GameObject::GetTransform() const {
     return m_Transform.get();
 }
+
+std::vector<std::unique_ptr<GameObject>> &GameObject::GetChildren() {
+    return m_Children;
+}
+
+
+

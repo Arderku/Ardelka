@@ -22,3 +22,7 @@ void Scene::AddGameObject(std::unique_ptr<GameObject> gameObject) {
 const std::vector<std::unique_ptr<GameObject>>& Scene::GetGameObjects() const {
     return gameObjects;
 }
+
+std::vector<std::unique_ptr<GameObject>> &Scene::GetGameObjects() {
+    return gameObjects;
+}

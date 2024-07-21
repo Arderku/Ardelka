@@ -25,4 +25,8 @@ private:
     GLFWwindow* m_Window;  // Store a pointer to the GLFW window
 
     void ShowPlayPauseStopButtons();
+
+    void ShowGameObjectHierarchy(GameObject *gameObject);
+
+    GameObject *m_SelectedGameObject = nullptr;
 };

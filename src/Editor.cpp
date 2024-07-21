@@ -141,6 +141,7 @@ void Editor::Init(GLFWwindow* window, Scene& scene, Renderer& renderer) {
 }
 
 void Editor::Render() {
+    // Start the ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
@@ -172,23 +173,21 @@ void Editor::Render() {
     // Show the scene viewport
     ShowSceneViewport();
 
-    // Show the scene hierarchy panel
+    // Show other panels
     ShowSceneHierarchy();
-
-    // Show the inspector panel
     ShowInspector();
-
-    // Show the project panel
     ShowProject();
-
-    // Show the console panel
     ShowConsole();
 
-    // Show play, pause, stop buttons
-   // ShowPlayPauseStopButtons();
+    // Disable depth testing before rendering ImGui
+    glDisable(GL_DEPTH_TEST);
 
+    // Render ImGui elements
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    // Re-enable depth testing
+    glEnable(GL_DEPTH_TEST);
 }
 
 void Editor::Shutdown() {
@@ -266,16 +265,69 @@ void Editor::ShowMainMenuBar() {
 
 void Editor::ShowSceneHierarchy() {
     ImGui::Begin("Hierarchy");
-    // Show the list of objects in the scene here
-    ImGui::Text("Object 1");
-    ImGui::Text("Object 2");
+    for (const auto& gameObject : m_Scene->GetGameObjects()) {
+        ShowGameObjectHierarchy(gameObject.get());
+    }
     ImGui::End();
+}
+
+void Editor::ShowGameObjectHierarchy(GameObject* gameObject) {
+    ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
+
+    if (gameObject == m_SelectedGameObject) {
+        flags |= ImGuiTreeNodeFlags_Selected;
+    }
+
+    if (gameObject->GetChildren().empty()) {
+        flags |= ImGuiTreeNodeFlags_Leaf;
+    }
+
+    bool nodeOpen = ImGui::TreeNodeEx((void*)(intptr_t)gameObject, flags, gameObject->GetName().c_str());
+
+    if (ImGui::IsItemClicked()) {
+        m_SelectedGameObject = gameObject;
+    }
+
+    if (nodeOpen) {
+        for (const auto& child : gameObject->GetChildren()) {
+            ShowGameObjectHierarchy(child.get());
+        }
+        ImGui::TreePop();
+    }
 }
 
 void Editor::ShowInspector() {
     ImGui::Begin("Inspector");
     // Show details of the selected object here
-    ImGui::Text("Inspector details for selected object");
+    if (m_SelectedGameObject) {
+        ImGui::Text("Selected Object: %s", m_SelectedGameObject->GetName().c_str());
+
+        Transform* transform = m_SelectedGameObject->GetTransform();
+        if (transform) {
+            ImGui::Text("Transform");
+
+            // Position
+            glm::vec3 position = transform->GetPosition();
+            if (ImGui::DragFloat3("Position", &position.x, 0.1f)) {
+                transform->SetPosition(position);
+            }
+
+            // Rotation
+            glm::vec3 rotation = transform->GetRotation();
+            if (ImGui::DragFloat3("Rotation", &rotation.x, 0.1f)) {
+              transform->SetRotation(rotation);
+            }
+
+            // Scale
+            glm::vec3 scale = transform->GetScale();
+            if (ImGui::DragFloat3("Scale", &scale.x, 0.1f)) {
+              transform->SetScale(scale);
+            }
+        }
+    } else {
+        ImGui::Text("No object selected");
+    }
+
     ImGui::End();
 }
 
@@ -329,34 +381,19 @@ void Editor::ShowSceneViewport() {
     // Display the framebuffer texture in the ImGui window
     ImGui::Image((void*)(intptr_t)m_TextureColorbuffer, viewportSize, ImVec2(0, 1), ImVec2(1, 0));
 
-    // Calculate FPS
-    static float frameTime = 0.0f;
-    static int frameCount = 0;
-    frameCount++;
-    frameTime += ImGui::GetIO().DeltaTime;
-    if (frameTime >= 1.0f) {
-        frameCount = 0;
-        frameTime = 0.0f;
-    }
-    float fps = 1.0f / ImGui::GetIO().DeltaTime;
+    // Disable depth testing before rendering ImGui elements
+    glDisable(GL_DEPTH_TEST);
 
-    // Set the position for the FPS counter
-    ImVec2 fpsPosition = ImVec2(viewportSize.x - 60.0f, 10.0f); // Adjust the position as needed
-    ImGui::SetCursorPos(fpsPosition);
+    // Render text on top of the scene
+    ImGui::SetCursorPos(ImVec2(10, 10)); // Adjust the position as needed
+    ImGui::Text("Overlay Text");
 
-    // Set the text color to purple
-    ImVec4 purpleColor = ImVec4(0.5f, 0.0f, 0.5f, 1.0f); // RGBA
-    ImGui::PushStyleColor(ImGuiCol_Text, purpleColor);
-    ImGui::Text("FPS: %.0f", fps);
-    //log fps
-    std::cout << "FPS: " << fps << std::endl;
-    ImGui::PopStyleColor();
-
-    // Show Play, Pause, Stop buttons in the center top
-    ShowPlayPauseStopButtons();
+    // Re-enable depth testing
+    glEnable(GL_DEPTH_TEST);
 
     ImGui::End();
 }
+
 
 void Editor::ShowPlayPauseStopButtons() {
     // Calculate the position to center the buttons at the top

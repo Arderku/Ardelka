@@ -49,6 +49,33 @@ public:
     glm::vec3 rotation;
     glm::vec3 scale;
 
+    glm::vec3 GetPosition() {
+        return position;
+    }
+
+    void SetPosition(glm::vec3 vec1) {
+        position = vec1;
+        SetDirty();
+    }
+
+    glm::vec3 GetRotation() {
+        return rotation;
+    }
+
+    void SetRotation(glm::vec3 vec1) {
+        rotation = vec1;
+        SetDirty();
+    }
+
+    glm::vec3 GetScale() {
+        return scale;
+    }
+
+    void SetScale(glm::vec3 vec1) {
+        scale = vec1;
+        SetDirty();
+    }
+
 private:
     mutable glm::mat4 localMatrix;
     mutable glm::mat4 globalMatrix;
