@@ -12,7 +12,7 @@ public:
     void bind(unsigned int slot = 0) const;
     void unbind(unsigned int slot = 0) const;
 
-    inline unsigned int getID() const { return m_ID; }
+    inline unsigned int GetID() const { return m_ID; }
 
 private:
     unsigned int m_ID;

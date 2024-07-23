@@ -1283,7 +1283,7 @@ std::tr1::_Bind<*,*,std::tr1::_Bind5<*> >|std::tr1::_Bind_fty<*,*,std::tr1::_Bin
 std::tr1::_Bind<*,*,std::tr1::_Bind6<*> >|std::tr1::_Bind_fty<*,*,std::tr1::_Bind6<*> >{
 	preview (
 		#(
-			"bind(", $e._Bx._Callee._Object,
+			"Bind(", $e._Bx._Callee._Object,
 			", ", $e._Bx._Vx0,
 			", ", $e._Bx._Vx1,
 			", ", $e._Bx._Vx2,

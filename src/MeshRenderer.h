@@ -18,7 +18,7 @@ public:
             return;
         }
 
-        m_Material->bind();
+        m_Material->Bind();
 
         //check mowner and get transform
         if (!m_Owner) {
@@ -47,10 +47,21 @@ public:
         }
 
         m_Material->GetShader()->unuse();
+
+
+
     }
 
     void Update() override {
 
+    }
+
+    Mesh *GetMesh() const {
+        return m_Mesh;
+    }
+
+    Material *GetMaterial() const {
+        return m_Material;
     }
 
 private:

@@ -30,7 +30,7 @@
     receive relative pointer events not obstructed by barriers (such as the
     monitor edge or other pointer barriers).
 
-    To start receiving relative pointer events, a client must first bind the
+    To start receiving relative pointer events, a client must first Bind the
     global interface "wp_relative_pointer_manager" which, if a compositor
     supports relative pointer motion events, is exposed by the registry. After
     having created the relative pointer manager proxy object, the client uses

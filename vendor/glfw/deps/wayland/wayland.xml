@@ -55,7 +55,7 @@
     <request name="get_registry">
       <description summary="get global registry object">
 	This request creates a registry object that allows the client
-	to list and bind the global objects available from the
+	to list and Bind the global objects available from the
 	compositor.
 
 	It should be noted that the server side resources consumed in
@@ -128,14 +128,14 @@
       wl_display.sync request immediately after calling
       wl_display.get_registry.
 
-      A client can bind to a global object by using the bind
+      A client can Bind to a global object by using the Bind
       request.  This creates a client-side handle that lets the object
       emit events to the client and lets the client invoke requests on
       the object.
     </description>
 
-    <request name="bind">
-      <description summary="bind an object to the display">
+    <request name="Bind">
+      <description summary="Bind an object to the display">
 	Binds a new, client-created object to the server using the
 	specified name as the identifier.
       </description>
@@ -162,7 +162,7 @@
 
 	This event notifies the client that the global identified
 	by name is no longer available.  If the client bound to
-	the global using the bind request, the client should now
+	the global using the Bind request, the client should now
 	destroy that object.
 
 	The object remains valid and requests to the object will be
@@ -1041,7 +1041,7 @@
 	- Pressing Control selects "copy", if enabled in the mask.
 
 	Behavior beyond that is considered implementation-dependent.
-	Compositors may for example bind other modifiers (like Alt/Meta)
+	Compositors may for example Bind other modifiers (like Alt/Meta)
 	or drags initiated with other buttons than BTN_LEFT to specific
 	actions (e.g. "ask").
       </description>

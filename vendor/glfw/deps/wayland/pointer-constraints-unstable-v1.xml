@@ -30,7 +30,7 @@
     the motion of a pointer. Possible constraints include confining pointer
     motions to a given region, or locking it to its current position.
 
-    In order to constrain the pointer, a client must first bind the global
+    In order to constrain the pointer, a client must first Bind the global
     interface "wp_pointer_constraints" which, if a compositor supports pointer
     constraints, is exposed by the registry. Using the bound global object, the
     client uses the request that corresponds to the type of constraint it wants

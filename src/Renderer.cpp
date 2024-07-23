@@ -61,16 +61,8 @@ void Renderer::Render(Scene& scene) {
 
     m_Shader->use();
 
-    glm::mat4 view = glm::lookAt(
-            glm::vec3(0.0f, 2.0f, -5.0f), // Camera position
-            glm::vec3(0.0f, 0.0f, 0.0f),   // Look at origin
-            glm::vec3(0.0f, 1.0f, 0.0f)    // Up vector
-    );
-
-    glm::mat4 projection = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f, 0.1f, 1000.0f);
-
-    m_Shader->setMat4("view", view);
-    m_Shader->setMat4("projection", projection);
+    m_Shader->setMat4("view", scene.GetActiveCamera()->GetView());
+    m_Shader->setMat4("projection", scene.GetActiveCamera()->GetProjection());
 
     // Set directional light
     m_Shader->setDirectionalLight("dirLight", dirLight);
@@ -81,19 +73,22 @@ void Renderer::Render(Scene& scene) {
     for (int i = 0; i < numPointLights; ++i) {
         std::string uniformName = "pointLights[" + std::to_string(i) + "]";
         m_Shader->setPointLight(uniformName, pointLights[i]);
-        //random light pos
-        pointLights[i].position = glm::vec3(sin(glfwGetTime()) * 2.0f *i, 0.0f, cos(glfwGetTime()) * 2.0f +i);
+
+        // Update light positions only if necessary
+        pointLights[i].position = glm::vec3(sin(glfwGetTime()) * 2.0f * i, 0.0f, cos(glfwGetTime()) * 2.0f + i);
     }
 
     glm::vec3 viewPos = glm::vec3(0.0f, 8.0f, -10.0f); // Adjusted to match the camera position in the view matrix
     m_Shader->setVec3("viewPos", viewPos);
 
-   scene.Render();
+    scene.Render();
 
+#ifdef DEBUG
     GLenum error = glGetError();
     if (error != GL_NO_ERROR) {
-        std::cerr << "OpenGL Error after rendering plane: " << error << std::endl;
+        std::cerr << "OpenGL Error after rendering: " << error << std::endl;
     }
+#endif
 
     m_Shader->unuse();
     glUseProgram(0);
@@ -109,11 +104,12 @@ void Renderer::RenderToFramebuffer(Scene& scene, GLuint framebuffer, int width, 
 void Renderer::Shutdown() {
     delete m_Shader;
 
-    glDeleteVertexArrays(1, &m_VAO);
-    glDeleteBuffers(1, &m_VBO);
-    glDeleteBuffers(1, &m_EBO);
+    // Deleting VAO, VBO, and EBO only if they were initialized
+    if (m_VAO) glDeleteVertexArrays(1, &m_VAO);
+    if (m_VBO) glDeleteBuffers(1, &m_VBO);
+    if (m_EBO) glDeleteBuffers(1, &m_EBO);
 }
 
-Shader * Renderer::GetShader() {
+Shader* Renderer::GetShader() {
     return m_Shader;
 }

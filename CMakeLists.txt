@@ -62,6 +62,9 @@ add_executable(GameEngine
         src/Texture.h
         src/ResourceManager.h
         src/ResourceManager.cpp
+        src/Camera.h
+        src/EditorStyle.h
+        src/EditorStyle.cpp
 )
 
 # Link libraries

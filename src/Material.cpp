@@ -1,38 +1,41 @@
 #include "Material.h"
 
-Material::Material(Shader* shader)
-        : m_Shader(shader), m_BaseColor(1.0f), m_Metallic(0.0f), m_Roughness(1.0f),
-          m_AlbedoMap(nullptr), m_MetallicMap(nullptr), m_RoughnessMap(nullptr), m_NormalMap(nullptr) {}
+Material::Material(const std::string& name, Shader* shader)
+        : m_Name(name) ,
+        m_Shader(shader), m_BaseColor(1.0f), m_Metallic(0.0f), m_Roughness(1.0f),
+        m_AlbedoMap(nullptr), m_MetallicMap(nullptr), m_RoughnessMap(nullptr), m_NormalMap(nullptr) {}
 
-void Material::setBaseColor(const glm::vec3& color) {
+void Material::SetBaseColor(const glm::vec3& color) {
     m_BaseColor = color;
 }
 
-void Material::setMetallic(float metallic) {
+void Material::SetMetallic(float metallic) {
     m_Metallic = metallic;
 }
 
-void Material::setRoughness(float roughness) {
+void Material::SetRoughness(float roughness) {
     m_Roughness = roughness;
 }
 
-void Material::setAlbedoMap(Texture* texture) {
+void Material::SetAlbedoMap(Texture* texture) {
     m_AlbedoMap = texture;
 }
 
-void Material::setMetallicMap(Texture* texture) {
+void Material::SetMetallicMap(Texture* texture) {
     m_MetallicMap = texture;
 }
 
-void Material::setRoughnessMap(Texture* texture) {
+void Material::SetRoughnessMap(Texture* texture) {
     m_RoughnessMap = texture;
 }
 
-void Material::setNormalMap(Texture* texture) {
+void Material::SetNormalMap(Texture* texture) {
     m_NormalMap = texture;
 }
 
-void Material::bind() const {
+
+
+void Material::Bind() const {
     m_Shader->use();
     m_Shader->setVec3("baseColor", m_BaseColor);
     m_Shader->setFloat("metallicValue", m_Metallic);
@@ -68,4 +71,24 @@ void Material::Unbind() const {
     m_MetallicMap->unbind(1);
     m_RoughnessMap->unbind(2);
     m_NormalMap->unbind(3);
+}
+
+const std::string &Material::GetName() const {
+    return m_Name;
+}
+
+Texture *Material::GetAlbedoMap() const {
+    return m_AlbedoMap;
+}
+
+Texture *Material::GetMetallicMap() const {
+    return m_MetallicMap;
+}
+
+Texture *Material::GetRoughnessMap() const {
+    return m_RoughnessMap;
+}
+
+Texture *Material::GetNormalMap() const {
+    return m_NormalMap;
 }

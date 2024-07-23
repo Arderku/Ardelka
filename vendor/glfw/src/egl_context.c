@@ -589,7 +589,7 @@ GLFWbool _glfwCreateContextEGL(_GLFWwindow* window,
         if (!eglBindAPI(EGL_OPENGL_ES_API))
         {
             _glfwInputError(GLFW_API_UNAVAILABLE,
-                            "EGL: Failed to bind OpenGL ES: %s",
+                            "EGL: Failed to Bind OpenGL ES: %s",
                             getEGLErrorString(eglGetError()));
             return GLFW_FALSE;
         }
@@ -599,7 +599,7 @@ GLFWbool _glfwCreateContextEGL(_GLFWwindow* window,
         if (!eglBindAPI(EGL_OPENGL_API))
         {
             _glfwInputError(GLFW_API_UNAVAILABLE,
-                            "EGL: Failed to bind OpenGL: %s",
+                            "EGL: Failed to Bind OpenGL: %s",
                             getEGLErrorString(eglGetError()));
             return GLFW_FALSE;
         }

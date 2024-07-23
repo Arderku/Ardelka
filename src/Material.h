@@ -7,23 +7,37 @@
 
 class Material {
 public:
-    Material(Shader* shader);
+    Material(const std::string& name, Shader* shader);
 
-    void setBaseColor(const glm::vec3& color);
-    void setMetallic(float metallic);
-    void setRoughness(float roughness);
-    void setAlbedoMap(Texture* texture);
-    void setMetallicMap(Texture* texture);
-    void setRoughnessMap(Texture* texture);
-    void setNormalMap(Texture* texture);
+    void SetBaseColor(const glm::vec3& color);
+    void SetMetallic(float metallic);
+    void SetRoughness(float roughness);
+    void SetAlbedoMap(Texture* texture);
+    void SetMetallicMap(Texture* texture);
+    void SetRoughnessMap(Texture* texture);
+    void SetNormalMap(Texture* texture);
 
-    void bind() const;
+    glm::vec3 GetBaseColor() const { return m_BaseColor; }
+    float GetMetallic() const { return m_Metallic; }
+    float GetRoughness() const { return m_Roughness; }
+
+    Texture* GetAlbedoMap() const;
+    Texture* GetMetallicMap() const;
+    Texture* GetRoughnessMap() const;
+    Texture* GetNormalMap() const;
+
+
+    void Bind() const;
 
     Shader* GetShader() const;
 
     void Unbind() const;
 
+    const std::string& GetName() const;
+
 private:
+    std::string m_Name;
+
     Shader* m_Shader;
     glm::vec3 m_BaseColor;
     float m_Metallic;

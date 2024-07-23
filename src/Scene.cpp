@@ -1,6 +1,10 @@
 #include <iostream>
 #include "Scene.h"
 
+void Scene::Init() {
+    // Initialize scene objects, if necessary
+}
+
 void Scene::Update() {
     for (auto& gameObject : gameObjects) {
         gameObject->Update();

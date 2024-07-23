@@ -1,7 +1,12 @@
 #pragma once
+#define GLM_ENABLE_EXPERIMENTAL
+
 #include "Component.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
 
 class Transform : public Component {
 public:
@@ -45,6 +50,18 @@ public:
         SetDirty();
     }
 
+    glm::vec3 GetForward() const {
+        return glm::normalize(glm::rotate(rotationQuat(), glm::vec3(0.0f, 0.0f, 1.0f)));
+    }
+
+    glm::vec3 GetUp() const {
+        return glm::normalize(glm::rotate(rotationQuat(), glm::vec3(0.0f, 1.0f, 0.0f)));
+    }
+
+    glm::quat rotationQuat() const {
+        return glm::quat(glm::radians(rotation));
+    }
+
     glm::vec3 position;
     glm::vec3 rotation;
     glm::vec3 scale;
@@ -83,4 +100,5 @@ private:
     mutable bool globalIsDirty;
 
     Transform* parent;
+
 };

@@ -10,6 +10,7 @@
 #include "GameObject.h"
 #include "Scene.h"
 #include "ResourceManager.h"
+#include "Camera.h"
 
 int main() {
     Engine engine;
@@ -20,26 +21,35 @@ int main() {
 
     engine.GetRenderer().GetShader();
 
+    // Create a GameObject with a Camera component
+    auto cameraGameObject = std::make_unique<GameObject>();
+    cameraGameObject->SetName("MainCamera");
+    cameraGameObject->AddComponent(std::make_unique<Camera>(60.0f, 16.0f/9.0f, 0.1f, 1000.0f));
+    cameraGameObject->GetTransform()->position = glm::vec3(0.0f, 0.0f, -5.0f);
+
+    engine.GetScene().SetActiveCamera(cameraGameObject->GetComponent<Camera>());
+    engine.GetScene().AddGameObject(std::move(cameraGameObject));
+
     std::cerr << "Creating Material" << std::endl;
     Texture* albedo = ResourceManager::loadTexture("albedo", "resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_albedo.png");
     Texture* metallic = ResourceManager::loadTexture("metallic", "resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_metallic.png");
     Texture* roughness = ResourceManager::loadTexture("roughness", "resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_roughness.png");
-    Texture* normal = ResourceManager::loadTexture("normal", "resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_normal.png");
+    Texture* normal = ResourceManager::loadTexture("normal", "resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_normal-dx.png");
 
-    Material* materialRed = new Material(engine.GetRenderer().GetShader());
-    materialRed->setBaseColor(glm::vec4(1.5f, 0.5f, 0.5f, 1.0f));
-    materialRed->setBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
-    materialRed->setMetallic(0.5f);
-    materialRed->setRoughness(0.15f);
+    Material* materialRed = new Material("M_Red",engine.GetRenderer().GetShader());
+    materialRed->SetBaseColor(glm::vec4(1.5f, 0.5f, 0.5f, 1.0f));
+    materialRed->SetBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
+    materialRed->SetMetallic(0.5f);
+    materialRed->SetRoughness(0.15f);
 
-    materialRed->setAlbedoMap(albedo);
-    materialRed->setMetallicMap(metallic);
-    materialRed->setRoughnessMap(roughness);
-    materialRed->setNormalMap(normal);
+    materialRed->SetAlbedoMap(albedo);
+    materialRed->SetMetallicMap(metallic);
+    materialRed->SetRoughnessMap(roughness);
+    materialRed->SetNormalMap(normal);
 
-    Material* materialBlue = new Material(engine.GetRenderer().GetShader());
-    materialBlue->setBaseColor(glm::vec4(.0f, 0.0f, 1.0f, 1.0f));
-    //materialBlue->setAlbedoMap(albedo);
+    Material* materialBlue = new Material("M_Blue",engine.GetRenderer().GetShader());
+    materialBlue->SetBaseColor(glm::vec4(.0f, 0.0f, 1.0f, 1.0f));
+    materialBlue->SetNormalMap(normal);
 
     // Define the cube vertices and indices
     std::vector<float> vertices = {
@@ -103,9 +113,11 @@ int main() {
 
     parentGameObject->AddChild(std::move(childGameObject));
 
+    std::cerr << "Adding GameObject to scene" << std::endl;
+    engine.GetScene().AddGameObject(std::move(parentGameObject));
 
     //creat 100 game objects at random positions
-  /*  for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 1000; i++) {
         auto gameObject = std::make_unique<GameObject>();
         gameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialRed));
         gameObject->GetTransform()->position = glm::vec3(static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 7 - 5,
@@ -113,11 +125,7 @@ int main() {
                                                          static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 7 - 5);
         gameObject->GetTransform()->scale = glm::vec3(0.5f);
         engine.GetScene().AddGameObject(std::move(gameObject));
-    }*/
-
-
-    std::cerr << "Adding GameObject to scene" << std::endl;
-    engine.GetScene().AddGameObject(std::move(parentGameObject));
+    }
 
     std::cerr << "Starting engine run" << std::endl;
     engine.Run();

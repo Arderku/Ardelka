@@ -9,7 +9,7 @@
 class GameObject {
 public:
     GameObject();
-    ~GameObject();
+    virtual ~GameObject();
 
     void SetName(std::string name) { m_Name = name; }
     std::string GetName() const { return m_Name; }
@@ -23,6 +23,23 @@ public:
     GameObject* GetParent() const { return m_Parent; }
     std::vector<std::unique_ptr<GameObject>>& GetChildren();
 
+
+    std::vector<std::unique_ptr<Component>>& GetComponents();
+
+    template<typename T>
+    T* GetComponent() {
+        for (auto& component : m_Components) {
+            T* t = dynamic_cast<T*>(component.get());
+            if (t) {
+                return t;
+            }
+        }
+        return nullptr;
+    }
+
+
+    virtual void OnUpdate() {
+    }
 
 private:
     std::unique_ptr<Transform> m_Transform;

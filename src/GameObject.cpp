@@ -19,10 +19,12 @@ void GameObject::AddComponent(std::unique_ptr<Component> component) {
 }
 
 void GameObject::Update() {
+
+    OnUpdate();
     // Rotate the object (example rotation logic)
-    float random = static_cast<float>(rand()) / static_cast<float>(RAND_MAX) + 0.5f;
+   /* float random = static_cast<float>(rand()) / static_cast<float>(RAND_MAX) + 0.5f;
     m_Transform->rotation.y += random;
-    m_Transform->SetDirty();  // Mark this transform as dirty
+    m_Transform->SetDirty();  // Mark this transform as dirty*/
 
     // Update logic for this GameObject
     for (const auto& component : m_Components) {
@@ -54,6 +56,11 @@ Transform* GameObject::GetTransform() const {
 std::vector<std::unique_ptr<GameObject>> &GameObject::GetChildren() {
     return m_Children;
 }
+
+std::vector<std::unique_ptr<Component>>& GameObject::GetComponents() {
+    return m_Components;
+}
+
 
 
 

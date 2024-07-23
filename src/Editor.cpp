@@ -5,6 +5,8 @@
 #include <imgui_impl_opengl3.h>
 #include <iostream>
 #include "Editor.h"
+#include "MeshRenderer.h"
+#include "EditorStyle.h"
 
 // Function to draw a gradient rectangle
 void DrawGradient(ImVec2 start, ImVec2 end, ImU32 colorStart, ImU32 colorEnd) {
@@ -16,71 +18,12 @@ void Editor::Init(GLFWwindow* window, Scene& scene, Renderer& renderer) {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    ImGui::StyleColorsDark();
+
+    // Apply the custom style
+    EditorStyle::ApplyStyle();
 
     // Enable Docking
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-
-    // Customize the style based on the provided image colors
-    ImGuiStyle& style = ImGui::GetStyle();
-    style.WindowRounding = 5.0f;
-    style.ChildRounding = 5.0f;
-    style.FrameRounding = 5.0f;
-    style.GrabRounding = 5.0f;
-    style.TabRounding = 5.0f;
-    style.ScrollbarRounding = 5.0f;
-    style.FramePadding = ImVec2(8, 10);
-    style.ItemSpacing = ImVec2(10, 10);
-    style.WindowPadding = ImVec2(10, 10);
-
-    ImVec4* colors = style.Colors;
-    colors[ImGuiCol_Text] = ImVec4(0.95f, 0.96f, 0.98f, 1.00f);
-    colors[ImGuiCol_TextDisabled] = ImVec4(0.36f, 0.42f, 0.47f, 1.00f);
-    colors[ImGuiCol_WindowBg] = ImVec4(0.1686f, 0.1765f, 0.1882f, 1.00f); // Dark background
-    colors[ImGuiCol_ChildBg] = ImVec4(0.15f, 0.16f, 0.17f, 1.00f);
-    colors[ImGuiCol_PopupBg] = ImVec4(0.08f, 0.08f, 0.08f, 0.94f);
-    colors[ImGuiCol_Border] = ImVec4(0.12f, 0.12f, 0.12f, 1.00f);
-    colors[ImGuiCol_BorderShadow] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
-    colors[ImGuiCol_FrameBg] = ImVec4(0.20f, 0.22f, 0.23f, 1.00f);
-    colors[ImGuiCol_FrameBgHovered] = ImVec4(0.24f, 0.27f, 0.29f, 1.00f);
-    colors[ImGuiCol_FrameBgActive] = ImVec4(0.28f, 0.30f, 0.33f, 1.00f);
-    colors[ImGuiCol_TitleBg] = ImVec4(0.12f, 0.12f, 0.12f, 1.00f);
-    colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.10f, 0.10f, 0.10f, 1.00f);
-    colors[ImGuiCol_TitleBgActive] = ImVec4(0.12f, 0.12f, 0.12f, 1.00f);
-    colors[ImGuiCol_MenuBarBg] = ImVec4(0.15f, 0.16f, 0.17f, 1.00f);
-    colors[ImGuiCol_ScrollbarBg] = ImVec4(0.15f, 0.16f, 0.17f, 1.00f);
-    colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.28f, 0.29f, 0.30f, 1.00f);
-    colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(0.34f, 0.35f, 0.36f, 1.00f);
-    colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(0.40f, 0.41f, 0.42f, 1.00f);
-    colors[ImGuiCol_CheckMark] = ImVec4(0.29f, 0.39f, 0.85f, 1.00f); // Bright blue
-    colors[ImGuiCol_SliderGrab] = ImVec4(0.29f, 0.39f, 0.85f, 1.00f); // Bright blue
-    colors[ImGuiCol_SliderGrabActive] = ImVec4(0.39f, 0.49f, 0.95f, 1.00f); // Brighter blue
-    colors[ImGuiCol_Button] = ImVec4(0.29f, 0.39f, 0.85f, 1.00f); // Bright blue
-    colors[ImGuiCol_ButtonHovered] = ImVec4(0.39f, 0.49f, 0.95f, 1.00f); // Brighter blue
-    colors[ImGuiCol_ButtonActive] = ImVec4(0.49f, 0.59f, 1.00f, 1.00f); // Brightest blue
-    colors[ImGuiCol_Header] = ImVec4(0.29f, 0.39f, 0.85f, 1.00f); // Bright blue
-    colors[ImGuiCol_HeaderHovered] = ImVec4(0.39f, 0.49f, 0.95f, 1.00f); // Brighter blue
-    colors[ImGuiCol_HeaderActive] = ImVec4(0.49f, 0.59f, 1.00f, 1.00f); // Brightest blue
-    colors[ImGuiCol_Separator] = ImVec4(0.15f, 0.16f, 0.17f, 1.00f);
-    colors[ImGuiCol_SeparatorHovered] = ImVec4(0.28f, 0.29f, 0.30f, 1.00f);
-    colors[ImGuiCol_SeparatorActive] = ImVec4(0.34f, 0.35f, 0.36f, 1.00f);
-    colors[ImGuiCol_ResizeGrip] = ImVec4(0.29f, 0.39f, 0.85f, 1.00f); // Bright blue
-    colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.39f, 0.49f, 0.95f, 1.00f); // Brighter blue
-    colors[ImGuiCol_ResizeGripActive] = ImVec4(0.49f, 0.59f, 1.00f, 1.00f); // Brightest blue
-    colors[ImGuiCol_Tab] = ImVec4(0.15f, 0.16f, 0.17f, 1.00f);
-    colors[ImGuiCol_TabHovered] = ImVec4(0.1686f, 0.1765f, 0.1882f, 1.00f); // Bright blue
-    colors[ImGuiCol_TabActive] = ImVec4(0.1686f, 0.1765f, 0.1882f, 1.00f); // Brighter blue
-    colors[ImGuiCol_TabUnfocused] = ImVec4(0.15f, 0.16f, 0.17f, 1.00f);
-    colors[ImGuiCol_TabUnfocusedActive] = ImVec4(0.1686f, 0.1765f, 0.1882f, 1.00f); // Bright blue
-    colors[ImGuiCol_PlotLines] = ImVec4(0.61f, 0.61f, 0.61f, 1.00f);
-    colors[ImGuiCol_PlotLinesHovered] = ImVec4(1.00f, 0.43f, 0.35f, 1.00f);
-    colors[ImGuiCol_PlotHistogram] = ImVec4(0.90f, 0.70f, 0.00f, 1.00f);
-    colors[ImGuiCol_PlotHistogramHovered] = ImVec4(1.00f, 0.60f, 0.00f, 1.00f);
-    colors[ImGuiCol_TextSelectedBg] = ImVec4(0.29f, 0.39f, 0.85f, 0.35f); // Bright blue
-    colors[ImGuiCol_DragDropTarget] = ImVec4(0.29f, 0.39f, 0.85f, 0.95f); // Bright blue
-    colors[ImGuiCol_NavHighlight] = colors[ImGuiCol_HeaderHovered];
-    colors[ImGuiCol_NavWindowingHighlight] = ImVec4(1.00f, 1.00f, 1.00f, 0.70f);
-    colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
 
     // Load a larger font
     io.Fonts->AddFontFromFileTTF("C:/Windows/Fonts/Arial.ttf", 22.0f); // Change the path and size as needed
@@ -113,29 +56,7 @@ void Editor::Init(GLFWwindow* window, Scene& scene, Renderer& renderer) {
     // Check if framebuffer is complete
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if (status != GL_FRAMEBUFFER_COMPLETE) {
-        switch (status) {
-            case GL_FRAMEBUFFER_UNDEFINED:
-                std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer is undefined!" << std::endl;
-                break;
-            case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
-                std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer incomplete attachment!" << std::endl;
-                break;
-            case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
-                std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer missing attachment!" << std::endl;
-                break;
-            case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER:
-                std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer incomplete draw buffer!" << std::endl;
-                break;
-            case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER:
-                std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer incomplete read buffer!" << std::endl;
-                break;
-            case GL_FRAMEBUFFER_UNSUPPORTED:
-                std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer unsupported!" << std::endl;
-                break;
-            default:
-                std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer incomplete for unknown reason!" << std::endl;
-                break;
-        }
+        std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer is not complete! Status: " << status << std::endl;
     }
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
@@ -298,36 +219,146 @@ void Editor::ShowGameObjectHierarchy(GameObject* gameObject) {
 
 void Editor::ShowInspector() {
     ImGui::Begin("Inspector");
-    // Show details of the selected object here
     if (m_SelectedGameObject) {
-        ImGui::Text("Selected Object: %s", m_SelectedGameObject->GetName().c_str());
+        ImGui::Text( m_SelectedGameObject->GetName().c_str());
 
         Transform* transform = m_SelectedGameObject->GetTransform();
         if (transform) {
-            ImGui::Text("Transform");
+            // Collapsible header for Transform component
+            if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen)) {
 
-            // Position
-            glm::vec3 position = transform->GetPosition();
-            if (ImGui::DragFloat3("Position", &position.x, 0.1f)) {
+                // Custom colors
+                ImVec4 colorX = ImVec4(0.8f, 0.0f, 0.0f, 1.0f); // Red
+                ImVec4 colorY = ImVec4(0.0f, 0.8f, 0.0f, 1.0f); // Green
+                ImVec4 colorZ = ImVec4(0.0f, 0.0f, 0.8f, 1.0f); // Blue
+
+                auto DrawTransformControl = [&](const char* label, glm::vec3& values) {
+                    ImGui::Columns(2);
+                    ImGui::SetColumnWidth(0, 100);
+                    ImGui::Text(label);
+                    ImGui::NextColumn();
+
+                    ImGui::PushItemWidth(80);
+
+                    // X component
+                    ImGui::TextColored(colorX, "X");
+                    ImGui::SameLine();
+                    ImGui::DragFloat("##X", &values.x, 0.1f);
+
+                    ImGui::SameLine();
+
+                    // Y component
+                    ImGui::TextColored(colorY, "Y");
+                    ImGui::SameLine();
+                    ImGui::DragFloat("##Y", &values.y, 0.1f);
+
+                    ImGui::SameLine();
+
+                    // Z component
+                    ImGui::TextColored(colorZ, "Z");
+                    ImGui::SameLine();
+                    ImGui::DragFloat("##Z", &values.z, 0.1f);
+
+                    ImGui::Columns(1);
+                };
+
+                // Position
+                glm::vec3 position = transform->GetPosition();
+                DrawTransformControl("Position", position);
                 transform->SetPosition(position);
-            }
 
-            // Rotation
-            glm::vec3 rotation = transform->GetRotation();
-            if (ImGui::DragFloat3("Rotation", &rotation.x, 0.1f)) {
-              transform->SetRotation(rotation);
-            }
+                // Rotation
+                glm::vec3 rotation = transform->GetRotation();
+                DrawTransformControl("Rotation", rotation);
+                transform->SetRotation(rotation);
 
-            // Scale
-            glm::vec3 scale = transform->GetScale();
-            if (ImGui::DragFloat3("Scale", &scale.x, 0.1f)) {
-              transform->SetScale(scale);
+                // Scale
+                glm::vec3 scale = transform->GetScale();
+                DrawTransformControl("Scale", scale);
+                transform->SetScale(scale);
+            }
+        }
+
+        // Iterate through components and show MeshRenderer if present
+        MeshRenderer* meshRenderer = m_SelectedGameObject->GetComponent<MeshRenderer>();
+        if (meshRenderer) {
+            if (ImGui::CollapsingHeader("Mesh Renderer", ImGuiTreeNodeFlags_DefaultOpen)) {
+                if (meshRenderer->GetMaterial()) {
+                    ImGui::Text("Material: %s", meshRenderer->GetMaterial()->GetName().c_str());
+                }
+
+                if (meshRenderer->GetMaterial()) {
+                    if (ImGui::CollapsingHeader("Material", ImGuiTreeNodeFlags_DefaultOpen)) {
+
+                        // Display controls for BaseColor, Metallic, and Roughness
+                        glm::vec3 baseColor = meshRenderer->GetMaterial()->GetBaseColor();
+                        if (ImGui::ColorEdit3("Base Color", &baseColor[0])) {
+                            meshRenderer->GetMaterial()->SetBaseColor(baseColor);
+                        }
+
+                        float metallic = meshRenderer->GetMaterial()->GetMetallic();
+                        if (ImGui::SliderFloat("Metallic", &metallic, 0.0f, 1.0f)) {
+                            meshRenderer->GetMaterial()->SetMetallic(metallic);
+                        }
+
+                        float roughness = meshRenderer->GetMaterial()->GetRoughness();
+                        if (ImGui::SliderFloat("Roughness", &roughness, 0.0f, 1.0f)) {
+                            meshRenderer->GetMaterial()->SetRoughness(roughness);
+                        }
+
+                        // Textures preview
+                        ImVec2 textureSize(50, 50);
+                        // Base color
+                        Texture *albedoTexture = meshRenderer->GetMaterial()->GetAlbedoMap();
+                        if (albedoTexture) {
+                            // Display texture preview
+                            ImGui::Text("Albedo:");
+                            ImGui::Image((void *)(intptr_t) albedoTexture->GetID(), textureSize);
+                        } else {
+                            ImGui::Text("Albedo: No texture");
+                            // empty texture
+                            ImGui::Image((void *)(intptr_t) nullptr, textureSize);
+                        }
+
+                        Texture *metallicTexture = meshRenderer->GetMaterial()->GetMetallicMap();
+                        if (metallicTexture) {
+                            // Display texture preview
+                            ImGui::Text("Metallic:");
+                            ImGui::Image((void *)(intptr_t) metallicTexture->GetID(), textureSize);
+                        } else {
+                            ImGui::Text("Metallic: No texture");
+                            // empty texture
+                            ImGui::Image((void *)(intptr_t) nullptr, textureSize);
+                        }
+
+                        Texture *roughnessTexture = meshRenderer->GetMaterial()->GetRoughnessMap();
+                        if (roughnessTexture) {
+                            // Display texture preview
+                            ImGui::Text("Roughness:");
+                            ImGui::Image((void *)(intptr_t) roughnessTexture->GetID(), textureSize);
+                        } else {
+                            ImGui::Text("Roughness: No texture");
+                            // empty texture
+                            ImGui::Image((void *)(intptr_t) nullptr, textureSize);
+                        }
+
+                        Texture *normalTexture = meshRenderer->GetMaterial()->GetNormalMap();
+                        if (normalTexture) {
+                            // Display texture preview
+                            ImGui::Text("Normal:");
+                            ImGui::Image((void *)(intptr_t) normalTexture->GetID(), textureSize);
+                        } else {
+                            ImGui::Text("Normal: No texture");
+                            // empty texture
+                            ImGui::Image((void *)(intptr_t) nullptr, textureSize);
+                        }
+                    }
+                }
             }
         }
     } else {
         ImGui::Text("No object selected");
     }
-
     ImGui::End();
 }
 
@@ -352,16 +383,20 @@ void Editor::ShowSceneViewport() {
     // Get the size of the viewport window
     ImVec2 viewportSize = ImGui::GetContentRegionAvail();
 
-    // Update the framebuffer size to match the viewport size
-    glBindTexture(GL_TEXTURE_2D, m_TextureColorbuffer);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (int)viewportSize.x, (int)viewportSize.y, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
-    glBindRenderbuffer(GL_RENDERBUFFER, m_RBO);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, (int)viewportSize.x, (int)viewportSize.y);
-    glBindFramebuffer(GL_FRAMEBUFFER, m_Framebuffer);
-    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-        std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
+    // Update the framebuffer size to match the viewport size only if it changes
+    static ImVec2 lastViewportSize = ImVec2(0, 0);
+    if (viewportSize.x != lastViewportSize.x || viewportSize.y != lastViewportSize.y) {
+        glBindTexture(GL_TEXTURE_2D, m_TextureColorbuffer);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (int)viewportSize.x, (int)viewportSize.y, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+        glBindRenderbuffer(GL_RENDERBUFFER, m_RBO);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, (int)viewportSize.x, (int)viewportSize.y);
+        glBindFramebuffer(GL_FRAMEBUFFER, m_Framebuffer);
+        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+            std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer is not complete! Status: " << glCheckFramebufferStatus(GL_FRAMEBUFFER) << std::endl;
+        }
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        lastViewportSize = viewportSize;
     }
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     // Bind the framebuffer
     glBindFramebuffer(GL_FRAMEBUFFER, m_Framebuffer);
@@ -385,27 +420,27 @@ void Editor::ShowSceneViewport() {
     glDisable(GL_DEPTH_TEST);
 
     // Render text on top of the scene
-    ImGui::SetCursorPos(ImVec2(10, 10)); // Adjust the position as needed
+    ImGui::SetCursorPos(ImVec2(50, 60)); // Adjust the position as needed
     ImGui::Text("Overlay Text");
-
+   // ShowPlayPauseStopButtons();
     // Re-enable depth testing
     glEnable(GL_DEPTH_TEST);
 
     ImGui::End();
 }
 
-
 void Editor::ShowPlayPauseStopButtons() {
     // Calculate the position to center the buttons at the top
-    ImVec2 buttonSize(50, 30); // Adjust the size of the buttons
+    ImVec2 buttonSize(50, 50); // Adjust the size of the buttons
     float totalWidth = buttonSize.x * 3 + ImGui::GetStyle().ItemSpacing.x * 2; // 3 buttons with spacing
-    ImVec2 buttonPos((800 - totalWidth) / 2, 10.0f); // 10.0f for top margin
+    ImVec2 buttonPos((800 - totalWidth) / 2, 50.0f); // 10.0f for top margin
 
     ImGui::SetCursorPos(buttonPos);
 
     if (ImGui::Button("Play", buttonSize)) {
         // Handle play action
     }
+
     ImGui::SameLine();
     if (ImGui::Button("Pause", buttonSize)) {
         // Handle pause action
