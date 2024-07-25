@@ -137,7 +137,8 @@ void Editor::ShowMainMenuBar() {
     ImVec2 gradientEnd = ImVec2(menuBarMin.x + gradientWidth, menuBarMax.y);
 
     ImDrawList* drawList = ImGui::GetWindowDrawList();
-    drawList->AddRectFilledMultiColor(menuBarMin, gradientEnd, ImColor(103, 58, 183, 255), ImColor(80, 80, 80, 255), ImColor(80, 80, 80, 255), ImColor(103, 58, 183, 255));
+    drawList->AddRectFilledMultiColor(menuBarMin, gradientEnd, ImColor(14, 105, 113, 255), ImColor(80, 80, 80, 255), ImColor(80, 80, 80, 255), ImColor(14, 105, 113, 255));
+
     drawList->AddRectFilled(ImVec2(gradientEnd.x, menuBarMin.y), menuBarMax, ImColor(80, 80, 80, 255));
 
     if (ImGui::BeginMenu("File")) {
@@ -224,7 +225,7 @@ void Editor::ShowInspector() {
 
         Transform* transform = m_SelectedGameObject->GetTransform();
         if (transform) {
-            if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen)) {
+            if (ImGui::CollapsingHeader("TRANSFORM", ImGuiTreeNodeFlags_DefaultOpen)) {
 
                 ImVec4 colorX = ImVec4(0.8f, 0.0f, 0.0f, 1.0f);
                 ImVec4 colorY = ImVec4(0.0f, 0.8f, 0.0f, 1.0f);
@@ -274,13 +275,13 @@ void Editor::ShowInspector() {
         // Iterate through components and show MeshRenderer if present
         MeshRenderer* meshRenderer = m_SelectedGameObject->GetComponent<MeshRenderer>();
         if (meshRenderer) {
-            if (ImGui::CollapsingHeader("Mesh Renderer", ImGuiTreeNodeFlags_DefaultOpen)) {
+            if (ImGui::CollapsingHeader("MESH RENDERER", ImGuiTreeNodeFlags_DefaultOpen)) {
                 if (meshRenderer->GetMaterial()) {
                     ImGui::Text("Material: %s", meshRenderer->GetMaterial()->GetName().c_str());
                 }
 
                 if (meshRenderer->GetMaterial()) {
-                    if (ImGui::CollapsingHeader("Material", ImGuiTreeNodeFlags_DefaultOpen)) {
+                    if (ImGui::CollapsingHeader("MATERIAL", ImGuiTreeNodeFlags_DefaultOpen)) {
 
                         // Display controls for BaseColor, Metallic, and Roughness
                         glm::vec3 baseColor = meshRenderer->GetMaterial()->GetBaseColor();
