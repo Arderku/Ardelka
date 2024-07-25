@@ -21,12 +21,7 @@ void GameObject::AddComponent(std::unique_ptr<Component> component) {
 void GameObject::Update() {
 
     OnUpdate();
-    // Rotate the object (example rotation logic)
-   /* float random = static_cast<float>(rand()) / static_cast<float>(RAND_MAX) + 0.5f;
-    m_Transform->rotation.y += random;
-    m_Transform->SetDirty();  // Mark this transform as dirty*/
 
-    // Update logic for this GameObject
     for (const auto& component : m_Components) {
         component->Update();
     }

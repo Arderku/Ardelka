@@ -220,19 +220,17 @@ void Editor::ShowGameObjectHierarchy(GameObject* gameObject) {
 void Editor::ShowInspector() {
     ImGui::Begin("Inspector");
     if (m_SelectedGameObject) {
-        ImGui::Text( m_SelectedGameObject->GetName().c_str());
+        ImGui::Text(m_SelectedGameObject->GetName().c_str());
 
         Transform* transform = m_SelectedGameObject->GetTransform();
         if (transform) {
-            // Collapsible header for Transform component
             if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen)) {
 
-                // Custom colors
-                ImVec4 colorX = ImVec4(0.8f, 0.0f, 0.0f, 1.0f); // Red
-                ImVec4 colorY = ImVec4(0.0f, 0.8f, 0.0f, 1.0f); // Green
-                ImVec4 colorZ = ImVec4(0.0f, 0.0f, 0.8f, 1.0f); // Blue
+                ImVec4 colorX = ImVec4(0.8f, 0.0f, 0.0f, 1.0f);
+                ImVec4 colorY = ImVec4(0.0f, 0.8f, 0.0f, 1.0f);
+                ImVec4 colorZ = ImVec4(0.0f, 0.0f, 0.8f, 1.0f);
 
-                auto DrawTransformControl = [&](const char* label, glm::vec3& values) {
+                auto DrawTransformControl = [&](const char* label, glm::vec3& values, const char* id) {
                     ImGui::Columns(2);
                     ImGui::SetColumnWidth(0, 100);
                     ImGui::Text(label);
@@ -240,41 +238,35 @@ void Editor::ShowInspector() {
 
                     ImGui::PushItemWidth(80);
 
-                    // X component
                     ImGui::TextColored(colorX, "X");
                     ImGui::SameLine();
-                    ImGui::DragFloat("##X", &values.x, 0.1f);
+                    ImGui::DragFloat((std::string("##X") + id).c_str(), &values.x, 0.1f);
 
                     ImGui::SameLine();
 
-                    // Y component
                     ImGui::TextColored(colorY, "Y");
                     ImGui::SameLine();
-                    ImGui::DragFloat("##Y", &values.y, 0.1f);
+                    ImGui::DragFloat((std::string("##Y") + id).c_str(), &values.y, 0.1f);
 
                     ImGui::SameLine();
 
-                    // Z component
                     ImGui::TextColored(colorZ, "Z");
                     ImGui::SameLine();
-                    ImGui::DragFloat("##Z", &values.z, 0.1f);
+                    ImGui::DragFloat((std::string("##Z") + id).c_str(), &values.z, 0.1f);
 
                     ImGui::Columns(1);
                 };
 
-                // Position
                 glm::vec3 position = transform->GetPosition();
-                DrawTransformControl("Position", position);
+                DrawTransformControl("Position", position, "Position");
                 transform->SetPosition(position);
 
-                // Rotation
                 glm::vec3 rotation = transform->GetRotation();
-                DrawTransformControl("Rotation", rotation);
+                DrawTransformControl("Rotation", rotation, "Rotation");
                 transform->SetRotation(rotation);
 
-                // Scale
                 glm::vec3 scale = transform->GetScale();
-                DrawTransformControl("Scale", scale);
+                DrawTransformControl("Scale", scale, "Scale");
                 transform->SetScale(scale);
             }
         }
