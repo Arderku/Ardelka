@@ -756,7 +756,7 @@ extern "C" {
  *  specific categories.
  *
  *  @analysis A bug or configuration error in GLFW, the underlying operating
- *  system or its drivers, or a lack of required resources.  Report the issue to
+ *  system or its drivers, or a lack of required Resources.  Report the issue to
  *  our [issue tracker](https://github.com/glfw/glfw/issues).
  */
 #define GLFW_PLATFORM_ERROR         0x00010008
@@ -2163,7 +2163,7 @@ typedef struct GLFWallocator
  *
  *  This function initializes the GLFW library.  Before most GLFW functions can
  *  be used, GLFW must be initialized, and before an application terminates GLFW
- *  should be terminated in order to free any resources allocated during or
+ *  should be terminated in order to free any Resources allocated during or
  *  after initialization.
  *
  *  If this function fails, it calls @ref glfwTerminate before returning.  If it
@@ -2222,7 +2222,7 @@ GLFWAPI int glfwInit(void);
 /*! @brief Terminates the GLFW library.
  *
  *  This function destroys all remaining windows and cursors, restores any
- *  modified gamma ramps and frees any other allocated resources.  Once this
+ *  modified gamma ramps and frees any other allocated Resources.  Once this
  *  function is called, you must again call @ref glfwInit successfully before
  *  you will be able to use most GLFW functions.
  *
@@ -3148,8 +3148,8 @@ GLFWAPI void glfwWindowHintString(int hint, const char* value);
  *  @param[in] title The initial, UTF-8 encoded window title.
  *  @param[in] monitor The monitor to use for full screen mode, or `NULL` for
  *  windowed mode.
- *  @param[in] share The window whose context to share resources with, or `NULL`
- *  to not share resources.
+ *  @param[in] share The window whose context to share Resources with, or `NULL`
+ *  to not share Resources.
  *  @return The handle of the created window, or `NULL` if an
  *  [error](@ref error_handling) occurred.
  *
@@ -3166,7 +3166,7 @@ GLFWAPI void glfwWindowHintString(int hint, const char* value);
  *  the `IDI_APPLICATION` icon will be used instead.  To set a different icon,
  *  see @ref glfwSetWindowIcon.
  *
- *  @remark @win32 The context to share resources with must not be current on
+ *  @remark @win32 The context to share Resources with must not be current on
  *  any other thread.
  *
  *  @remark @macos The OS only supports core profile contexts for OpenGL

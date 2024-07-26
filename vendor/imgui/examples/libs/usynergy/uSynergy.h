@@ -142,7 +142,7 @@ destination address, that must all be handled on the user side. The function sho
 connection was established or USYNERGY_FALSE if it could not connect.
 
 When network errors occur (e.g. uSynergySend or uSynergyReceive fail) then the connect call will be called again
-so the implementation of the function must close any old connections and clean up resources before retrying.
+so the implementation of the function must close any old connections and clean up Resources before retrying.
 
 @param cookie		Cookie supplied in the Synergy context
 **/

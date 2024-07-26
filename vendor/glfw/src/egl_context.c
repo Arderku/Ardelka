@@ -46,7 +46,7 @@ static const char* getEGLErrorString(EGLint error)
         case EGL_BAD_ACCESS:
             return "EGL cannot access a requested resource";
         case EGL_BAD_ALLOC:
-            return "EGL failed to allocate resources for the requested operation";
+            return "EGL failed to allocate Resources for the requested operation";
         case EGL_BAD_ATTRIBUTE:
             return "An unrecognized attribute or attribute value was passed in the attribute list";
         case EGL_BAD_CONTEXT:

@@ -17,7 +17,7 @@ set(GLEW_DLL "${GLEW_ROOT}/bin/Release/x64/glew32.dll")
 include_directories(${GLEW_INCLUDE_DIR})
 
 # Include directories
-include_directories(include)
+include_directories(GameEngine/include)
 include_directories(vendor/glfw/include)
 include_directories(vendor/imgui)
 include_directories(vendor/imgui/backends)
@@ -40,31 +40,31 @@ endif()
 
 # Add executable
 add_executable(GameEngine
-        src/main.cpp
-        src/Engine.cpp
-        src/Window.cpp
-        src/Renderer.cpp
-        src/Scene.cpp
-        src/Scripting.cpp
-        src/Editor.cpp
-        src/Shader.h
-        src/Shader.cpp
-        src/Material.h
-        src/Material.cpp
-        src/Component.h
-        src/Application.h
-        src/Application.cpp
-        src/Mesh.h
-        src/Mesh.cpp
-        src/GameObject.cpp
-        src/Light.h
-        src/Texture.cpp
-        src/Texture.h
-        src/ResourceManager.h
-        src/ResourceManager.cpp
-        src/Camera.h
-        src/EditorStyle.h
-        src/EditorStyle.cpp
+        GameEngine/src/main.cpp
+        GameEngine/src/Engine.cpp
+        GameEngine/src/Window.cpp
+        GameEngine/src/Renderer.cpp
+        GameEngine/src/Scene.cpp
+        GameEngine/src/Scripting.cpp
+        GameEngine/src/Editor.cpp
+        GameEngine/src/Shader.h
+        GameEngine/src/Shader.cpp
+        GameEngine/src/Material.h
+        GameEngine/src/Material.cpp
+        GameEngine/src/Component.h
+        GameEngine/src/Application.h
+        GameEngine/src/Application.cpp
+        GameEngine/src/Mesh.h
+        GameEngine/src/Mesh.cpp
+        GameEngine/src/GameObject.cpp
+        GameEngine/src/Light.h
+        GameEngine/src/Texture.cpp
+        GameEngine/src/Texture.h
+        GameEngine/src/ResourceManager.h
+        GameEngine/src/ResourceManager.cpp
+        GameEngine/src/Camera.h
+        GameEngine/src/EditorStyle.h
+        GameEngine/src/EditorStyle.cpp
 )
 
 # Link libraries
@@ -82,8 +82,8 @@ target_link_libraries(GameEngine
 add_custom_command(
         TARGET GameEngine POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/resources/
-        ${CMAKE_BINARY_DIR}/resources/
+        ${CMAKE_SOURCE_DIR}/Resources/
+        ${CMAKE_BINARY_DIR}/Resources/
 )
 
 # Copy GLEW DLL to the build directory

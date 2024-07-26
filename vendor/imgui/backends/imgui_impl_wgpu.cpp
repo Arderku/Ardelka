@@ -23,7 +23,7 @@
 //  2024-01-22: Fixed pipeline layout leak. (#7245)
 //  2024-01-17: Explicitly fill all of WGPUDepthStencilState since standard removed defaults.
 //  2023-07-13: Use WGPUShaderModuleWGSLDescriptor's code instead of source. use WGPUMipmapFilterMode_Linear instead of WGPUFilterMode_Linear. (#6602)
-//  2023-04-11: Align buffer sizes. Use WGSL shaders instead of precompiled SPIR-V.
+//  2023-04-11: Align buffer sizes. Use WGSL Shaders instead of precompiled SPIR-V.
 //  2023-04-11: Reorganized backend to pull data from a single structure to facilitate usage with multiple-contexts (all g_XXXX access changed to bd->XXXX).
 //  2023-01-25: Revert automatic pipeline layout generation (see https://github.com/gpuweb/gpuweb/issues/2470)
 //  2022-11-24: Fixed validation error with default depth buffer settings.
