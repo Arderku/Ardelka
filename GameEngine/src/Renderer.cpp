@@ -81,7 +81,17 @@ void Renderer::Render(Scene& scene) {
     glm::vec3 viewPos = glm::vec3(0.0f, 8.0f, -10.0f); // Adjusted to match the camera position in the view matrix
     m_Shader->setVec3("viewPos", viewPos);
 
-    scene.Render();
+    // Frustum culling
+    const auto& frustumPlanes = scene.GetActiveCamera()->GetFrustumPlanes();
+    for (auto& gameObject : scene.GetGameObjects()) {
+        const glm::vec3& position = gameObject->GetTransform()->GetPosition();
+        const glm::vec3& scale = gameObject->GetTransform()->GetScale();
+        glm::vec3 halfSize = scale * 0.5f;
+
+        if (IsInFrustum(position, halfSize, frustumPlanes)) {
+            gameObject->Render();
+        }
+    }
 
 #ifdef DEBUG
     GLenum error = glGetError();
@@ -99,6 +109,19 @@ void Renderer::RenderToFramebuffer(Scene& scene, GLuint framebuffer, int width, 
     glViewport(0, 0, width, height);
     Render(scene);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+bool Renderer::IsInFrustum(const glm::vec3& center, const glm::vec3& halfSize, const std::array<glm::vec4, 6>& planes) {
+    for (const auto& plane : planes) {
+        glm::vec3 normal = glm::vec3(plane);
+        float distance = glm::dot(normal, center) + plane.w;
+        float radius = glm::dot(halfSize, glm::abs(normal));
+
+        if (distance + radius < 0) {
+            return false;
+        }
+    }
+    return true;
 }
 
 void Renderer::Shutdown() {

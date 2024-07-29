@@ -25,4 +25,6 @@ private:
 
     DirectionalLight dirLight;
     PointLight pointLights[4];
+
+    bool IsInFrustum(const glm::vec3& center, const glm::vec3& halfSize, const std::array<glm::vec4, 6>& planes);
 };

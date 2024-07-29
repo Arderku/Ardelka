@@ -65,6 +65,8 @@ add_executable(GameEngine
         GameEngine/src/Camera.h
         GameEngine/src/EditorStyle.h
         GameEngine/src/EditorStyle.cpp
+        GameEngine/src/TestObject.cpp
+        GameEngine/src/TestObject.h
 )
 
 # Link libraries

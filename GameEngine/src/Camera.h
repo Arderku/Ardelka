@@ -2,6 +2,7 @@
 #include "Component.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <array>
 
 class Camera : public Component {
 public:
@@ -11,8 +12,8 @@ public:
     }
 
     void Update() override {
-        // Update the view matrix using the GameObject's transform
         UpdateView();
+        UpdateFrustumPlanes();
     }
 
     void Render() override {
@@ -47,6 +48,28 @@ public:
     float GetFarPlane() const { return m_FarPlane; }
     void SetFarPlane(float farPlane) { m_FarPlane = farPlane; UpdateProjection(); }
 
+    void UpdateFrustumPlanes() {
+        glm::mat4 VP = m_Projection * m_View;
+        // Left plane
+        m_FrustumPlanes[0] = glm::vec4(VP[0][3] + VP[0][0], VP[1][3] + VP[1][0], VP[2][3] + VP[2][0], VP[3][3] + VP[3][0]);
+        // Right plane
+        m_FrustumPlanes[1] = glm::vec4(VP[0][3] - VP[0][0], VP[1][3] - VP[1][0], VP[2][3] - VP[2][0], VP[3][3] - VP[3][0]);
+        // Bottom plane
+        m_FrustumPlanes[2] = glm::vec4(VP[0][3] + VP[0][1], VP[1][3] + VP[1][1], VP[2][3] + VP[2][1], VP[3][3] + VP[3][1]);
+        // Top plane
+        m_FrustumPlanes[3] = glm::vec4(VP[0][3] - VP[0][1], VP[1][3] - VP[1][1], VP[2][3] - VP[2][1], VP[3][3] - VP[3][1]);
+        // Near plane
+        m_FrustumPlanes[4] = glm::vec4(VP[0][3] + VP[0][2], VP[1][3] + VP[1][2], VP[2][3] + VP[2][2], VP[3][3] + VP[3][2]);
+        // Far plane
+        m_FrustumPlanes[5] = glm::vec4(VP[0][3] - VP[0][2], VP[1][3] - VP[1][2], VP[2][3] - VP[2][2], VP[3][3] - VP[3][2]);
+
+        for (int i = 0; i < 6; i++) {
+            m_FrustumPlanes[i] = glm::normalize(m_FrustumPlanes[i]);
+        }
+    }
+
+    const std::array<glm::vec4, 6>& GetFrustumPlanes() const { return m_FrustumPlanes; }
+
 private:
     float m_FOV;
     float m_AspectRatio;
@@ -54,4 +77,5 @@ private:
     float m_FarPlane;
     glm::mat4 m_Projection;
     glm::mat4 m_View;
+    std::array<glm::vec4, 6> m_FrustumPlanes;
 };

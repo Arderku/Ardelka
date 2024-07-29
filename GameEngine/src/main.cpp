@@ -11,6 +11,7 @@
 #include "Scene.h"
 #include "ResourceManager.h"
 #include "Camera.h"
+#include "TestObject.h"
 
 int main() {
     Engine engine;
@@ -117,13 +118,20 @@ int main() {
     engine.GetScene().AddGameObject(std::move(parentGameObject));
 
     //creat 100 game objects at random positions
+
     for (int i = 0; i < 1000; i++) {
-        auto gameObject = std::make_unique<GameObject>();
+        // Create a new TestObject instance as a unique_ptr
+        auto gameObject = std::make_unique<TestObject>();
         gameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialRed));
-        gameObject->GetTransform()->position = glm::vec3(static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 7 - 5,
-                                                         static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 7 - 5,
-                                                         static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 7 - 5);
+
+        // Set random position
+        gameObject->GetTransform()->position = glm::vec3(static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 14 - 7,
+                                                         static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 14 - 7,
+                                                         static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 14 - 7);
+        // Set scale
         gameObject->GetTransform()->scale = glm::vec3(0.5f);
+
+        // Add the TestObject to the scene
         engine.GetScene().AddGameObject(std::move(gameObject));
     }
 
