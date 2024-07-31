@@ -389,6 +389,10 @@ void Editor::ShowSceneViewport() {
         }
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         lastViewportSize = viewportSize;
+
+        // Update the camera's projection matrix
+        float aspectRatio = viewportSize.x / viewportSize.y;
+        m_Scene->GetActiveCamera()->SetAspectRatio(aspectRatio);
     }
 
     // Bind the framebuffer
@@ -414,13 +418,17 @@ void Editor::ShowSceneViewport() {
 
     // Render text on top of the scene
     ImGui::SetCursorPos(ImVec2(50, 60)); // Adjust the position as needed
-    ImGui::Text("Overlay Text");
-   // ShowPlayPauseStopButtons();
+    ImGui::Text("STATS:");
+    ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate); // Display FPS
+    ImGui::Text("Viewport Size: (%.0f, %.0f)", viewportSize.x, viewportSize.y); // Display viewport size
+    ImGui::Text("Aspect Ratio: %.2f", viewportSize.x / viewportSize.y);
+
     // Re-enable depth testing
     glEnable(GL_DEPTH_TEST);
 
     ImGui::End();
 }
+
 
 void Editor::ShowPlayPauseStopButtons() {
     // Calculate the position to center the buttons at the top

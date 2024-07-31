@@ -25,7 +25,7 @@ int main() {
     // Create a GameObject with a Camera component
     auto cameraGameObject = std::make_unique<GameObject>();
     cameraGameObject->SetName("MainCamera");
-    cameraGameObject->AddComponent(std::make_unique<Camera>(60.0f, 16.0f/9.0f, 0.1f, 1000.0f));
+    cameraGameObject->AddComponent(std::make_unique<Camera>(60.0f, 2.0f/1.0f, 0.1f, 1000.0f));
     cameraGameObject->GetTransform()->position = glm::vec3(0.0f, 0.0f, -5.0f);
 
     engine.GetScene().SetActiveCamera(cameraGameObject->GetComponent<Camera>());

@@ -78,8 +78,7 @@ void Renderer::Render(Scene& scene) {
         pointLights[i].position = glm::vec3(sin(glfwGetTime()) * 2.0f * i, 0.0f, cos(glfwGetTime()) * 2.0f + i);
     }
 
-    glm::vec3 viewPos = glm::vec3(0.0f, 8.0f, -10.0f); // Adjusted to match the camera position in the view matrix
-    m_Shader->setVec3("viewPos", viewPos);
+    m_Shader->setVec3("viewPos", scene.GetActiveCamera()->GetOwner()->GetTransform()->GetPosition());
 
     // Frustum culling
     const auto& frustumPlanes = scene.GetActiveCamera()->GetFrustumPlanes();
