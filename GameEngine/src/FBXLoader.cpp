@@ -1,5 +1,6 @@
 #include "FBXLoader.h"
 #include <iostream>
+#include <filesystem>
 #include "ResourceManager.h"
 #include "MeshRenderer.h"
 
@@ -8,29 +9,33 @@ Shader* FBXLoader::m_Shader = nullptr;
 std::unique_ptr<GameObject> FBXLoader::LoadModel(const std::string& path, Shader* shader) {
     m_Shader = shader;
     Assimp::Importer importer;
-    const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+    const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_CalcTangentSpace);
 
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
         std::cerr << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
         return nullptr;
     }
 
+    std::string modelName = ExtractModelName(path);
+    std::cerr << "Processing root node: " << scene->mRootNode->mName.C_Str() << std::endl;
     auto rootGameObject = std::make_unique<GameObject>();
+    rootGameObject->SetName(modelName);
     ProcessNode(scene->mRootNode, scene, rootGameObject.get());
 
     return rootGameObject;
 }
 
 void FBXLoader::ProcessNode(aiNode* node, const aiScene* scene, GameObject* parent) {
-    for (unsigned int i = 0; i < node->mNumMeshes; i++) {
-        aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-        auto gameObject = std::make_unique<GameObject>();
+    bool isPivotNode = std::string(node->mName.C_Str()).find("$AssimpFbx$") != std::string::npos;
+    std::cerr << "Processing node: " << node->mName.C_Str() << " with " << node->mNumChildren << " children." << std::endl;
 
-        auto meshComponent = ProcessMesh(mesh, scene);
-        auto materialComponent = ProcessMaterial(scene->mMaterials[mesh->mMaterialIndex], scene);
-
-        gameObject->AddComponent(std::make_unique<MeshRenderer>(meshComponent.release(), materialComponent.release()));
-        parent->AddChild(std::move(gameObject));
+    if (!isPivotNode && node->mNumMeshes > 0) {
+        for (unsigned int i = 0; i < node->mNumMeshes; i++) {
+            aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
+            auto meshComponent = ProcessMesh(mesh, scene);
+            auto materialComponent = ProcessMaterial(scene->mMaterials[mesh->mMaterialIndex], scene);
+            parent->AddComponent(std::make_unique<MeshRenderer>(meshComponent.release(), materialComponent.release()));
+        }
     }
 
     for (unsigned int i = 0; i < node->mNumChildren; i++) {
@@ -59,7 +64,7 @@ std::unique_ptr<Mesh> FBXLoader::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 
         if (mesh->mTextureCoords[0]) {
             vertices.push_back(mesh->mTextureCoords[0][i].x);
-            vertices.push_back(mesh->mTextureCoords[0][i].y);
+            vertices.push_back(mesh->mTextureCoords[0][i].y); // Do not flip texture coordinates
         } else {
             vertices.push_back(0.0f);
             vertices.push_back(0.0f);
@@ -94,4 +99,9 @@ std::unique_ptr<Material> FBXLoader::ProcessMaterial(aiMaterial* material, const
     // Add support for textures here
 
     return mat;
+}
+
+std::string FBXLoader::ExtractModelName(const std::string& path) {
+    std::filesystem::path filePath(path);
+    return filePath.stem().string();
 }

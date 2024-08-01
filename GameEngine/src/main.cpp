@@ -33,9 +33,9 @@ int main() {
 
     std::cerr << "Creating Material" << std::endl;
    // Texture* albedo = ResourceManager::loadTexture("albedo", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_albedo.png");
-    Texture* metallic = ResourceManager::loadTexture("metallic", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_metallic.png");
-    Texture* roughness = ResourceManager::loadTexture("roughness", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_roughness.png");
-    Texture* normal = ResourceManager::loadTexture("normal", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_normal-dx.png");
+   // Texture* metallic = ResourceManager::loadTexture("metallic", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_metallic.png");
+   // Texture* roughness = ResourceManager::loadTexture("roughness", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_roughness.png");
+   // Texture* normal = ResourceManager::loadTexture("normal", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_normal-dx.png");
 
     Material* materialRed = new Material("M_Red",engine.GetRenderer().GetShader());
     materialRed->SetBaseColor(glm::vec4(1.5f, 0.5f, 0.5f, 1.0f));
@@ -44,15 +44,15 @@ int main() {
     materialRed->SetRoughness(0.15f);
 
    // materialRed->SetAlbedoMap(albedo);
-    materialRed->SetMetallicMap(metallic);
-    materialRed->SetRoughnessMap(roughness);
-    materialRed->SetNormalMap(normal);
+  //  materialRed->SetMetallicMap(metallic);
+   // materialRed->SetRoughnessMap(roughness);
+   // materialRed->SetNormalMap(normal);
 
     Material* materialBlue = new Material("M_Blue",engine.GetRenderer().GetShader());
     materialBlue->SetBaseColor(glm::vec4(.0f, 0.0f, 1.0f, 1.0f));
-    materialBlue->SetNormalMap(normal);
+  //  materialBlue->SetNormalMap(normal);
 
-    // Define the cube vertices and indices
+/*    // Define the cube vertices and indices
     std::vector<float> vertices = {
             // positions          // normals           // texcoords
             -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
@@ -115,7 +115,7 @@ int main() {
     parentGameObject->AddChild(std::move(childGameObject));
 
     std::cerr << "Adding GameObject to scene" << std::endl;
-    engine.GetScene().AddGameObject(std::move(parentGameObject));
+    engine.GetScene().AddGameObject(std::move(parentGameObject));*/
 
     //creat 100 game objects at random positions
 
@@ -140,16 +140,26 @@ int main() {
     auto gameBoyClassic = ResourceManager::loadModel("Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic.fbx", engine.GetRenderer().GetShader());
 
     Texture* GameBoyAlbedo = ResourceManager::loadTexture("albedo", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_BaseColor.png");
+    Texture* GameBoyMetallic = ResourceManager::loadTexture("metallic", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_Metallic.png");
+    Texture* GameBoyRoughness = ResourceManager::loadTexture("roughness", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_Roughness.png");
+    Texture* GameBoyNormal = ResourceManager::loadTexture("normal", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_Normal.png");
 
 
     Material* GameBoyMaterial = new Material("GameBoyClassic", engine.GetRenderer().GetShader());
     GameBoyMaterial->SetBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
     GameBoyMaterial->SetAlbedoMap(GameBoyAlbedo);
 
-    gameBoyClassic->GetChildren()[0]->GetComponent<MeshRenderer>()->SetMaterial(GameBoyMaterial);
+    gameBoyClassic->GetComponent<MeshRenderer>()->GetMaterial()->SetBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
+    gameBoyClassic->GetComponent<MeshRenderer>()->GetMaterial()->SetAlbedoMap(GameBoyAlbedo);
+    gameBoyClassic->GetComponent<MeshRenderer>()->GetMaterial()->SetMetallicMap(GameBoyMetallic);
+   // gameBoyClassic->GetComponent<MeshRenderer>()->GetMaterial()->SetRoughnessMap(GameBoyRoughness);
+    gameBoyClassic->GetComponent<MeshRenderer>()->GetMaterial()->SetNormalMap(GameBoyNormal);
+
+  //  gameBoyClassic->GetChildren()[0]->GetComponent<MeshRenderer>()->SetMaterial(GameBoyMaterial);
     // Set the position, scale, and rotation if needed
-    gameBoyClassic->GetTransform()->position = glm::vec3(0.0f, 0.0f, 0.0f);
-    gameBoyClassic->GetTransform()->scale = glm::vec3(0.1f);
+    gameBoyClassic->GetTransform()->position = glm::vec3(0.0f, -1.20f, 0.0f);
+    gameBoyClassic->GetTransform()->rotation = glm::vec3(0.0f, 45.0f, 0.0f);
+    gameBoyClassic->GetTransform()->scale = glm::vec3(0.01f);
 
     // Add the GameBoyClassic model to the scene
     std::cerr << "Adding GameBoyClassic to scene" << std::endl;
