@@ -43,7 +43,8 @@ if (WIN32)
     set(ASSIMP_ROOT "C:/Program Files/Assimp")  # Update this to your Assimp installation path
     set(ASSIMP_INCLUDE_DIR "${ASSIMP_ROOT}/include")
     set(ASSIMP_LIBRARY_DIR "${ASSIMP_ROOT}/lib/x64")
-    find_library(ASSIMP_LIB NAMES assimp-vc143-mt assimp PATHS ${ASSIMP_LIBRARY_DIR} NO_DEFAULT_PATH)
+    find_library(ASSIMP_LIB NAMES assimp-vc143-mt PATHS ${ASSIMP_LIBRARY_DIR} NO_DEFAULT_PATH)
+    set(ASSIMP_DLL "${ASSIMP_ROOT}/bin/x64/assimp-vc143-mt.dll")
     if (NOT ASSIMP_LIB)
         message(FATAL_ERROR "Assimp library not found. Please check your Assimp installation path. ${ASSIMP_LIBRARY_DIR}")
     endif()
@@ -122,3 +123,12 @@ add_custom_command(
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         ${GLEW_DLL} ${CMAKE_BINARY_DIR}
 )
+
+# Copy Assimp DLL to the build directory (only for Windows)
+if (WIN32)
+    add_custom_command(
+            TARGET GameEngine POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${ASSIMP_DLL} ${CMAKE_BINARY_DIR}
+    )
+endif()
