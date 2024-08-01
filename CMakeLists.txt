@@ -82,6 +82,7 @@ add_executable(GameEngine
         GameEngine/src/EditorStyle.cpp
         GameEngine/src/TestObject.cpp
         GameEngine/src/TestObject.h
+        GameEngine/src/FBXLoader.cpp
 )
 
 # Link libraries

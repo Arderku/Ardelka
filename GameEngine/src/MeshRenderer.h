@@ -64,6 +64,10 @@ public:
         return m_Material;
     }
 
+    void SetMaterial(Material *pMaterial) {
+        m_Material = pMaterial;
+    }
+
 private:
     Mesh* m_Mesh;
     Material* m_Material;

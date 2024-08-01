@@ -32,7 +32,7 @@ int main() {
     engine.GetScene().AddGameObject(std::move(cameraGameObject));
 
     std::cerr << "Creating Material" << std::endl;
-    Texture* albedo = ResourceManager::loadTexture("albedo", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_albedo.png");
+   // Texture* albedo = ResourceManager::loadTexture("albedo", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_albedo.png");
     Texture* metallic = ResourceManager::loadTexture("metallic", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_metallic.png");
     Texture* roughness = ResourceManager::loadTexture("roughness", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_roughness.png");
     Texture* normal = ResourceManager::loadTexture("normal", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_normal-dx.png");
@@ -43,7 +43,7 @@ int main() {
     materialRed->SetMetallic(0.5f);
     materialRed->SetRoughness(0.15f);
 
-    materialRed->SetAlbedoMap(albedo);
+   // materialRed->SetAlbedoMap(albedo);
     materialRed->SetMetallicMap(metallic);
     materialRed->SetRoughnessMap(roughness);
     materialRed->SetNormalMap(normal);
@@ -119,7 +119,7 @@ int main() {
 
     //creat 100 game objects at random positions
 
-    for (int i = 0; i < 1000; i++) {
+   /* for (int i = 0; i < 1000; i++) {
         // Create a new TestObject instance as a unique_ptr
         auto gameObject = std::make_unique<TestObject>();
         gameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialRed));
@@ -133,7 +133,27 @@ int main() {
 
         // Add the TestObject to the scene
         engine.GetScene().AddGameObject(std::move(gameObject));
-    }
+    }*/
+
+    // Load GameBoyClassic model
+    std::cerr << "Loading GameBoyClassic model" << std::endl;
+    auto gameBoyClassic = ResourceManager::loadModel("Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic.fbx", engine.GetRenderer().GetShader());
+
+    Texture* GameBoyAlbedo = ResourceManager::loadTexture("albedo", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_BaseColor.png");
+
+
+    Material* GameBoyMaterial = new Material("GameBoyClassic", engine.GetRenderer().GetShader());
+    GameBoyMaterial->SetBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
+    GameBoyMaterial->SetAlbedoMap(GameBoyAlbedo);
+
+    gameBoyClassic->GetChildren()[0]->GetComponent<MeshRenderer>()->SetMaterial(GameBoyMaterial);
+    // Set the position, scale, and rotation if needed
+    gameBoyClassic->GetTransform()->position = glm::vec3(0.0f, 0.0f, 0.0f);
+    gameBoyClassic->GetTransform()->scale = glm::vec3(0.1f);
+
+    // Add the GameBoyClassic model to the scene
+    std::cerr << "Adding GameBoyClassic to scene" << std::endl;
+    engine.GetScene().AddGameObject(std::move(gameBoyClassic));
 
     std::cerr << "Starting engine run" << std::endl;
     engine.Run();
