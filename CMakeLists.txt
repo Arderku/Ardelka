@@ -38,6 +38,20 @@ else()
     set(MONO_LIBRARIES ${MONO_LIBRARIES})
 endif()
 
+# Find Assimp package
+if (WIN32)
+    set(ASSIMP_ROOT "C:/Program Files/Assimp")  # Update this to your Assimp installation path
+    set(ASSIMP_INCLUDE_DIR "${ASSIMP_ROOT}/include")
+    set(ASSIMP_LIBRARY_DIR "${ASSIMP_ROOT}/lib/x64")
+    find_library(ASSIMP_LIB NAMES assimp-vc143-mt assimp PATHS ${ASSIMP_LIBRARY_DIR} NO_DEFAULT_PATH)
+    if (NOT ASSIMP_LIB)
+        message(FATAL_ERROR "Assimp library not found. Please check your Assimp installation path. ${ASSIMP_LIBRARY_DIR}")
+    endif()
+    include_directories(${ASSIMP_INCLUDE_DIR})
+else()
+    find_package(assimp CONFIG REQUIRED)
+endif()
+
 # Add executable
 add_executable(GameEngine
         GameEngine/src/main.cpp
@@ -70,15 +84,29 @@ add_executable(GameEngine
 )
 
 # Link libraries
-target_link_libraries(GameEngine
-        glfw
-        ${GLEW_LIBRARY}
-        glm
-        imgui
-        opengl32
-        ${CMAKE_DL_LIBS}
-        ${MONO_LIBRARIES}
-)
+if (WIN32)
+    target_link_libraries(GameEngine
+            glfw
+            ${GLEW_LIBRARY}
+            glm
+            imgui
+            opengl32
+            ${CMAKE_DL_LIBS}
+            ${MONO_LIBRARIES}
+            ${ASSIMP_LIB}
+    )
+else()
+    target_link_libraries(GameEngine
+            glfw
+            ${GLEW_LIBRARY}
+            glm
+            imgui
+            opengl32
+            ${CMAKE_DL_LIBS}
+            ${MONO_LIBRARIES}
+            assimp
+    )
+endif()
 
 # Copy shader files to the build directory
 add_custom_command(
