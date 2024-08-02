@@ -1,74 +1,53 @@
 #pragma once
+
 #include "Mesh.h"
 #include "Material.h"
+#include "Shader.h"
 #include "Component.h"
-#include <memory>
-#include <iostream>
 
 class MeshRenderer : public Component {
 public:
-    MeshRenderer(Mesh* mesh, Material* material)
-            : m_Mesh(mesh), m_Material(material) {}
-
-    void Render() override {
-
-
-        if (!m_Mesh || !m_Material) {
-            std::cerr << "MeshRenderer: Mesh or Material is null!" << std::endl;
-            return;
-        }
-
-        m_Material->Bind();
-
-        //check mowner and get transform
-        if (!m_Owner) {
-            std::cerr << "MeshRenderer: Owner is null!" << std::endl;
-            return;
-        }
-        glm::mat4 model =  m_Owner->GetTransform()->GetGlobalModelMatrix();
-
-        //check shader is valid
-        if (!m_Material->GetShader()->IsValid()) {
-            std::cerr << "MeshRenderer: Shader is not valid!" << std::endl;
-            return;
-        }
-        m_Material->GetShader()->setMat4("model", model);
-
-
-        m_Mesh->Bind();
-
-        glDrawElements(GL_TRIANGLES, m_Mesh->GetIndexCount(), GL_UNSIGNED_INT, 0);
-
-        m_Material->Unbind();
-        m_Mesh->Unbind();
-        GLenum error = glGetError();
-        if (error != GL_NO_ERROR) {
-            std::cerr << "OpenGL Error after glDrawElements: " << error << std::endl;
-        }
-
-        m_Material->GetShader()->unuse();
-
-
-
-    }
+    MeshRenderer(Mesh* mesh, Material* material, Shader* shader)
+            : m_Mesh(mesh), m_Material(material), m_Shader(shader) {}
 
     void Update() override {
-
+        // Implement specific update logic if needed
     }
 
-    Mesh *GetMesh() const {
-        return m_Mesh;
+    void Render() override {
+        // Use the shader program
+        m_Shader->use();
+
+        // Set the model matrix
+        glm::mat4 model = m_Owner->GetTransform()->GetModelMatrix();
+        m_Shader->setMat4("model", model);
+
+        // Bind the material
+        m_Material->Bind();
+
+        // Bind the mesh
+        m_Mesh->Bind();
+
+        // Draw the mesh
+        glDrawElements(GL_TRIANGLES, m_Mesh->GetIndexCount(), GL_UNSIGNED_INT, 0);
+
+        // Unbind the mesh
+        m_Mesh->Unbind();
+
+        // Unbind the material
+        m_Material->Unbind();
+
+        // Unuse the shader program
+        m_Shader->unuse();
     }
 
-    Material *GetMaterial() const {
-        return m_Material;
-    }
+    Shader* GetShader() const { return m_Shader; }
+    void SetShader(Shader* shader) { m_Shader = shader; }
 
-    void SetMaterial(Material *pMaterial) {
-        m_Material = pMaterial;
-    }
+    Material* GetMaterial() const { return m_Material; }
 
 private:
     Mesh* m_Mesh;
     Material* m_Material;
+    Shader* m_Shader;
 };

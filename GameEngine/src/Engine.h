@@ -2,7 +2,6 @@
 #include "Window.h"
 #include "Renderer.h"
 #include "Scene.h"
-#include "Scripting.h"
 #include "Editor.h"
 
 class Engine {
@@ -18,6 +17,5 @@ private:
     Window m_Window;
     Renderer m_Renderer;
     Scene m_Scene;
-    Scripting m_Scripting;
     Editor m_Editor;
 };

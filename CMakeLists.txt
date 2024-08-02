@@ -24,19 +24,6 @@ include_directories(vendor/imgui/backends)
 include_directories(vendor/glm)
 include_directories(vendor/stb)  # Add this line to include stb_image.h
 
-# Find Mono installation
-if (WIN32)
-    set(MONO_ROOT "C:/Program Files/Mono")
-    include_directories("${MONO_ROOT}/include/mono-2.0")
-    link_directories("${MONO_ROOT}/lib")
-    set(MONO_LIBRARIES mono-2.0-sgen)
-else()
-    find_package(PkgConfig REQUIRED)
-    pkg_check_modules(MONO REQUIRED mono-2)
-    include_directories(${MONO_INCLUDE_DIRS})
-    link_directories(${MONO_LIBRARY_DIRS})
-    set(MONO_LIBRARIES ${MONO_LIBRARIES})
-endif()
 
 # Find Assimp package
 if (WIN32)
@@ -60,7 +47,6 @@ add_executable(GameEngine
         GameEngine/src/Window.cpp
         GameEngine/src/Renderer.cpp
         GameEngine/src/Scene.cpp
-        GameEngine/src/Scripting.cpp
         GameEngine/src/Editor.cpp
         GameEngine/src/Shader.h
         GameEngine/src/Shader.cpp
@@ -94,7 +80,6 @@ if (WIN32)
             imgui
             opengl32
             ${CMAKE_DL_LIBS}
-            ${MONO_LIBRARIES}
             ${ASSIMP_LIB}
     )
 else()
@@ -105,7 +90,6 @@ else()
             imgui
             opengl32
             ${CMAKE_DL_LIBS}
-            ${MONO_LIBRARIES}
             assimp
     )
 endif()

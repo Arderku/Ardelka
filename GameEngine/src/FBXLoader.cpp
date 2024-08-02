@@ -34,7 +34,7 @@ void FBXLoader::ProcessNode(aiNode* node, const aiScene* scene, GameObject* pare
             aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
             auto meshComponent = ProcessMesh(mesh, scene);
             auto materialComponent = ProcessMaterial(scene->mMaterials[mesh->mMaterialIndex], scene);
-            parent->AddComponent(std::make_unique<MeshRenderer>(meshComponent.release(), materialComponent.release()));
+            parent->AddComponent(std::make_unique<MeshRenderer>(meshComponent.release(), materialComponent.release(), m_Shader));
         }
     }
 

@@ -1,10 +1,10 @@
-#define GLM_ENABLE_EXPERIMENTAL
 #include "Renderer.h"
-#include <glm/gtc/matrix_transform.hpp>
+#include "Shader.h"
 #include <iostream>
 #include "GLFW/glfw3.h"
+#include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtx/string_cast.hpp"
-#include "Mesh.h"
+#include "MeshRenderer.h"
 
 void Renderer::Init() {
     if (glewInit() != GLEW_OK) {
@@ -20,38 +20,16 @@ void Renderer::Init() {
     glDisable(GL_BLEND);
     glClearColor(0.68f, 0.85f, 0.9f, 1.0f);
 
-    m_Shader = new Shader("Resources/Shaders/vertex_shader.glsl", "Resources/Shaders/fragment_shader.glsl");
-    if (!m_Shader->IsValid()) {
-        std::cerr << "Failed to create Shader" << std::endl;
-        return;
-    }
-
     dirLight.direction = glm::vec3(0.f, 1.0f, 0.0f);
     dirLight.color = glm::vec3(1.0f, 0.9f, 0.8f);
 
-    pointLights[0].position = glm::vec3(-2.0f, 3.0f, 2.0f);
-    pointLights[0].color = glm::vec3(1.0f, 0.0f, 0.0f); // Red
-    pointLights[0].constant = 1.0f;
-    pointLights[0].linear = 0.09f;
-    pointLights[0].quadratic = 0.032f;
-
-    pointLights[1].position = glm::vec3(2.0f, 3.0f, 2.0f);
-    pointLights[1].color = glm::vec3(0.0f, 1.0f, 0.0f); // Green
-    pointLights[1].constant = 1.0f;
-    pointLights[1].linear = 0.09f;
-    pointLights[1].quadratic = 0.032f;
-
-    pointLights[2].position = glm::vec3(0.0f, 3.0f, -2.0f);
-    pointLights[2].color = glm::vec3(0.0f, 0.0f, 1.0f); // Blue
-    pointLights[2].constant = 1.0f;
-    pointLights[2].linear = 0.09f;
-    pointLights[2].quadratic = 0.032f;
-
-    pointLights[3].position = glm::vec3(0.0f, 5.0f, 0.0f);
-    pointLights[3].color = glm::vec3(1.0f, 1.0f, 1.0f); // White
-    pointLights[3].constant = 1.0f;
-    pointLights[3].linear = 0.09f;
-    pointLights[3].quadratic = 0.032f;
+    for (int i = 0; i < 4; ++i) {
+        pointLights[i].position = glm::vec3(i * 2.0f, 3.0f, 2.0f);
+        pointLights[i].color = glm::vec3(1.0f - i * 0.25f, i * 0.25f, 0.0f);
+        pointLights[i].constant = 1.0f;
+        pointLights[i].linear = 0.09f;
+        pointLights[i].quadratic = 0.032f;
+    }
 
     std::cout << "Renderer initialized successfully" << std::endl;
 }
@@ -59,36 +37,31 @@ void Renderer::Init() {
 void Renderer::Render(Scene& scene) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    m_Shader->use();
-
-    m_Shader->setMat4("view", scene.GetActiveCamera()->GetView());
-    m_Shader->setMat4("projection", scene.GetActiveCamera()->GetProjection());
-
-    // Set directional light
-    m_Shader->setDirectionalLight("dirLight", dirLight);
-
-    // Set point lights
-    int numPointLights = 4; // Adjust this as needed
-    m_Shader->setInt("numPointLights", numPointLights);
-    for (int i = 0; i < numPointLights; ++i) {
-        std::string uniformName = "pointLights[" + std::to_string(i) + "]";
-        m_Shader->setPointLight(uniformName, pointLights[i]);
-
-        // Update light positions only if necessary
-        pointLights[i].position = glm::vec3(sin(glfwGetTime()) * 2.0f * i, 0.0f, cos(glfwGetTime()) * 2.0f + i);
+    Camera* activeCamera = scene.GetActiveCamera();
+    if (!activeCamera) {
+        std::cerr << "No active camera set in the scene!" << std::endl;
+        return;
     }
 
-    m_Shader->setVec3("viewPos", scene.GetActiveCamera()->GetOwner()->GetTransform()->GetPosition());
+    glm::mat4 view = activeCamera->GetView();
+    glm::mat4 projection = activeCamera->GetProjection();
 
-    // Frustum culling
-    const auto& frustumPlanes = scene.GetActiveCamera()->GetFrustumPlanes();
-    for (auto& gameObject : scene.GetGameObjects()) {
-        const glm::vec3& position = gameObject->GetTransform()->GetPosition();
-        const glm::vec3& scale = gameObject->GetTransform()->GetScale();
-        glm::vec3 halfSize = scale * 0.5f;
+    const auto& gameObjects = scene.GetGameObjects();
+    for (const auto& gameObject : gameObjects) {
+        if (auto renderer = gameObject->GetComponent<MeshRenderer>()) {
+            Shader* shader = renderer->GetShader();
+            shader->use();
+            shader->setMat4("view", view);
+            shader->setMat4("projection", projection);
 
-        if (IsInFrustum(position, halfSize, frustumPlanes)) {
-            gameObject->Render();
+            // Ensure model matrix is set correctly if using it
+            glm::mat4 model = gameObject->GetTransform()->GetModelMatrix();
+            shader->setMat4("model", model);
+
+            // Set other shader uniforms like lights if necessary
+
+            renderer->Render();
+            shader->unuse();
         }
     }
 
@@ -98,10 +71,8 @@ void Renderer::Render(Scene& scene) {
         std::cerr << "OpenGL Error after rendering: " << error << std::endl;
     }
 #endif
-
-    m_Shader->unuse();
-    glUseProgram(0);
 }
+
 
 void Renderer::RenderToFramebuffer(Scene& scene, GLuint framebuffer, int width, int height) {
     glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
@@ -124,14 +95,8 @@ bool Renderer::IsInFrustum(const glm::vec3& center, const glm::vec3& halfSize, c
 }
 
 void Renderer::Shutdown() {
-    delete m_Shader;
-
     // Deleting VAO, VBO, and EBO only if they were initialized
     if (m_VAO) glDeleteVertexArrays(1, &m_VAO);
     if (m_VBO) glDeleteBuffers(1, &m_VBO);
     if (m_EBO) glDeleteBuffers(1, &m_EBO);
-}
-
-Shader* Renderer::GetShader() {
-    return m_Shader;
 }

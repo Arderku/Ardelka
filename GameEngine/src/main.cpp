@@ -20,7 +20,8 @@ int main() {
 
     std::cerr << "Creating Shader" << std::endl;
 
-    engine.GetRenderer().GetShader();
+    // Create shaders
+    Shader* defaultShader = new Shader("Resources/Shaders/vertex_shader.glsl", "Resources/Shaders/fragment_shader.glsl");
 
     // Create a GameObject with a Camera component
     auto cameraGameObject = std::make_unique<GameObject>();
@@ -37,7 +38,7 @@ int main() {
    // Texture* roughness = ResourceManager::loadTexture("roughness", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_roughness.png");
    // Texture* normal = ResourceManager::loadTexture("normal", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_normal-dx.png");
 
-    Material* materialRed = new Material("M_Red",engine.GetRenderer().GetShader());
+    Material* materialRed = new Material("M_Red",defaultShader);
     materialRed->SetBaseColor(glm::vec4(1.5f, 0.5f, 0.5f, 1.0f));
     materialRed->SetBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
     materialRed->SetMetallic(0.5f);
@@ -48,11 +49,11 @@ int main() {
    // materialRed->SetRoughnessMap(roughness);
    // materialRed->SetNormalMap(normal);
 
-    Material* materialBlue = new Material("M_Blue",engine.GetRenderer().GetShader());
+    Material* materialBlue = new Material("M_Blue",defaultShader);
     materialBlue->SetBaseColor(glm::vec4(.0f, 0.0f, 1.0f, 1.0f));
   //  materialBlue->SetNormalMap(normal);
 
-/*    // Define the cube vertices and indices
+    // Define the cube vertices and indices
     std::vector<float> vertices = {
             // positions          // normals           // texcoords
             -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
@@ -103,26 +104,26 @@ int main() {
     parentGameObject->GetTransform()->position = glm::vec3(0.0f, 0.0f, 0.0f);
     //scale the object
     parentGameObject->GetTransform()->scale = glm::vec3(1);
-    parentGameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialRed));
+    parentGameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialRed, defaultShader));
 
     std::cerr << "Creating child GameObject" << std::endl;
     auto childGameObject = std::make_unique<GameObject>();
     childGameObject->SetName("BlueCube");
-    childGameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialBlue));
+    childGameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialBlue, defaultShader));
     childGameObject->GetTransform()->position = glm::vec3(2.0f, 1.0f, 0.0f);
     childGameObject->GetTransform()->scale = glm::vec3(2.f, 1.f, 0.5f);
 
     parentGameObject->AddChild(std::move(childGameObject));
 
     std::cerr << "Adding GameObject to scene" << std::endl;
-    engine.GetScene().AddGameObject(std::move(parentGameObject));*/
+    engine.GetScene().AddGameObject(std::move(parentGameObject));
 
     //creat 100 game objects at random positions
 
-   /* for (int i = 0; i < 1000; i++) {
+    for (int i = 0; i < 1000; i++) {
         // Create a new TestObject instance as a unique_ptr
         auto gameObject = std::make_unique<TestObject>();
-        gameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialRed));
+        gameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialRed, defaultShader));
 
         // Set random position
         gameObject->GetTransform()->position = glm::vec3(static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 14 - 7,
@@ -133,11 +134,11 @@ int main() {
 
         // Add the TestObject to the scene
         engine.GetScene().AddGameObject(std::move(gameObject));
-    }*/
+    }
 
     // Load GameBoyClassic model
     std::cerr << "Loading GameBoyClassic model" << std::endl;
-    auto gameBoyClassic = ResourceManager::loadModel("Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic.fbx", engine.GetRenderer().GetShader());
+    auto gameBoyClassic = ResourceManager::loadModel("Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic.fbx", defaultShader);
 
     Texture* GameBoyAlbedo = ResourceManager::loadTexture("albedo", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_BaseColor.png");
     Texture* GameBoyMetallic = ResourceManager::loadTexture("metallic", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_Metallic.png");
@@ -145,7 +146,7 @@ int main() {
     Texture* GameBoyNormal = ResourceManager::loadTexture("normal", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_Normal.png");
 
 
-    Material* GameBoyMaterial = new Material("GameBoyClassic", engine.GetRenderer().GetShader());
+    Material* GameBoyMaterial = new Material("GameBoyClassic", defaultShader);
     GameBoyMaterial->SetBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
     GameBoyMaterial->SetAlbedoMap(GameBoyAlbedo);
 
