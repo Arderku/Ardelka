@@ -302,7 +302,7 @@ void Editor::ShowInspector() {
                         // Textures preview
                         ImVec2 textureSize(50, 50);
                         // Base color
-                        Texture *albedoTexture = meshRenderer->GetMaterial()->GetAlbedoMap();
+                        auto albedoTexture = meshRenderer->GetMaterial()->GetAlbedoMap();
                         if (albedoTexture) {
                             // Display texture preview
                             ImGui::Text("Albedo:");
@@ -313,7 +313,7 @@ void Editor::ShowInspector() {
                             ImGui::Image((void *)(intptr_t) nullptr, textureSize);
                         }
 
-                        Texture *metallicTexture = meshRenderer->GetMaterial()->GetMetallicMap();
+                        auto metallicTexture = meshRenderer->GetMaterial()->GetMetallicMap();
                         if (metallicTexture) {
                             // Display texture preview
                             ImGui::Text("Metallic:");
@@ -324,7 +324,7 @@ void Editor::ShowInspector() {
                             ImGui::Image((void *)(intptr_t) nullptr, textureSize);
                         }
 
-                        Texture *roughnessTexture = meshRenderer->GetMaterial()->GetRoughnessMap();
+                        auto roughnessTexture = meshRenderer->GetMaterial()->GetRoughnessMap();
                         if (roughnessTexture) {
                             // Display texture preview
                             ImGui::Text("Roughness:");
@@ -335,7 +335,7 @@ void Editor::ShowInspector() {
                             ImGui::Image((void *)(intptr_t) nullptr, textureSize);
                         }
 
-                        Texture *normalTexture = meshRenderer->GetMaterial()->GetNormalMap();
+                        auto normalTexture = meshRenderer->GetMaterial()->GetNormalMap();
                         if (normalTexture) {
                             // Display texture preview
                             ImGui::Text("Normal:");

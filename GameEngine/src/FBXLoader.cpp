@@ -4,10 +4,7 @@
 #include "ResourceManager.h"
 #include "MeshRenderer.h"
 
-Shader* FBXLoader::m_Shader = nullptr;
-
-std::unique_ptr<GameObject> FBXLoader::LoadModel(const std::string& path, Shader* shader) {
-    m_Shader = shader;
+std::unique_ptr<GameObject> FBXLoader::LoadModel(const std::string& path, std::shared_ptr<Shader> shader) {
     Assimp::Importer importer;
     const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_CalcTangentSpace);
 
@@ -20,12 +17,12 @@ std::unique_ptr<GameObject> FBXLoader::LoadModel(const std::string& path, Shader
     std::cerr << "Processing root node: " << scene->mRootNode->mName.C_Str() << std::endl;
     auto rootGameObject = std::make_unique<GameObject>();
     rootGameObject->SetName(modelName);
-    ProcessNode(scene->mRootNode, scene, rootGameObject.get());
+    ProcessNode(scene->mRootNode, scene, rootGameObject.get(), shader);
 
     return rootGameObject;
 }
 
-void FBXLoader::ProcessNode(aiNode* node, const aiScene* scene, GameObject* parent) {
+void FBXLoader::ProcessNode(aiNode* node, const aiScene* scene, GameObject* parent, std::shared_ptr<Shader> shader) {
     bool isPivotNode = std::string(node->mName.C_Str()).find("$AssimpFbx$") != std::string::npos;
     std::cerr << "Processing node: " << node->mName.C_Str() << " with " << node->mNumChildren << " children." << std::endl;
 
@@ -33,17 +30,22 @@ void FBXLoader::ProcessNode(aiNode* node, const aiScene* scene, GameObject* pare
         for (unsigned int i = 0; i < node->mNumMeshes; i++) {
             aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
             auto meshComponent = ProcessMesh(mesh, scene);
-            auto materialComponent = ProcessMaterial(scene->mMaterials[mesh->mMaterialIndex], scene);
-            parent->AddComponent(std::make_unique<MeshRenderer>(meshComponent.release(), materialComponent.release(), m_Shader));
+            auto materialComponent = ProcessMaterial(scene->mMaterials[mesh->mMaterialIndex], scene, shader);
+
+            // Convert std::unique_ptr to std::shared_ptr
+            std::shared_ptr<Mesh> meshShared = std::move(meshComponent);
+            std::shared_ptr<Material> materialShared = std::move(materialComponent);
+
+            parent->AddComponent(std::make_unique<MeshRenderer>(meshShared, materialShared));
         }
     }
 
     for (unsigned int i = 0; i < node->mNumChildren; i++) {
-        ProcessNode(node->mChildren[i], scene, parent);
+        ProcessNode(node->mChildren[i], scene, parent, shader);
     }
 }
 
-std::unique_ptr<Mesh> FBXLoader::ProcessMesh(aiMesh* mesh, const aiScene* scene) {
+std::shared_ptr<Mesh> FBXLoader::ProcessMesh(aiMesh* mesh, const aiScene* scene) {
     std::vector<float> vertices;
     std::vector<unsigned int> indices;
 
@@ -64,7 +66,7 @@ std::unique_ptr<Mesh> FBXLoader::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 
         if (mesh->mTextureCoords[0]) {
             vertices.push_back(mesh->mTextureCoords[0][i].x);
-            vertices.push_back(mesh->mTextureCoords[0][i].y); // Do not flip texture coordinates
+            vertices.push_back(mesh->mTextureCoords[0][i].y);
         } else {
             vertices.push_back(0.0f);
             vertices.push_back(0.0f);
@@ -78,11 +80,11 @@ std::unique_ptr<Mesh> FBXLoader::ProcessMesh(aiMesh* mesh, const aiScene* scene)
         }
     }
 
-    return std::make_unique<Mesh>(vertices, indices);
+    return std::make_shared<Mesh>(vertices, indices);
 }
 
-std::unique_ptr<Material> FBXLoader::ProcessMaterial(aiMaterial* material, const aiScene* scene) {
-    auto mat = std::make_unique<Material>("BasicMaterial", m_Shader);
+std::shared_ptr<Material> FBXLoader::ProcessMaterial(aiMaterial* material, const aiScene* scene, std::shared_ptr<Shader> shader) {
+    auto mat = std::make_shared<Material>("BasicMaterial", shader);
 
     aiColor3D color(0.f, 0.f, 0.f);
     material->Get(AI_MATKEY_COLOR_DIFFUSE, color);

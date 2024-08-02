@@ -14,8 +14,8 @@ public:
     Renderer GetRenderer();
 
 private:
-    Window m_Window;
-    Renderer m_Renderer;
+    std::shared_ptr<Window> m_Window;
+    std::unique_ptr<Renderer> m_Renderer;
     Scene m_Scene;
     Editor m_Editor;
 };

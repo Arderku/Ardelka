@@ -3,14 +3,17 @@
 #include <fstream>
 #include <sstream>
 #include <glm/gtc/type_ptr.hpp>
+#include <filesystem>
+#include <regex>
+#include <GL/glew.h>
 
 Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath)
         : programID(0) {
     std::string vertexCode, fragmentCode;
 
     try {
-        vertexCode = readShaderCode(vertexPath);
-        fragmentCode = readShaderCode(fragmentPath);
+        vertexCode = preprocessShaderCode(readShaderCode(vertexPath), vertexPath);
+        fragmentCode = preprocessShaderCode(readShaderCode(fragmentPath), fragmentPath);
     } catch (const std::ifstream::failure& e) {
         std::cerr << "ERROR::SHADER::FILE_NOT_SUCCESSFULLY_READ: " << e.what() << std::endl;
         return;
@@ -27,7 +30,7 @@ Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath)
     glAttachShader(programID, vertex);
     glAttachShader(programID, fragment);
     glLinkProgram(programID);
-    checkCompileErrors(programID, "PROGRAM");
+    checkCompileErrors(programID, "PROGRAM", ""); // No source needed for program
 
     glDeleteShader(vertex);
     glDeleteShader(fragment);
@@ -102,12 +105,42 @@ std::string Shader::readShaderCode(const std::string& filePath) const {
     return shaderStream.str();
 }
 
+std::string Shader::preprocessShaderCode(const std::string& code, const std::string& parentPath) const {
+    std::stringstream inputStream(code);
+    std::stringstream outputStream;
+    std::string line;
+
+    std::filesystem::path parentDir = std::filesystem::path(parentPath).parent_path();
+    bool versionDirectiveFound = false;
+
+    while (std::getline(inputStream, line)) {
+        if (line.find("#version") == 0) {
+            if (!versionDirectiveFound) {
+                outputStream << line << "\n";
+                versionDirectiveFound = true;
+            }
+        } else if (line.find("#include") == 0) {
+            size_t startPos = line.find("\"") + 1;
+            size_t endPos = line.find("\"", startPos);
+            std::string includePath = line.substr(startPos, endPos - startPos);
+            std::string fullPath = (parentDir / includePath).string();
+            std::string includeCode = preprocessShaderCode(readShaderCode(fullPath), fullPath);
+
+            outputStream << includeCode << "\n";
+        } else {
+            outputStream << line << "\n";
+        }
+    }
+
+    return outputStream.str();
+}
+
 GLuint Shader::compileShader(const std::string& source, GLenum shaderType) const {
     GLuint shader = glCreateShader(shaderType);
     const char* shaderCode = source.c_str();
     glShaderSource(shader, 1, &shaderCode, NULL);
     glCompileShader(shader);
-    checkCompileErrors(shader, shaderType == GL_VERTEX_SHADER ? "VERTEX" : "FRAGMENT");
+    checkCompileErrors(shader, shaderType == GL_VERTEX_SHADER ? "VERTEX" : "FRAGMENT", source); // Pass source
 
     GLint success;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
@@ -119,20 +152,21 @@ GLuint Shader::compileShader(const std::string& source, GLenum shaderType) const
     return shader;
 }
 
-void Shader::checkCompileErrors(GLuint shader, const std::string& type) const {
+void Shader::checkCompileErrors(GLuint shader, const std::string& type, const std::string& source) const {
     GLint success;
-    GLchar infoLog[1024];
+    char infoLog[1024];
 
     if (type != "PROGRAM") {
         glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
         if (!success) {
             glGetShaderInfoLog(shader, 1024, NULL, infoLog);
             std::cerr << "ERROR::SHADER_COMPILATION_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
+            std::cerr << "Shader source: \n" << source << "\n -- --------------------------------------------------- -- " << std::endl;  // Print the shader source code
         }
     } else {
-        glGetProgramiv(programID, GL_LINK_STATUS, &success);
+        glGetProgramiv(shader, GL_LINK_STATUS, &success);
         if (!success) {
-            glGetProgramInfoLog(programID, 1024, NULL, infoLog);
+            glGetProgramInfoLog(shader, 1024, NULL, infoLog);
             std::cerr << "ERROR::PROGRAM_LINKING_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
         }
     }

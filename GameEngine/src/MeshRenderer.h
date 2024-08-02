@@ -2,25 +2,26 @@
 
 #include "Mesh.h"
 #include "Material.h"
-#include "Shader.h"
 #include "Component.h"
+#include <memory>
 
 class MeshRenderer : public Component {
 public:
-    MeshRenderer(Mesh* mesh, Material* material, Shader* shader)
-            : m_Mesh(mesh), m_Material(material), m_Shader(shader) {}
+    MeshRenderer(std::shared_ptr<Mesh> mesh, std::shared_ptr<Material> material)
+            : m_Mesh(mesh), m_Material(material) {}
 
     void Update() override {
         // Implement specific update logic if needed
     }
 
     void Render() override {
-        // Use the shader program
-        m_Shader->use();
+        // Use the shader program from the material
+        auto shader = m_Material->GetShader();
+        shader->use();
 
         // Set the model matrix
         glm::mat4 model = m_Owner->GetTransform()->GetModelMatrix();
-        m_Shader->setMat4("model", model);
+        shader->setMat4("model", model);
 
         // Bind the material
         m_Material->Bind();
@@ -38,16 +39,12 @@ public:
         m_Material->Unbind();
 
         // Unuse the shader program
-        m_Shader->unuse();
+        shader->unuse();
     }
 
-    Shader* GetShader() const { return m_Shader; }
-    void SetShader(Shader* shader) { m_Shader = shader; }
-
-    Material* GetMaterial() const { return m_Material; }
+    std::shared_ptr<Material> GetMaterial() const { return m_Material; }
 
 private:
-    Mesh* m_Mesh;
-    Material* m_Material;
-    Shader* m_Shader;
+    std::shared_ptr<Mesh> m_Mesh;
+    std::shared_ptr<Material> m_Material;
 };

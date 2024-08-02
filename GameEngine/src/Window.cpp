@@ -4,16 +4,22 @@
 void Window::Create(int width, int height, const char* title) {
     if (!glfwInit()) return;
 
+
+
     // Set OpenGL version to 4.5
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    m_Width = width;
+    m_Height = height;
 
     m_Window = glfwCreateWindow(width, height, title, nullptr, nullptr);
     if (!m_Window) {
         glfwTerminate();
         return;
     }
+
     glfwMakeContextCurrent(m_Window);
 
     // Enable V-Sync
