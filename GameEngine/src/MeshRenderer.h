@@ -44,6 +44,11 @@ public:
 
     std::shared_ptr<Material> GetMaterial() const { return m_Material; }
 
+    void SetMaterial(std::shared_ptr<Material> sharedPtr) {
+        m_Material = sharedPtr;
+
+    }
+
 private:
     std::shared_ptr<Mesh> m_Mesh;
     std::shared_ptr<Material> m_Material;

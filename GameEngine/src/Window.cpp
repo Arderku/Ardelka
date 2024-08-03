@@ -1,10 +1,22 @@
 #include <iostream>
 #include "Window.h"
 
+void Window::FramebufferSizeCallback(GLFWwindow* window, int width, int height) {
+    glViewport(0, 0, width, height);
+
+    Window* win = static_cast<Window*>(glfwGetWindowUserPointer(window));
+    if (win) {
+        win->m_Width = width;
+        win->m_Height = height;
+
+        if (win->m_ResizeCallback) {
+            win->m_ResizeCallback(width, height);
+        }
+    }
+}
+
 void Window::Create(int width, int height, const char* title) {
     if (!glfwInit()) return;
-
-
 
     // Set OpenGL version to 4.5
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -21,6 +33,10 @@ void Window::Create(int width, int height, const char* title) {
     }
 
     glfwMakeContextCurrent(m_Window);
+
+    // Set the framebuffer size callback
+    glfwSetFramebufferSizeCallback(m_Window, FramebufferSizeCallback);
+    glfwSetWindowUserPointer(m_Window, this);
 
     // Enable V-Sync
     glfwSwapInterval(1);
@@ -43,6 +59,9 @@ void Window::Create(int width, int height, const char* title) {
     std::cout << "GLSL Version: " << glslVersion << std::endl;
 
     std::cout << "Window created successfully." << std::endl;
+
+    // Set the initial viewport size
+    glViewport(0, 0, width, height);
 }
 
 void Window::PollEvents() {
@@ -55,4 +74,8 @@ void Window::SwapBuffers() {
 
 bool Window::IsOpen() const {
     return !glfwWindowShouldClose(m_Window);
+}
+
+void Window::SetResizeCallback(ResizeCallback callback) {
+    m_ResizeCallback = callback;
 }

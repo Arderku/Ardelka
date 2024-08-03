@@ -47,14 +47,26 @@ int main() {
     auto cameraGameObject = std::make_unique<GameObject>();
     cameraGameObject->SetName("MainCamera");
     cameraGameObject->AddComponent(std::make_unique<Camera>(60.0f, 2.0f / 1.0f, 0.1f, 1000.0f));
-    cameraGameObject->GetTransform()->position = glm::vec3(0.0f, 0.0f, -5.0f);
+    cameraGameObject->GetTransform()->position = glm::vec3(0.0f, 2.0f, -5.0f);
+    cameraGameObject->GetTransform()->rotation = glm::vec3(20.0f, 0.0f, 0.0f);
 
     engine.GetScene().SetActiveCamera(cameraGameObject->GetComponent<Camera>());
     engine.GetScene().AddGameObject(std::move(cameraGameObject));
 
+    // Define vertices and indices for a plane
+    std::vector<float> planeVertices = {
+            // positions          // normals           // texcoords
+            -5.0f,  0.0f, -5.0f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f,
+            5.0f,  0.0f, -5.0f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+            5.0f,  0.0f,  5.0f,  0.0f, 1.0f, 0.0f,  1.0f, 1.0f,
+            -5.0f,  0.0f,  5.0f,  0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
+    };
+    std::vector<unsigned int> planeIndices = {
+            0, 1, 2, 2, 3, 0,
+    };
 
-    // Define the cube vertices and indices
-    std::vector<float> vertices = {
+    // Define vertices and indices for a cube
+    std::vector<float> cubeVertices = {
             // positions          // normals           // texcoords
             -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
             0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,
@@ -87,7 +99,7 @@ int main() {
             -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
     };
 
-    std::vector<unsigned int> indices = {
+    std::vector<unsigned int> cubeIndices = {
             0, 1, 2, 2, 3, 0,      // Front face
             4, 5, 6, 6, 7, 4,      // Back face
             8, 9, 10, 10, 11, 8,   // Left face
@@ -96,61 +108,62 @@ int main() {
             20, 21, 22, 22, 23, 20 // Top face
     };
 
-    std::cerr << "Creating Mesh" << std::endl;
-    auto mesh = std::make_shared<Mesh>(vertices, indices);
+    // Create mesh for plane
+    std::cerr << "Creating Plane Mesh" << std::endl;
+    auto planeMesh = std::make_shared<Mesh>(planeVertices, planeIndices);
 
-    std::cerr << "Creating parent GameObject" << std::endl;
-    auto parentGameObject = std::make_unique<GameObject>();
-    parentGameObject->GetTransform()->position = glm::vec3(0.0f, 0.0f, 0.0f);
-    parentGameObject->GetTransform()->scale = glm::vec3(1);
-    parentGameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialRed));
+    // Create mesh for cube
+    std::cerr << "Creating Cube Mesh" << std::endl;
+    auto cubeMesh = std::make_shared<Mesh>(cubeVertices, cubeIndices);
 
-    std::cerr << "Creating child GameObject" << std::endl;
-    auto childGameObject = std::make_unique<GameObject>();
-    childGameObject->SetName("BlueCube");
-    childGameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialBlue));
-    childGameObject->GetTransform()->position = glm::vec3(2.0f, 1.0f, 0.0f);
-    childGameObject->GetTransform()->scale = glm::vec3(2.f, 1.f, 0.5f);
+    // Create the plane GameObject
+    std::cerr << "Creating Plane GameObject" << std::endl;
+    auto planeGameObject = std::make_unique<GameObject>();
+    planeGameObject->SetName("Plane");
+    planeGameObject->GetTransform()->position = glm::vec3(0.0f, -1.5f, 0.0f);
+    planeGameObject->GetTransform()->scale = glm::vec3(1.0f);
+    planeGameObject->AddComponent(std::make_unique<MeshRenderer>(planeMesh, materialRed));
 
-    parentGameObject->AddChild(std::move(childGameObject));
+    std::cerr << "Adding Plane GameObject to scene" << std::endl;
+    engine.GetScene().AddGameObject(std::move(planeGameObject));
 
-    std::cerr << "Adding GameObject to scene" << std::endl;
-    engine.GetScene().AddGameObject(std::move(parentGameObject));
+    // Create cubes around the GameBoyClassic model
+    std::vector<glm::vec3> cubePositions = {
+            glm::vec3(2.0f, 0.0f, 0.0f),
+            glm::vec3(-2.0f, 0.0f, 0.0f),
+            glm::vec3(0.0f, 0.0f, 2.0f),
+            glm::vec3(0.0f, 0.0f, -2.0f)
+    };
 
-    for (int i = 0; i < 1000; i++) {
-        auto gameObject = std::make_unique<TestObject>();
-        gameObject->AddComponent(std::make_unique<MeshRenderer>(mesh, materialRed));
-
-        gameObject->GetTransform()->position = glm::vec3(
-                static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 14 - 7,
-                static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 14 - 7,
-                static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 14 - 7
-        );
-
-        gameObject->GetTransform()->scale = glm::vec3(0.5f);
-
-        engine.GetScene().AddGameObject(std::move(gameObject));
+    for (const auto& position : cubePositions) {
+        auto cubeGameObject = std::make_unique<GameObject>();
+        cubeGameObject->SetName("Cube" );
+        cubeGameObject->GetTransform()->position = position;
+        cubeGameObject->GetTransform()->scale = glm::vec3(0.5f);
+        cubeGameObject->AddComponent(std::make_unique<MeshRenderer>(cubeMesh, materialBlue));
+        engine.GetScene().AddGameObject(std::move(cubeGameObject));
     }
 
+    // Load the GameBoyClassic model
     std::cerr << "Loading GameBoyClassic model" << std::endl;
     auto gameBoyClassic = ResourceManager::loadModel("Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic.fbx", pbrShader);
 
     auto GameBoyAlbedo = ResourceManager::loadTexture("GameBoyAlbedo", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_BaseColor.png");
     auto GameBoyMetallic = ResourceManager::loadTexture("GameBoyMetallic", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_Metallic.png");
-    auto GameBoyRoughness = ResourceManager::loadTexture("GameBoyRoughness", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_Roughness.png");
+    //auto GameBoyRoughness = ResourceManager::loadTexture("GameBoyRoughness", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_Roughness.png");
     auto GameBoyNormal = ResourceManager::loadTexture("GameBoyNormal", "Resources/DummyAssets/Models/GameBoyClassic/GameBoyClassic_Normal.png");
 
     auto GameBoyMaterial = ResourceManager::createMaterial("GameBoyClassic", pbrShader);
     GameBoyMaterial->SetBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
     GameBoyMaterial->SetAlbedoMap(GameBoyAlbedo);
+    GameBoyMaterial->SetMetallicMap(GameBoyMetallic);
+   // GameBoyMaterial->SetRoughnessMap(GameBoyRoughness);
+    GameBoyMaterial->SetNormalMap(GameBoyNormal);
 
     auto gameBoyRenderer = gameBoyClassic->GetComponent<MeshRenderer>();
-    gameBoyRenderer->GetMaterial()->SetBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
-    gameBoyRenderer->GetMaterial()->SetAlbedoMap(GameBoyAlbedo);
-    gameBoyRenderer->GetMaterial()->SetMetallicMap(GameBoyMetallic);
-    gameBoyRenderer->GetMaterial()->SetNormalMap(GameBoyNormal);
+    gameBoyRenderer->SetMaterial(GameBoyMaterial);
 
-    gameBoyClassic->GetTransform()->position = glm::vec3(0.0f, -1.20f, 0.0f);
+    gameBoyClassic->GetTransform()->position = glm::vec3(0.0f, -1.0f, 0.0f);
     gameBoyClassic->GetTransform()->rotation = glm::vec3(0.0f, 45.0f, 0.0f);
     gameBoyClassic->GetTransform()->scale = glm::vec3(0.01f);
 

@@ -29,12 +29,12 @@ void Engine::Run() {
         m_Scene.Update();
 
         m_Renderer->Render(m_Scene);
-      //  m_Editor.Render();
+        m_Editor.Render();
         m_Window->SwapBuffers();
     }
 
     m_Renderer->Shutdown();
-   // m_Editor.Shutdown();
+    m_Editor.Shutdown();
 }
 
 void Engine::Init() {
@@ -44,7 +44,7 @@ void Engine::Init() {
     m_Renderer = std::make_unique<Renderer>(m_Window);
     m_Renderer->Init();
 
-   // m_Editor.Init(m_Window->GetWindow(), m_Scene, *m_Renderer);
+    m_Editor.Init(m_Window->GetWindow(), m_Scene, *m_Renderer);
 }
 
 Renderer Engine::GetRenderer() {

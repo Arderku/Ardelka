@@ -69,6 +69,7 @@ add_executable(GameEngine
         GameEngine/src/TestObject.cpp
         GameEngine/src/TestObject.h
         GameEngine/src/FBXLoader.cpp
+        GameEngine/src/LightComponent.h
 )
 
 # Link libraries

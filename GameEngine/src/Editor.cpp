@@ -376,42 +376,15 @@ void Editor::ShowSceneViewport() {
     // Get the size of the viewport window
     ImVec2 viewportSize = ImGui::GetContentRegionAvail();
 
-    // Update the framebuffer size to match the viewport size only if it changes
-    static ImVec2 lastViewportSize = ImVec2(0, 0);
-    if (viewportSize.x != lastViewportSize.x || viewportSize.y != lastViewportSize.y) {
-        glBindTexture(GL_TEXTURE_2D, m_TextureColorbuffer);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (int)viewportSize.x, (int)viewportSize.y, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
-        glBindRenderbuffer(GL_RENDERBUFFER, m_RBO);
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, (int)viewportSize.x, (int)viewportSize.y);
-        glBindFramebuffer(GL_FRAMEBUFFER, m_Framebuffer);
-        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-            std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer is not complete! Status: " << glCheckFramebufferStatus(GL_FRAMEBUFFER) << std::endl;
-        }
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        lastViewportSize = viewportSize;
-
-        // Update the camera's projection matrix
-        float aspectRatio = viewportSize.x / viewportSize.y;
-        m_Scene->GetActiveCamera()->SetAspectRatio(aspectRatio);
-    }
-
     // Bind the framebuffer
-    glBindFramebuffer(GL_FRAMEBUFFER, m_Framebuffer);
-    glViewport(0, 0, (int)viewportSize.x, (int)viewportSize.y);
+   // m_Renderer->GetRenderTexture();
 
-    // Clear the framebuffer
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    // Render the scene to the framebuffer
-    if (m_Renderer && m_Scene) {
-        m_Renderer->RenderToFramebuffer(*m_Scene, m_Framebuffer, (int)viewportSize.x, (int)viewportSize.y);
-    }
-
-    // Unbind the framebuffer
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+// Render to the framebuffer with the current viewport size
+    m_Renderer->RenderToViewport(*m_Scene, static_cast<int>(viewportSize.x), static_cast<int>(viewportSize.y));
 
     // Display the framebuffer texture in the ImGui window
-    ImGui::Image((void*)(intptr_t)m_TextureColorbuffer, viewportSize, ImVec2(0, 1), ImVec2(1, 0));
+    GLuint renderTexture = m_Renderer->GetRenderTexture();
+    ImGui::Image((void*)(intptr_t)renderTexture, viewportSize, ImVec2(0, 1), ImVec2(1, 0));
 
     // Disable depth testing before rendering ImGui elements
     glDisable(GL_DEPTH_TEST);
