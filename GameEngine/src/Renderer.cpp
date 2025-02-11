@@ -4,7 +4,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 
-Renderer::Renderer(std::shared_ptr<Window> window) : shadowFBO(0), shadowMap(0), renderFBO(0), renderTexture(0), m_Window(window) {
+Renderer::Renderer(std::shared_ptr<Window> window) :
+    shadowFBO(0), shadowMap(0), renderFBO(0), renderTexture(0), rboDepth(0),
+    m_Window(window), m_ViewportWidth(window->GetWidth()), m_ViewportHeight(window->GetHeight()) {
 }
 
 Renderer::~Renderer() {
@@ -20,16 +22,14 @@ void Renderer::Init() {
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glDisable(GL_BLEND);
+
     glClearColor(0.68f, 0.85f, 0.9f, 1.0f);
 
     // Setup shadow map FBO
     glGenFramebuffers(1, &shadowFBO);
     glGenTextures(1, &shadowMap);
     glBindTexture(GL_TEXTURE_2D, shadowMap);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, 1024, 1024, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, 2048, 2048, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
@@ -47,14 +47,14 @@ void Renderer::Init() {
     glGenFramebuffers(1, &renderFBO);
     glGenTextures(1, &renderTexture);
     glBindTexture(GL_TEXTURE_2D, renderTexture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_Window->GetWidth(), m_Window->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_SRGB8_ALPHA8, m_Window->GetWidth(), m_Window->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glBindFramebuffer(GL_FRAMEBUFFER, renderFBO);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, renderTexture, 0);
 
     // Create and attach the depth buffer (renderbuffer)
-    GLuint rboDepth;
     glGenRenderbuffers(1, &rboDepth);
     glBindRenderbuffer(GL_RENDERBUFFER, rboDepth);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, m_Window->GetWidth(), m_Window->GetHeight());
@@ -73,6 +73,27 @@ void Renderer::Init() {
     SetupLights();
     std::cout << "Renderer initialized successfully" << std::endl;
 }
+
+void Renderer::RenderShadowPass(const glm::mat4& lightSpaceMatrix,
+                                const std::vector<std::unique_ptr<GameObject>>& gameObjects) {
+    m_ShadowShader->use();
+    // Ensure the viewport matches the shadow map resolution.
+    glViewport(0, 0, 2048, 2048);
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowFBO);
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    m_ShadowShader->setMat4("lightSpaceMatrix", lightSpaceMatrix);
+    // Iterate over the unique pointers. Use the raw pointer via .get() or -> directly.
+    for (const auto& gameObject : gameObjects) {
+        if (auto renderer = gameObject->GetComponent<MeshRenderer>()) {
+            glm::mat4 model = gameObject->GetTransform()->GetModelMatrix();
+            m_ShadowShader->setMat4("model", model);
+            renderer->Render();
+        }
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
 
 void Renderer::SetupLights() {
     m_PBRShader->use();
@@ -109,35 +130,24 @@ void Renderer::Render(Scene& scene) {
     int width = m_Window->GetWidth();
     int height = m_Window->GetHeight();
 
-    // First pass: render to shadow map
-    m_ShadowShader->use();
-    glViewport(0, 0, 2048, 2048);  // Updated to match new resolution
-    glBindFramebuffer(GL_FRAMEBUFFER, shadowFBO);
-    glClear(GL_DEPTH_BUFFER_BIT);
-
-    glm::vec3 lightPos = glm::vec3(2.0f, 4.0f, -1.0f);  // Example light position
-    glm::vec3 lightDir = glm::normalize(glm::vec3(-2.0f, -4.0f, -1.0f));  // Example light direction
-
+    // Calculate light space transformation for shadow mapping.
+    glm::vec3 lightPos = glm::vec3(2.0f, 4.0f, -1.0f);   // Example light position
+    glm::vec3 lightDir = glm::normalize(glm::vec3(-2.0f, -4.0f, -1.0f)); // Example light direction
     glm::mat4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, 1.0f, 7.5f);
     glm::mat4 lightView = glm::lookAt(lightPos, lightPos + lightDir, glm::vec3(0.0f, 1.0f, 0.0f));
     glm::mat4 lightSpaceMatrix = lightProjection * lightView;
-    m_ShadowShader->setMat4("lightSpaceMatrix", lightSpaceMatrix);
 
-    const auto& gameObjects = scene.GetGameObjects();
-    for (const auto& gameObject : gameObjects) {
-        if (auto renderer = gameObject->GetComponent<MeshRenderer>()) {
-            glm::mat4 model = gameObject->GetTransform()->GetModelMatrix();
-            m_ShadowShader->setMat4("model", model);
-            renderer->Render();
-        }
-    }
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    // Render shadow pass using the helper function.
+    RenderShadowPass(lightSpaceMatrix, scene.GetGameObjects());
 
-    // Second pass: render scene as usual with PBR shader
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);  // Bind the default framebuffer
+    // Second pass: render scene normally using PBR shader.
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);  // Bind default framebuffer.
     m_PBRShader->use();
+
+    // Change 4: If your lights are dynamic, update them here.
     SetupLights();
-    glViewport(0, 0, width, height); // Use window dimensions
+
+    glViewport(0, 0, width, height);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     auto activeCamera = scene.GetActiveCamera();
@@ -152,11 +162,16 @@ void Renderer::Render(Scene& scene) {
     m_PBRShader->setMat4("projection", projection);
     m_PBRShader->setMat4("lightSpaceMatrix", lightSpaceMatrix);
 
+    // Bind the shadow map texture on texture unit 4.
     glActiveTexture(GL_TEXTURE0 + 4);
     glBindTexture(GL_TEXTURE_2D, shadowMap);
     m_PBRShader->setInt("shadowMap", 4);
-    m_PBRShader->setVec3("shadowColor", glm::vec3(0.2f, 0.2f, 0.3f)); // Example shadow color
+    m_PBRShader->setVec3("shadowColor", glm::vec3(0.2f, 0.2f, 0.3f)); // Example shadow color.
 
+    // Change 7: Set a shadow bias uniform to help prevent shadow artifacts.
+    m_PBRShader->setFloat("u_ShadowBias", 0.005f);
+
+    const auto& gameObjects = scene.GetGameObjects();
     for (const auto& gameObject : gameObjects) {
         if (auto renderer = gameObject->GetComponent<MeshRenderer>()) {
             glm::mat4 model = gameObject->GetTransform()->GetModelMatrix();
@@ -164,6 +179,21 @@ void Renderer::Render(Scene& scene) {
             renderer->Render();
         }
     }
+
+    // Change 5: Optionally render a skybox to improve environmental lighting.
+    if (m_SkyboxShader) {
+        glDepthFunc(GL_LEQUAL);  // Ensure the skybox is rendered behind other objects.
+        m_SkyboxShader->use();
+        // Remove the translation from the view matrix.
+        glm::mat4 skyboxView = glm::mat4(glm::mat3(view));
+        m_SkyboxShader->setMat4("view", skyboxView);
+        m_SkyboxShader->setMat4("projection", projection);
+        // Call your skybox rendering code here, for example:
+        // skybox->Render();
+        glDepthFunc(GL_LESS);  // Restore default depth function.
+    }
+
+    // Change 6: Optionally, add a post-processing pass here for tone mapping and gamma correction.
 
 #ifdef DEBUG
     GLenum error = glGetError();
@@ -178,32 +208,18 @@ void Renderer::RenderToViewport(Scene& scene, int viewportWidth, int viewportHei
         UpdateViewportSize(viewportWidth, viewportHeight);
     }
 
-    // First pass: render to shadow map
-    m_ShadowShader->use();
-    glViewport(0, 0, 2048, 2048);
-    glBindFramebuffer(GL_FRAMEBUFFER, shadowFBO);
-    glClear(GL_DEPTH_BUFFER_BIT);
-
+    // Calculate light space transformation for shadow mapping.
     glm::vec3 lightPos = glm::vec3(2.0f, 4.0f, -1.0f);
     glm::vec3 lightDir = glm::normalize(glm::vec3(-2.0f, -4.0f, -1.0f));
-
     glm::mat4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, 1.0f, 7.5f);
     glm::mat4 lightView = glm::lookAt(lightPos, lightPos + lightDir, glm::vec3(0.0f, 1.0f, 0.0f));
     glm::mat4 lightSpaceMatrix = lightProjection * lightView;
-    m_ShadowShader->setMat4("lightSpaceMatrix", lightSpaceMatrix);
 
-    const auto& gameObjects = scene.GetGameObjects();
-    for (const auto& gameObject : gameObjects) {
-        if (auto renderer = gameObject->GetComponent<MeshRenderer>()) {
-            glm::mat4 model = gameObject->GetTransform()->GetModelMatrix();
-            m_ShadowShader->setMat4("model", model);
-            renderer->Render();
-        }
-    }
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    // Render shadow pass.
+    RenderShadowPass(lightSpaceMatrix, scene.GetGameObjects());
 
-    // Second pass: render scene to framebuffer
-    glBindFramebuffer(GL_FRAMEBUFFER, renderFBO); // Bind the render FBO
+    // Render scene to the off-screen framebuffer.
+    glBindFramebuffer(GL_FRAMEBUFFER, renderFBO);
     m_PBRShader->use();
     SetupLights();
     glViewport(0, 0, viewportWidth, viewportHeight);
@@ -225,7 +241,9 @@ void Renderer::RenderToViewport(Scene& scene, int viewportWidth, int viewportHei
     glBindTexture(GL_TEXTURE_2D, shadowMap);
     m_PBRShader->setInt("shadowMap", 4);
     m_PBRShader->setVec3("shadowColor", glm::vec3(0.2f, 0.2f, 0.3f));
+    m_PBRShader->setFloat("u_ShadowBias", 0.005f);
 
+    const auto& gameObjects = scene.GetGameObjects();
     for (const auto& gameObject : gameObjects) {
         if (auto renderer = gameObject->GetComponent<MeshRenderer>()) {
             glm::mat4 model = gameObject->GetTransform()->GetModelMatrix();
@@ -248,19 +266,22 @@ void Renderer::UpdateViewportSize(int width, int height) {
     m_ViewportWidth = width;
     m_ViewportHeight = height;
 
-    // Update the framebuffer size to match the viewport size
+    // Update the render texture to match the new viewport dimensions.
     glBindTexture(GL_TEXTURE_2D, renderTexture);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
+    // Change 3: Update the renderbuffer storage using the member variable rboDepth.
     glBindRenderbuffer(GL_RENDERBUFFER, rboDepth);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
 
     glBindFramebuffer(GL_FRAMEBUFFER, renderFBO);
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-        std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer is not complete! Status: " << glCheckFramebufferStatus(GL_FRAMEBUFFER) << std::endl;
+        std::cerr << "ERROR::FRAMEBUFFER:: Framebuffer is not complete! Status: "
+                  << glCheckFramebufferStatus(GL_FRAMEBUFFER) << std::endl;
     }
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
+
 
 void Renderer::Shutdown() {
     if (shadowFBO) glDeleteFramebuffers(1, &shadowFBO);

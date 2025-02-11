@@ -2,7 +2,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "Engine.h"
+#include "Application.h"
 #include "MeshRenderer.h"
 #include "Shader.h"
 #include "Material.h"
@@ -14,8 +14,8 @@
 #include "TestObject.h"
 
 int main() {
-    Engine engine;
-    engine.Init();
+    Application application;
+    application.Init();
     std::cerr << "Starting main" << std::endl;
 
     // Load shaders
@@ -50,8 +50,8 @@ int main() {
     cameraGameObject->GetTransform()->position = glm::vec3(0.0f, 2.0f, -5.0f);
     cameraGameObject->GetTransform()->rotation = glm::vec3(20.0f, 0.0f, 0.0f);
 
-    engine.GetScene().SetActiveCamera(cameraGameObject->GetComponent<Camera>());
-    engine.GetScene().AddGameObject(std::move(cameraGameObject));
+    application.GetScene().SetActiveCamera(cameraGameObject->GetComponent<Camera>());
+    application.GetScene().AddGameObject(std::move(cameraGameObject));
 
     // Define vertices and indices for a plane
     std::vector<float> planeVertices = {
@@ -125,7 +125,7 @@ int main() {
     planeGameObject->AddComponent(std::make_unique<MeshRenderer>(planeMesh, materialRed));
 
     std::cerr << "Adding Plane GameObject to scene" << std::endl;
-    engine.GetScene().AddGameObject(std::move(planeGameObject));
+    application.GetScene().AddGameObject(std::move(planeGameObject));
 
     // Create cubes around the GameBoyClassic model
     std::vector<glm::vec3> cubePositions = {
@@ -141,7 +141,7 @@ int main() {
         cubeGameObject->GetTransform()->position = position;
         cubeGameObject->GetTransform()->scale = glm::vec3(0.5f);
         cubeGameObject->AddComponent(std::make_unique<MeshRenderer>(cubeMesh, materialBlue));
-        engine.GetScene().AddGameObject(std::move(cubeGameObject));
+        application.GetScene().AddGameObject(std::move(cubeGameObject));
     }
 
     // Load the GameBoyClassic model
@@ -168,9 +168,9 @@ int main() {
     gameBoyClassic->GetTransform()->scale = glm::vec3(0.01f);
 
     std::cerr << "Adding GameBoyClassic to scene" << std::endl;
-    engine.GetScene().AddGameObject(std::move(gameBoyClassic));
+    application.GetScene().AddGameObject(std::move(gameBoyClassic));
 
     std::cerr << "Starting engine run" << std::endl;
-    engine.Run();
+    application.Run();
     return 0;
 }

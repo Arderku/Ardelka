@@ -43,7 +43,7 @@ endif()
 # Add executable
 add_executable(GameEngine
         GameEngine/src/main.cpp
-        GameEngine/src/Engine.cpp
+        GameEngine/src/Application.cpp
         GameEngine/src/Window.cpp
         GameEngine/src/Renderer.cpp
         GameEngine/src/Scene.cpp
@@ -53,8 +53,6 @@ add_executable(GameEngine
         GameEngine/src/Material.h
         GameEngine/src/Material.cpp
         GameEngine/src/Component.h
-        GameEngine/src/Application.h
-        GameEngine/src/Application.cpp
         GameEngine/src/Mesh.h
         GameEngine/src/Mesh.cpp
         GameEngine/src/GameObject.cpp
@@ -70,6 +68,9 @@ add_executable(GameEngine
         GameEngine/src/TestObject.h
         GameEngine/src/FBXLoader.cpp
         GameEngine/src/LightComponent.h
+        GameEngine/src/Layer.h
+        GameEngine/src/EditorLayer.h
+        GameEngine/src/GameLayer.h
 )
 
 # Link libraries

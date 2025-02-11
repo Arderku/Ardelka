@@ -8,6 +8,8 @@
 #include "MeshRenderer.h"
 #include "EditorStyle.h"
 
+#include "Application.h"
+
 // Function to draw a gradient rectangle
 void DrawGradient(ImVec2 start, ImVec2 end, ImU32 colorStart, ImU32 colorEnd) {
     ImDrawList* draw_list = ImGui::GetWindowDrawList();
@@ -21,6 +23,8 @@ void Editor::Init(GLFWwindow* window, Scene& scene, Renderer& renderer) {
 
     // Apply the custom style
     EditorStyle::ApplyStyle();
+
+    io.IniFilename = "editor_layout.ini";
 
     // Enable Docking
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
@@ -62,10 +66,6 @@ void Editor::Init(GLFWwindow* window, Scene& scene, Renderer& renderer) {
 }
 
 void Editor::Render() {
-    // Start the ImGui frame
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplGlfw_NewFrame();
-    ImGui::NewFrame();
 
     // Set up main DockSpace
     ImGuiViewport* viewport = ImGui::GetMainViewport();
@@ -91,8 +91,12 @@ void Editor::Render() {
 
     ImGui::End();
 
-    // Show the scene viewport
-    ShowSceneViewport();
+ // Draw the two separate viewports.
+    ShowEditorViewport();  // This always shows the scene for editing.
+    ShowGameViewport();    // This shows the game simulation preview.
+
+    // Draw the playback control button.
+    ShowPlayStopButton();
 
     // Show other panels
     ShowSceneHierarchy();
@@ -103,15 +107,14 @@ void Editor::Render() {
     // Disable depth testing before rendering ImGui
     glDisable(GL_DEPTH_TEST);
 
-    // Render ImGui elements
-    ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
     // Re-enable depth testing
     glEnable(GL_DEPTH_TEST);
 }
 
 void Editor::Shutdown() {
+
+    ImGui::SaveIniSettingsToDisk("editor_layout.ini");
+
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
@@ -370,57 +373,62 @@ void Editor::ShowConsole() {
     ImGui::End();
 }
 
-void Editor::ShowSceneViewport() {
-    ImGui::Begin("Scene Viewport");
+void Editor::ShowEditorViewport() {
+    ImGui::Begin("Editor Viewport");
 
-    // Get the size of the viewport window
+    // Get the available size in this window.
     ImVec2 viewportSize = ImGui::GetContentRegionAvail();
 
-    // Bind the framebuffer
-   // m_Renderer->GetRenderTexture();
-
-// Render to the framebuffer with the current viewport size
+    // Render the scene to the editor view.
+    // You might choose to use a different render mode or overlays here.
     m_Renderer->RenderToViewport(*m_Scene, static_cast<int>(viewportSize.x), static_cast<int>(viewportSize.y));
 
-    // Display the framebuffer texture in the ImGui window
+    // Retrieve the render texture and display it.
     GLuint renderTexture = m_Renderer->GetRenderTexture();
     ImGui::Image((void*)(intptr_t)renderTexture, viewportSize, ImVec2(0, 1), ImVec2(1, 0));
-
-    // Disable depth testing before rendering ImGui elements
-    glDisable(GL_DEPTH_TEST);
-
-    // Render text on top of the scene
-    ImGui::SetCursorPos(ImVec2(50, 60)); // Adjust the position as needed
-    ImGui::Text("STATS:");
-    ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate); // Display FPS
-    ImGui::Text("Viewport Size: (%.0f, %.0f)", viewportSize.x, viewportSize.y); // Display viewport size
-    ImGui::Text("Aspect Ratio: %.2f", viewportSize.x / viewportSize.y);
-
-    // Re-enable depth testing
-    glEnable(GL_DEPTH_TEST);
 
     ImGui::End();
 }
 
+void Editor::ShowGameViewport() {
+    ImGui::Begin("Game View");
 
-void Editor::ShowPlayPauseStopButtons() {
-    // Calculate the position to center the buttons at the top
-    ImVec2 buttonSize(50, 50); // Adjust the size of the buttons
-    float totalWidth = buttonSize.x * 3 + ImGui::GetStyle().ItemSpacing.x * 2; // 3 buttons with spacing
-    ImVec2 buttonPos((800 - totalWidth) / 2, 50.0f); // 10.0f for top margin
+    ImVec2 viewportSize = ImGui::GetContentRegionAvail();
 
-    ImGui::SetCursorPos(buttonPos);
+    // Render the scene as the game would see it.
+    // (This could use a separate camera or post-processing effects.)
+    m_Renderer->RenderToViewport(*m_Scene, static_cast<int>(viewportSize.x), static_cast<int>(viewportSize.y));
 
-    if (ImGui::Button("Play", buttonSize)) {
-        // Handle play action
-    }
+    GLuint gameTexture = m_Renderer->GetRenderTexture(); // You may use the same or a separate target.
+    ImGui::Image((void*)(intptr_t)gameTexture, viewportSize, ImVec2(0, 1), ImVec2(1, 0));
 
-    ImGui::SameLine();
-    if (ImGui::Button("Pause", buttonSize)) {
-        // Handle pause action
-    }
-    ImGui::SameLine();
-    if (ImGui::Button("Stop", buttonSize)) {
-        // Handle stop action
-    }
+    ImGui::End();
 }
+
+void Editor::ShowPlayStopButton() {
+    // Begin a child region for playback control (for better layout).
+    ImGui::BeginChild("PlaybackControl", ImVec2(0, 60), false, ImGuiWindowFlags_NoScrollbar);
+
+    const ImVec2 buttonSize(100, 50);
+    // Determine the label based on the play mode state.
+    std::string label = "Play";
+    if (m_App && m_App->IsPlayMode()) {
+        label = "Stop";
+    }
+
+    // Center the button.
+    float windowWidth = ImGui::GetWindowWidth();
+    float offsetX = (windowWidth > buttonSize.x) ? (windowWidth - buttonSize.x) * 0.5f : 0.0f;
+    ImGui::SetCursorPosX(offsetX);
+
+    if (ImGui::Button(label.c_str(), buttonSize)) {
+        if (m_App) {
+            // Toggle the play mode.
+            m_App->SetPlayMode(!m_App->IsPlayMode());
+        }
+    }
+
+    ImGui::EndChild();
+}
+
+
