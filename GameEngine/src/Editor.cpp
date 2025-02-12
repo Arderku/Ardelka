@@ -9,6 +9,7 @@
 #include "EditorStyle.h"
 
 #include "Application.h"
+#include "glm/gtc/type_ptr.hpp"
 
 // Function to draw a gradient rectangle
 void DrawGradient(ImVec2 start, ImVec2 end, ImU32 colorStart, ImU32 colorEnd) {
@@ -223,51 +224,44 @@ void Editor::ShowGameObjectHierarchy(GameObject* gameObject) {
 
 void Editor::ShowInspector() {
     ImGui::Begin("Inspector");
-    if (m_SelectedGameObject) {
-        ImGui::Text(m_SelectedGameObject->GetName().c_str());
 
+    if (m_SelectedGameObject) {
+        // Display the name of the selected GameObject.
+        ImGui::Text("Selected: %s", m_SelectedGameObject->GetName().c_str());
+
+        // (Display Transform data here, as before)
         Transform* transform = m_SelectedGameObject->GetTransform();
         if (transform) {
             if (ImGui::CollapsingHeader("TRANSFORM", ImGuiTreeNodeFlags_DefaultOpen)) {
-
-                ImVec4 colorX = ImVec4(0.8f, 0.0f, 0.0f, 1.0f);
-                ImVec4 colorY = ImVec4(0.0f, 0.8f, 0.0f, 1.0f);
-                ImVec4 colorZ = ImVec4(0.0f, 0.0f, 0.8f, 1.0f);
-
+                // A lambda for drawing transform controls (Position, Rotation, Scale)
                 auto DrawTransformControl = [&](const char* label, glm::vec3& values, const char* id) {
                     ImGui::Columns(2);
                     ImGui::SetColumnWidth(0, 100);
-                    ImGui::Text(label);
+                    ImGui::Text("%s", label);
                     ImGui::NextColumn();
-
                     ImGui::PushItemWidth(80);
-
-                    ImGui::TextColored(colorX, "X");
+                    ImGui::TextColored(ImVec4(0.8f,0.0f,0.0f,1.0f), "X");
                     ImGui::SameLine();
                     ImGui::DragFloat((std::string("##X") + id).c_str(), &values.x, 0.1f);
-
                     ImGui::SameLine();
-
-                    ImGui::TextColored(colorY, "Y");
+                    ImGui::TextColored(ImVec4(0.0f,0.8f,0.0f,1.0f), "Y");
                     ImGui::SameLine();
                     ImGui::DragFloat((std::string("##Y") + id).c_str(), &values.y, 0.1f);
-
                     ImGui::SameLine();
-
-                    ImGui::TextColored(colorZ, "Z");
+                    ImGui::TextColored(ImVec4(0.0f,0.0f,0.8f,1.0f), "Z");
                     ImGui::SameLine();
                     ImGui::DragFloat((std::string("##Z") + id).c_str(), &values.z, 0.1f);
-
+                    ImGui::PopItemWidth();
                     ImGui::Columns(1);
                 };
 
-                glm::vec3 position = transform->GetPosition();
-                DrawTransformControl("Position", position, "Position");
-                transform->SetPosition(position);
+                glm::vec3 pos = transform->GetPosition();
+                DrawTransformControl("Position", pos, "Pos");
+                transform->SetPosition(pos);
 
-                glm::vec3 rotation = transform->GetRotation();
-                DrawTransformControl("Rotation", rotation, "Rotation");
-                transform->SetRotation(rotation);
+                glm::vec3 rot = transform->GetRotation();
+                DrawTransformControl("Rotation", rot, "Rot");
+                transform->SetRotation(rot);
 
                 glm::vec3 scale = transform->GetScale();
                 DrawTransformControl("Scale", scale, "Scale");
@@ -275,78 +269,100 @@ void Editor::ShowInspector() {
             }
         }
 
-        // Iterate through components and show MeshRenderer if present
+        // Material Editing Section for MeshRenderer
         MeshRenderer* meshRenderer = m_SelectedGameObject->GetComponent<MeshRenderer>();
         if (meshRenderer) {
             if (ImGui::CollapsingHeader("MESH RENDERER", ImGuiTreeNodeFlags_DefaultOpen)) {
+                // Display the material name.
                 if (meshRenderer->GetMaterial()) {
                     ImGui::Text("Material: %s", meshRenderer->GetMaterial()->GetName().c_str());
                 }
 
+                // Show Material Properties (Base Color, Metallic, Roughness, and Texture Previews)
                 if (meshRenderer->GetMaterial()) {
-                    if (ImGui::CollapsingHeader("MATERIAL", ImGuiTreeNodeFlags_DefaultOpen)) {
+                    if (ImGui::CollapsingHeader("MATERIAL PROPERTIES", ImGuiTreeNodeFlags_DefaultOpen)) {
+                        std::shared_ptr<Material> material = meshRenderer->GetMaterial();
 
-                        // Display controls for BaseColor, Metallic, and Roughness
-                        glm::vec3 baseColor = meshRenderer->GetMaterial()->GetBaseColor();
-                        if (ImGui::ColorEdit3("Base Color", &baseColor[0])) {
-                            meshRenderer->GetMaterial()->SetBaseColor(baseColor);
+                        ImGui::Separator();
+                        // Base Color
+                        {
+                            glm::vec3 baseColor = material->GetBaseColor();
+                            ImGui::Text("Base Color");
+                            ImGui::SameLine(120);
+                            if (ImGui::ColorEdit3("##BaseColor", glm::value_ptr(baseColor))) {
+                                material->SetBaseColor(baseColor);
+                            }
                         }
 
-                        float metallic = meshRenderer->GetMaterial()->GetMetallic();
-                        if (ImGui::SliderFloat("Metallic", &metallic, 0.0f, 1.0f)) {
-                            meshRenderer->GetMaterial()->SetMetallic(metallic);
+                        // Metallic
+                        {
+                            float metallic = material->GetMetallic();
+                            ImGui::Text("Metallic");
+                            ImGui::SameLine(120);
+                            if (ImGui::SliderFloat("##Metallic", &metallic, 0.0f, 1.0f)) {
+                                material->SetMetallic(metallic);
+                            }
                         }
 
-                        float roughness = meshRenderer->GetMaterial()->GetRoughness();
-                        if (ImGui::SliderFloat("Roughness", &roughness, 0.0f, 1.0f)) {
-                            meshRenderer->GetMaterial()->SetRoughness(roughness);
+                        // Roughness
+                        {
+                            float roughness = material->GetRoughness();
+                            ImGui::Text("Roughness");
+                            ImGui::SameLine(120);
+                            if (ImGui::SliderFloat("##Roughness", &roughness, 0.0f, 1.0f)) {
+                                material->SetRoughness(roughness);
+                            }
                         }
 
-                        // Textures preview
-                        ImVec2 textureSize(50, 50);
-                        // Base color
-                        auto albedoTexture = meshRenderer->GetMaterial()->GetAlbedoMap();
-                        if (albedoTexture) {
-                            // Display texture preview
-                            ImGui::Text("Albedo:");
-                            ImGui::Image((void *)(intptr_t) albedoTexture->GetID(), textureSize);
-                        } else {
-                            ImGui::Text("Albedo: No texture");
-                            // empty texture
-                            ImGui::Image((void *)(intptr_t) nullptr, textureSize);
-                        }
+                        ImGui::Separator();
+                        ImGui::Text("Texture Previews:");
 
-                        auto metallicTexture = meshRenderer->GetMaterial()->GetMetallicMap();
-                        if (metallicTexture) {
-                            // Display texture preview
-                            ImGui::Text("Metallic:");
-                            ImGui::Image((void *)(intptr_t) metallicTexture->GetID(), textureSize);
-                        } else {
-                            ImGui::Text("Metallic: No texture");
-                            // empty texture
-                            ImGui::Image((void *)(intptr_t) nullptr, textureSize);
-                        }
+                        // Use a table layout for texture previews.
+                        if (ImGui::BeginTable("MaterialTextures", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
+                            ImGui::TableNextRow();
+                            ImGui::TableSetColumnIndex(0);
+                            ImGui::Text("Albedo");
+                            ImGui::TableSetColumnIndex(1);
+                            auto albedoTexture = material->GetAlbedoMap();
+                            if (albedoTexture) {
+                                ImGui::Image((void*)(intptr_t)albedoTexture->GetID(), ImVec2(50,50));
+                            } else {
+                                ImGui::Text("None");
+                            }
 
-                        auto roughnessTexture = meshRenderer->GetMaterial()->GetRoughnessMap();
-                        if (roughnessTexture) {
-                            // Display texture preview
-                            ImGui::Text("Roughness:");
-                            ImGui::Image((void *)(intptr_t) roughnessTexture->GetID(), textureSize);
-                        } else {
-                            ImGui::Text("Roughness: No texture");
-                            // empty texture
-                            ImGui::Image((void *)(intptr_t) nullptr, textureSize);
-                        }
+                            ImGui::TableNextRow();
+                            ImGui::TableSetColumnIndex(0);
+                            ImGui::Text("Metallic");
+                            ImGui::TableSetColumnIndex(1);
+                            auto metallicTexture = material->GetMetallicMap();
+                            if (metallicTexture) {
+                                ImGui::Image((void*)(intptr_t)metallicTexture->GetID(), ImVec2(50,50));
+                            } else {
+                                ImGui::Text("None");
+                            }
 
-                        auto normalTexture = meshRenderer->GetMaterial()->GetNormalMap();
-                        if (normalTexture) {
-                            // Display texture preview
-                            ImGui::Text("Normal:");
-                            ImGui::Image((void *)(intptr_t) normalTexture->GetID(), textureSize);
-                        } else {
-                            ImGui::Text("Normal: No texture");
-                            // empty texture
-                            ImGui::Image((void *)(intptr_t) nullptr, textureSize);
+                            ImGui::TableNextRow();
+                            ImGui::TableSetColumnIndex(0);
+                            ImGui::Text("Roughness");
+                            ImGui::TableSetColumnIndex(1);
+                            auto roughnessTexture = material->GetRoughnessMap();
+                            if (roughnessTexture) {
+                                ImGui::Image((void*)(intptr_t)roughnessTexture->GetID(), ImVec2(50,50));
+                            } else {
+                                ImGui::Text("None");
+                            }
+
+                            ImGui::TableNextRow();
+                            ImGui::TableSetColumnIndex(0);
+                            ImGui::Text("Normal");
+                            ImGui::TableSetColumnIndex(1);
+                            auto normalTexture = material->GetNormalMap();
+                            if (normalTexture) {
+                                ImGui::Image((void*)(intptr_t)normalTexture->GetID(), ImVec2(50,50));
+                            } else {
+                                ImGui::Text("None");
+                            }
+                            ImGui::EndTable();
                         }
                     }
                 }

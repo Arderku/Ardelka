@@ -38,10 +38,13 @@ int main() {
     auto roughness = ResourceManager::loadTexture("roughness", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_roughness.png");
     auto normal = ResourceManager::loadTexture("normal", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_normal_dx.png");
 
-    materialRed->SetAlbedoMap(albedo);
+        auto tt = ResourceManager::GetDefaultWhiteTexture();
+    materialRed->SetAlbedoMap(tt);
     materialRed->SetMetallicMap(metallic);
     materialRed->SetRoughnessMap(roughness);
     materialRed->SetNormalMap(normal);
+
+        materialBlue->SetAlbedoMap(albedo);
 
     // Create a GameObject with a Camera component
     auto cameraGameObject = std::make_unique<GameObject>();
@@ -169,6 +172,8 @@ int main() {
 
     std::cerr << "Adding GameBoyClassic to scene" << std::endl;
     application.GetScene().AddGameObject(std::move(gameBoyClassic));
+
+
 
     std::cerr << "Starting engine run" << std::endl;
     application.Run();

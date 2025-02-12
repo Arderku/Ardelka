@@ -22,6 +22,13 @@ void GameObject::Update() {
 
     OnUpdate();
 
+    /*float deltaTime = 0.016f; // Assume a fixed time step for simplicity, replace with actual delta time in a real scenario
+    glm::vec3 rotation = GetTransform()->GetRotation();
+    rotation.y += 1;
+    GetTransform()->SetRotation(rotation);*/
+
+    GetTransform()->SetDirty();
+
     for (const auto& component : m_Components) {
         component->Update();
     }

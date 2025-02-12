@@ -10,6 +10,7 @@ class ResourceManager {
 public:
     static std::shared_ptr<Texture> loadTexture(const std::string& name, const std::string& path);
     static std::shared_ptr<Texture> getTexture(const std::string& name);
+    static std::shared_ptr<Texture> GetDefaultWhiteTexture();
 
     static std::unique_ptr<GameObject> loadModel(const std::string& path, std::shared_ptr<Shader> shader);
 

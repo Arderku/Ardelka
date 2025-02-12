@@ -1,6 +1,8 @@
 #include "ResourceManager.h"
 #include "FBXLoader.h"
+#include <GL/glew.h>  // For OpenGL functions like glGenTextures, glBindTexture, etc.
 
+// Define static members
 std::unordered_map<std::string, std::shared_ptr<Texture>> ResourceManager::m_Textures;
 std::unordered_map<std::string, std::unique_ptr<GameObject>> ResourceManager::m_Models;
 std::unordered_map<std::string, std::shared_ptr<Shader>> ResourceManager::m_Shaders;
@@ -21,6 +23,30 @@ std::shared_ptr<Texture> ResourceManager::getTexture(const std::string& name) {
         return m_Textures[name];
     }
     return nullptr;
+}
+
+// This function creates (if necessary) and returns a default white texture.
+std::shared_ptr<Texture> ResourceManager::GetDefaultWhiteTexture() {
+    static std::shared_ptr<Texture> defaultWhiteTexture = nullptr;
+    if (!defaultWhiteTexture) {
+        GLuint textureID;
+        glGenTextures(1, &textureID);
+        glBindTexture(GL_TEXTURE_2D, textureID);
+
+        // Create a 1x1 white pixel texture
+        unsigned char whitePixel[4] = { 255, 255, 255, 255 };
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, whitePixel);
+
+        // Set texture parameters (linear filtering and clamp to edge wrapping)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+        // Assuming your Texture class has a constructor that takes a GLuint (texture ID)
+        defaultWhiteTexture = std::make_shared<Texture>(textureID);
+    }
+    return defaultWhiteTexture;
 }
 
 std::unique_ptr<GameObject> ResourceManager::loadModel(const std::string& path, std::shared_ptr<Shader> shader) {

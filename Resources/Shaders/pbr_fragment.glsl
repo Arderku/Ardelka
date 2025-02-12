@@ -44,18 +44,17 @@ float ShadowCalculation(vec4 fragPosLightSpace) {
     // Transform to [0,1] range
     projCoords = projCoords * 0.5 + 0.5;
 
-    // Get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
+    // Get closest depth value from light's perspective
     float closestDepth = texture(shadowMap, projCoords.xy).r;
-
     // Get depth of current fragment from light's perspective
     float currentDepth = projCoords.z;
 
     // Calculate bias (based on depth map resolution and slope)
     vec3 normal = normalize(Normal);
-    vec3 lightDir = normalize(vec3(lightSpaceMatrix * vec4(-u_DirectionalLight.direction, 0.0)));  // Use u_DirectionalLight
+    vec3 lightDir = normalize(vec3(lightSpaceMatrix * vec4(-u_DirectionalLight.direction, 0.0)));
     float bias = max(0.005 * (1.0 - dot(normal, lightDir)), 0.005);
 
-    // PCF (Percentage-Closer Filtering)
+    // Percentage-Closer Filtering (PCF)
     float shadow = 0.0;
     vec2 texelSize = 1.0 / textureSize(shadowMap, 0);
     for (int x = -1; x <= 1; ++x) {
@@ -66,40 +65,48 @@ float ShadowCalculation(vec4 fragPosLightSpace) {
     }
     shadow /= 9.0;
 
-    // Keep the shadow at 0.0 when outside the far_plane region of the light's frustum.
+    // If the fragment is outside the light's frustum, do not apply shadow.
     if (projCoords.z > 1.0)
-    shadow = 0.0;
+        shadow = 0.0;
 
     return shadow;
 }
 
 void main() {
-    vec3 albedo = texture(albedoMap, TexCoords).rgb;
-    float metallic = texture(metallicMap, TexCoords).r;
-    float roughness = texture(roughnessMap, TexCoords).r;
-    vec3 normal = GetNormalFromMap();
+    // Sample material properties from textures.
+    vec3 albedoTex = texture(albedoMap, TexCoords).rgb;
+    float metallicTex = texture(metallicMap, TexCoords).r;
+    float roughnessTex = texture(roughnessMap, TexCoords).r;
 
-    vec3 viewDir = normalize(viewPos - FragPos);
+    // Compute the normal using normal mapping.
+    vec3 normal = GetNormalFromMap();
     vec3 norm = normalize(normal);
 
-    // Shadow calculation
+    // Compute view direction.
+    vec3 viewDir = normalize(viewPos - FragPos);
+
+    // Calculate shadow factor.
     vec4 fragPosLightSpace = lightSpaceMatrix * vec4(FragPos, 1.0);
     float shadow = ShadowCalculation(fragPosLightSpace);
 
-    // Lighting calculation
+    // Start with an ambient term.
     vec3 ambient = u_AmbientLight.color * u_AmbientLight.intensity;
-    vec3 lighting = ambient; // Start with ambient light
-    vec3 directionalLight = (1.0 - shadow) * CalculateDirectionalLight(u_DirectionalLight, norm, viewDir);
+    vec3 lighting = ambient;
+
+    // Calculate directional light contribution.
+    // (Pass material parameters to the function.)
+    vec3 directionalLight = (1.0 - shadow) * CalculateDirectionalLight(u_DirectionalLight, norm, viewDir, albedoTex, metallicTex, roughnessTex);
     lighting += directionalLight;
 
-    // Check if point lights are enabled
+    // Add contributions from point lights.
     for (int i = 0; i < 4; ++i) {
-        lighting += (1.0 - shadow) * CalculatePointLight(pointLights[i], norm, FragPos, viewDir);
+        lighting += (1.0 - shadow) * CalculatePointLight(pointLights[i], norm, FragPos, viewDir, albedoTex, metallicTex, roughnessTex);
     }
 
-    // Apply shadow color
+    // Optionally mix the computed lighting with a shadow color.
     vec3 shadowedColor = mix(lighting, shadowColor, shadow);
-    vec3 finalColor = albedo * shadowedColor;
+    // Multiply by the albedo.
+    vec3 finalColor = albedoTex * shadowedColor;
 
     FragColor = vec4(finalColor, 1.0);
 }

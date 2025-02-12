@@ -1,4 +1,6 @@
 #include "Material.h"
+
+#include "ResourceManager.h"
 #include "Shader.h"
 
 Material::Material(const std::string& name, std::shared_ptr<Shader> shader)
@@ -54,21 +56,30 @@ void Material::Bind() const {
     m_Shader->setFloat("metallic", m_Metallic);
     m_Shader->setFloat("roughness", m_Roughness);
 
+    // Bind albedo texture or default white texture if none is set.
+
     if (m_AlbedoMap) {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, m_AlbedoMap->GetID());
-        m_Shader->setInt("albedoMap", 0);
+    } else {
+        glBindTexture(GL_TEXTURE_2D, ResourceManager::GetDefaultWhiteTexture()->GetID());
+
     }
+    m_Shader->setInt("albedoMap", 0);
+
+    // Bind metallic map if available.
     if (m_MetallicMap) {
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, m_MetallicMap->GetID());
         m_Shader->setInt("metallicMap", 1);
     }
+    // Bind roughness map if available.
     if (m_RoughnessMap) {
         glActiveTexture(GL_TEXTURE2);
         glBindTexture(GL_TEXTURE_2D, m_RoughnessMap->GetID());
         m_Shader->setInt("roughnessMap", 2);
     }
+    // Bind normal map if available.
     if (m_NormalMap) {
         glActiveTexture(GL_TEXTURE3);
         glBindTexture(GL_TEXTURE_2D, m_NormalMap->GetID());

@@ -6,7 +6,12 @@
 
 class Texture {
 public:
+    // Existing constructor that loads a texture from a file
     Texture(const std::string& path);
+
+    // New constructor that creates a Texture from an existing OpenGL texture ID
+    Texture(GLuint id);
+
     ~Texture();
 
     void bind(unsigned int slot = 0) const;

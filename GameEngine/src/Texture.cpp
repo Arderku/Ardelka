@@ -3,8 +3,9 @@
 #include "stb_image.h"
 #include <iostream>
 
+// Constructor that loads a texture from file.
 Texture::Texture(const std::string& path)
-        : m_ID(0), m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0) {
+    : m_ID(0), m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0) {
     stbi_set_flip_vertically_on_load(1);
     m_LocalBuffer = stbi_load(path.c_str(), &m_Width, &m_Height, &m_BPP, 4);
 
@@ -25,6 +26,12 @@ Texture::Texture(const std::string& path)
     glGenerateMipmap(GL_TEXTURE_2D);
 
     stbi_image_free(m_LocalBuffer);
+}
+
+// New constructor that creates a Texture from an existing OpenGL texture ID.
+Texture::Texture(GLuint id)
+    : m_ID(id), m_FilePath(""), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0) {
+    // This constructor wraps an existing texture. No additional setup is required.
 }
 
 Texture::~Texture() {
