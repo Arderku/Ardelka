@@ -66,9 +66,9 @@ void Application::Init() {
     m_Editor.Init(m_Window->GetWindow(), m_Scene, *m_Renderer);
     m_Editor.SetApplication(this);
 
-    m_GameLayer = new GameLayer(m_Scene, *m_Renderer);
+    m_GameLayer = std::make_unique<GameLayer>(m_Scene, *m_Renderer);
 
-    m_EditorLayer = new EditorLayer(m_Editor);
+    m_EditorLayer = std::make_unique<EditorLayer>(m_Editor);
 }
 
 Renderer Application::GetRenderer() {

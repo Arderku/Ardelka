@@ -18,10 +18,14 @@ uniform mat4 projection;
 
 void main() {
     FragPos = vec3(model * vec4(aPos, 1.0));
-    Normal = mat3(transpose(inverse(model))) * aNormal;
+
     TexCoords = aTexCoords;
-    Tangent = mat3(transpose(inverse(model))) * aTangent;
-    Bitangent = mat3(transpose(inverse(model))) * aBitangent;
+
+    mat3 normalMatrix = transpose(inverse(mat3(model)));
+
+    Normal = normalMatrix * aNormal;
+    Tangent = normalMatrix * aTangent;
+    Bitangent = normalMatrix * aBitangent;
 
     gl_Position = projection * view * vec4(FragPos, 1.0);
 }

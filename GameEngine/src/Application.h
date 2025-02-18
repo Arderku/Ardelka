@@ -3,9 +3,9 @@
 #include "Renderer.h"
 #include "Scene.h"
 #include "Editor.h"
-
-class GameLayer;
-class EditorLayer;
+#include <memory>
+#include "EditorLayer.h"
+#include "GameLayer.h"
 
 class Application {
 public:
@@ -24,8 +24,8 @@ private:
     Scene m_Scene;
     Editor m_Editor;
 
-    GameLayer* m_GameLayer = nullptr;
-    EditorLayer* m_EditorLayer = nullptr;
+    std::unique_ptr<GameLayer> m_GameLayer;
+    std::unique_ptr<EditorLayer> m_EditorLayer;
 
     bool m_PlayMode = false;
 };

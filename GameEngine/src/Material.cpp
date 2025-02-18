@@ -1,5 +1,7 @@
 #include "Material.h"
 
+#include <iostream>
+
 #include "ResourceManager.h"
 #include "Shader.h"
 
@@ -58,14 +60,14 @@ void Material::Bind() const {
 
     // Bind albedo texture or default white texture if none is set.
 
-    if (m_AlbedoMap) {
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, m_AlbedoMap->GetID());
-    } else {
-        glBindTexture(GL_TEXTURE_2D, ResourceManager::GetDefaultWhiteTexture()->GetID());
-
-    }
-    m_Shader->setInt("albedoMap", 0);
+    glActiveTexture(GL_TEXTURE0); // Always set the active texture unit to 0
+if (m_AlbedoMap) {
+    glBindTexture(GL_TEXTURE_2D, m_AlbedoMap->GetID());
+} else {
+    auto defaultWhite = ResourceManager::GetDefaultWhiteTexture();
+    glBindTexture(GL_TEXTURE_2D, defaultWhite->GetID());
+}
+m_Shader->setInt("albedoMap", 0);
 
     // Bind metallic map if available.
     if (m_MetallicMap) {

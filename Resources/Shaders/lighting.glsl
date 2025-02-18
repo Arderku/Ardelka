@@ -11,10 +11,11 @@ vec3 CalculateDirectionalLight(DirectionalLight light, vec3 normal, vec3 viewDir
     vec3 L = normalize(-light.direction);
     vec3 H = normalize(viewDir + L);
 
-    // Compute dot products needed for BRDF.
+    // Precompute the dot products
     float NdotL = max(dot(normal, L), 0.0);
     float NdotV = max(dot(normal, viewDir), 0.0);
     float NdotH = max(dot(normal, H), 0.0);
+
     float VdotH = max(dot(viewDir, H), 0.0);
 
     // Compute base reflectivity F0 using the metallic workflow:
@@ -24,6 +25,7 @@ vec3 CalculateDirectionalLight(DirectionalLight light, vec3 normal, vec3 viewDir
 
     // --- Normal Distribution Function (GGX) ---
     float a = materialRoughness * materialRoughness;
+    if(a < 0.01) a = 0.01;
     float a2 = a * a;
     float denom_NDF = (NdotH * NdotH * (a2 - 1.0) + 1.0);
     float D = a2 / (PI * denom_NDF * denom_NDF);

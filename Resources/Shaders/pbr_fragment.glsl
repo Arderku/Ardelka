@@ -11,6 +11,8 @@ in vec3 Bitangent;
 
 out vec4 FragColor;
 
+uniform vec3 baseColor;
+
 uniform sampler2D albedoMap;
 uniform sampler2D metallicMap;
 uniform sampler2D roughnessMap;
@@ -82,8 +84,11 @@ void main() {
     vec3 normal = GetNormalFromMap();
     vec3 norm = normalize(normal);
 
+     albedoTex *= baseColor;
+
     // Compute view direction.
     vec3 viewDir = normalize(viewPos - FragPos);
+
 
     // Calculate shadow factor.
     vec4 fragPosLightSpace = lightSpaceMatrix * vec4(FragPos, 1.0);
@@ -100,11 +105,12 @@ void main() {
 
     // Add contributions from point lights.
     for (int i = 0; i < 4; ++i) {
-        lighting += (1.0 - shadow) * CalculatePointLight(pointLights[i], norm, FragPos, viewDir, albedoTex, metallicTex, roughnessTex);
+        lighting += (1.0 - shadow) * CalculatePointLight(U_PointLights[i], norm, FragPos, viewDir, albedoTex, metallicTex, roughnessTex);
     }
 
     // Optionally mix the computed lighting with a shadow color.
     vec3 shadowedColor = mix(lighting, shadowColor, shadow);
+
     // Multiply by the albedo.
     vec3 finalColor = albedoTex * shadowedColor;
 

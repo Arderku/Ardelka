@@ -33,5 +33,5 @@ uniform mat4 projection;
 
 uniform DirectionalLight u_DirectionalLight;
 uniform AmbientLight u_AmbientLight;
-uniform SpotLight spotLight;
-uniform PointLight pointLights[4];
+uniform SpotLight u_SpotLight;
+uniform PointLight u_PointLights[4];

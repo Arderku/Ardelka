@@ -49,6 +49,19 @@ public:
 
     }
 
+    inline void RenderShadow(const Shader& shadowShader) {
+        // Here, use the shadowShader (passed as parameter) instead of the material's shader.
+        // Set the model matrix using your GameObject's transform.
+        glm::mat4 model = m_Owner->GetTransform()->GetModelMatrix();
+        shadowShader.setMat4("model", model);
+
+        // Bind the mesh and draw it.
+        m_Mesh->Bind();
+        glDrawElements(GL_TRIANGLES, m_Mesh->GetIndexCount(), GL_UNSIGNED_INT, 0);
+        m_Mesh->Unbind();
+    }
+
+
 private:
     std::shared_ptr<Mesh> m_Mesh;
     std::shared_ptr<Material> m_Material;

@@ -26,8 +26,8 @@ int main() {
     // Create materials
     auto materialRed = ResourceManager::createMaterial("M_Red", pbrShader);
     materialRed->SetBaseColor(glm::vec3(1.0f, 1.0f, 1.0f));
-    materialRed->SetMetallic(0.5f);
-    materialRed->SetRoughness(0.15f);
+    materialRed->SetMetallic(0.0f);
+    materialRed->SetRoughness(0.35f);
 
     auto materialBlue = ResourceManager::createMaterial("M_Blue", pbrShader);
     materialBlue->SetBaseColor(glm::vec3(0.0f, 0.0f, 1.0f));
@@ -39,12 +39,12 @@ int main() {
     auto normal = ResourceManager::loadTexture("normal", "Resources/DummyAssets/Laminate-Flooring-brown/laminate-flooring-brown_normal_dx.png");
 
         auto tt = ResourceManager::GetDefaultWhiteTexture();
-    materialRed->SetAlbedoMap(tt);
+    materialRed->SetAlbedoMap(albedo);
     materialRed->SetMetallicMap(metallic);
     materialRed->SetRoughnessMap(roughness);
     materialRed->SetNormalMap(normal);
 
-        materialBlue->SetAlbedoMap(albedo);
+  //      materialBlue->SetAlbedoMap(albedo);
 
     // Create a GameObject with a Camera component
     auto cameraGameObject = std::make_unique<GameObject>();

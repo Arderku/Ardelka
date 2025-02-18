@@ -5,6 +5,7 @@ uniform vec3 shadowColor;
 uniform float shadowBias;
 
 void main() {
-    float depth = gl_FragCoord.z + shadowBias;
-    FragColor = vec4(shadowColor, 1.0);  // For debugging, set alpha to 1.0
+     float depth = gl_FragCoord.z + shadowBias;
+        float shadow = (depth > texture(shadowMap, shadowCoords).r) ? 0.5 : 1.0;
+        FragColor = vec4(shadow * shadowColor, 0.1);
 }

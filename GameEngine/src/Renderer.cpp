@@ -15,10 +15,7 @@ Renderer::~Renderer() {
 
 void Renderer::Init() {
     // Initialize GLEW and OpenGL settings
-    if (glewInit() != GLEW_OK) {
-        std::cerr << "Failed to initialize GLEW" << std::endl;
-        return;
-    }
+
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
@@ -86,9 +83,8 @@ void Renderer::RenderShadowPass(const glm::mat4& lightSpaceMatrix,
     // Iterate over the unique pointers. Use the raw pointer via .get() or -> directly.
     for (const auto& gameObject : gameObjects) {
         if (auto renderer = gameObject->GetComponent<MeshRenderer>()) {
-            glm::mat4 model = gameObject->GetTransform()->GetModelMatrix();
-            m_ShadowShader->setMat4("model", model);
-            renderer->Render();
+
+            renderer->RenderShadow(*m_ShadowShader);
         }
     }
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -106,7 +102,7 @@ void Renderer::SetupLights() {
         pointLights[i].constant = 1.0f;
         pointLights[i].linear = 0.09f;
         pointLights[i].quadratic = 0.032f;
-        m_PBRShader->setPointLight("pointLights[" + std::to_string(i) + "]", pointLights[i]);
+        m_PBRShader->setPointLight("u_PointLights[" + std::to_string(i) + "]", pointLights[i]);
     }
 
     // Directional Light setup
