@@ -105,7 +105,7 @@ void main() {
 
     // Add contributions from point lights.
     for (int i = 0; i < 4; ++i) {
-        lighting += (1.0 - shadow) * CalculatePointLight(U_PointLights[i], norm, FragPos, viewDir, albedoTex, metallicTex, roughnessTex);
+        lighting += (1.0 - shadow) * CalculatePointLight(u_PointLights[i], norm, FragPos, viewDir, albedoTex, metallicTex, roughnessTex);
     }
 
     // Optionally mix the computed lighting with a shadow color.

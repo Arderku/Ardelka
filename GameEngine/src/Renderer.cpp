@@ -18,6 +18,9 @@ void Renderer::Init() {
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+    // Enable blending for transparency
+glEnable(GL_BLEND);
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // Standard alpha blending
 
 
     glClearColor(0.68f, 0.85f, 0.9f, 1.0f);
@@ -73,40 +76,92 @@ void Renderer::Init() {
 
 void Renderer::RenderShadowPass(const glm::mat4& lightSpaceMatrix,
                                 const std::vector<std::unique_ptr<GameObject>>& gameObjects) {
-    m_ShadowShader->use();
-    // Ensure the viewport matches the shadow map resolution.
-    glViewport(0, 0, 2048, 2048);
-    glBindFramebuffer(GL_FRAMEBUFFER, shadowFBO);
-    glClear(GL_DEPTH_BUFFER_BIT);
 
-    m_ShadowShader->setMat4("lightSpaceMatrix", lightSpaceMatrix);
-    // Iterate over the unique pointers. Use the raw pointer via .get() or -> directly.
-    for (const auto& gameObject : gameObjects) {
-        if (auto renderer = gameObject->GetComponent<MeshRenderer>()) {
+ glm::vec3 lightPos = glm::vec3(-1.0f, -2.0f, -1.0f);  // Set your light position here
+    bool isPointLight = true;
+    // Check if the light is a point light or directional light
+    if (isPointLight) {
+        // Set up cube map faces for point light shadows (6 faces)
+        std::array<glm::mat4, 6> lightViews = {
+            glm::lookAt(lightPos, lightPos + glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)),  // Right
+            glm::lookAt(lightPos, lightPos + glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)), // Left
+            glm::lookAt(lightPos, lightPos + glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)),   // Top
+            glm::lookAt(lightPos, lightPos + glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f)),  // Bottom
+            glm::lookAt(lightPos, lightPos + glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, -1.0f, 0.0f)),   // Front
+            glm::lookAt(lightPos, lightPos + glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, -1.0f, 0.0f))    // Back
+        };
 
-            renderer->RenderShadow(*m_ShadowShader);
+        glm::mat4 lightProjection = glm::perspective(glm::radians(90.0f), 1.0f, 0.1f, 25.0f);  // Cube map projection for point light
+
+        // Loop through all cube faces (6 faces)
+        for (int i = 0; i < 6; ++i) {
+            glm::mat4 lightSpaceMatrix = lightProjection * lightViews[i];
+            m_ShadowShader->setMat4("lightSpaceMatrix", lightSpaceMatrix);
+
+            // Render the scene from the current face view
+            glBindFramebuffer(GL_FRAMEBUFFER, shadowFBO);
+            glClear(GL_DEPTH_BUFFER_BIT);
+
+            for (const auto& gameObject : gameObjects) {
+                if (auto renderer = gameObject->GetComponent<MeshRenderer>()) {
+                    renderer->RenderShadow(*m_ShadowShader);
+                }
+            }
         }
+
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    } else {
+        // Handle directional light shadow pass (as it was before)
+        m_ShadowShader->use();
+        glBindFramebuffer(GL_FRAMEBUFFER, shadowFBO);
+        glClear(GL_DEPTH_BUFFER_BIT);
+
+        m_ShadowShader->setMat4("lightSpaceMatrix", lightSpaceMatrix);
+
+        // Render from the directional light's view
+        for (const auto& gameObject : gameObjects) {
+            if (auto renderer = gameObject->GetComponent<MeshRenderer>()) {
+                renderer->RenderShadow(*m_ShadowShader);
+            }
+        }
+
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
+
 
 
 void Renderer::SetupLights() {
     m_PBRShader->use();
 
     // Point Lights setup
-    std::array<PointLight, 4> pointLights;
-    for (int i = 0; i < 4; ++i) {
-        pointLights[i].position = glm::vec3(i * 2.0f, 3.0f, 2.0f);  // Example positions
-        pointLights[i].color = glm::vec3(1.0f - i * 0.25f, i * 0.25f, 0.0f);  // Example colors
-        pointLights[i].constant = 1.0f;
-        pointLights[i].linear = 0.09f;
-        pointLights[i].quadratic = 0.032f;
-        m_PBRShader->setPointLight("u_PointLights[" + std::to_string(i) + "]", pointLights[i]);
-    }
+    float radius = 2.0f;  // Radius of the orbit (distance from the center)
+float speed = 1.0f;   // Speed of the orbit (controls how fast the lights move)
+float time = glfwGetTime();  // Get the current time to make the lights move
+
+// Point Lights setup
+std::array<PointLight, 4> pointLights;
+for (int i = 0; i < 4; ++i) {
+    // Calculate the position based on a circular orbit around the center (0, 0, 0)
+    float angle = time * speed + (i * glm::pi<float>() / 2.0f);  // Offset each light by 90 degrees
+
+    pointLights[i].position = glm::vec3(
+        radius * glm::cos(angle),  // X position in the circle
+        4.0f,                      // Y position (constant for vertical positioning)
+        radius * glm::sin(angle)   // Z position in the circle
+    );
+
+    // Example colors (you can modify this for a more dynamic color system)
+    pointLights[i].color = glm::vec3(1.0f - i * 0.25f, i * 0.25f, 0.0f);
+    pointLights[i].constant = 1.0f;
+    pointLights[i].linear = 0.09f;
+    pointLights[i].quadratic = 0.032f;
+
+    m_PBRShader->setPointLight("u_PointLights[" + std::to_string(i) + "]", pointLights[i]);
+}
 
     // Directional Light setup
-    glm::vec3 dirLightDirection = glm::normalize(glm::vec3(-2.0f, -4.0f, -1.0f));  // Example direction
+    glm::vec3 dirLightDirection = glm::normalize(glm::vec3(-1.0f, -2.0f, -1.0f));  // Example direction
     glm::vec3 dirLightColor = glm::vec3(1.0f, 1.0f, 1.0f);  // White color
 
     DirectionalLight dirLight;
